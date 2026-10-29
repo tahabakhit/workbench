@@ -1,6 +1,6 @@
 # 04 Move and rename the seven one-to-one skills
 
-Status: open
+Status: done
 Blocked by: 01
 
 ## What
