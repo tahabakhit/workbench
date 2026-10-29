@@ -39,6 +39,7 @@ line, `- <kind>: <where>, <how>`. A kind can be limited to some skills, as in
 | `corrections` | the ledger of corrections the user made |
 | `plan` | the daily plan |
 | `goals` | long-term goals the plan ranks against |
+| `learning` | missions, source lists, lessons and quiz records for topics being studied |
 | `sources` | where work is gathered from: tracker, chat, calendar, notes, code host |
 
 - The vault a session writes to is the one the machine's section names; a

@@ -1,6 +1,6 @@
 # 01 Add the `learning` Knowledge kind
 
-Status: open
+Status: done
 
 ## What
 

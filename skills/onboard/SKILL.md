@@ -13,7 +13,7 @@ Scope comes from the argument: `machine` or `repo`. Without one, run
 The format of a `## Knowledge` section is in the "Knowledge destinations"
 part of the contract: one line per kind,
 `- <kind>: <where>, <how>`, for `log`, `decisions`, `lessons`,
-`corrections`, `plan`, `goals` and `sources`.
+`corrections`, `plan`, `goals`, `learning` and `sources`.
 
 ## Machine scope
 
@@ -25,8 +25,9 @@ part of the contract: one line per kind,
 2. **Ask.** One numbered round. For each of tracker, chat, calendar, code
    host, notes, and the vault a session writes to, give your recommendation
    from the inventory and one line on why; word it so "yes" accepts it. Ask
-   also where `plan` and `goals` live when nothing found answers that. Done
-   when every kind has an answer or is deliberately left out.
+   also where `plan`, `goals` and `learning` live when nothing found
+   answers that. Done when every kind has an answer or is deliberately left
+   out.
 3. **Write.** Draft the whole section, starting with `## Knowledge`, and
    print it verbatim in a code block, even when it is identical to the
    current one. Keep every existing line, including skill-limited ones,
