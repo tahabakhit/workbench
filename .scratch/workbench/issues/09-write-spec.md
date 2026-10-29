@@ -1,6 +1,6 @@
 # 09 write-spec skill
 
-Status: open
+Status: done
 Blocked by: 02
 
 ## What
