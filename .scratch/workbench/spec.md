@@ -94,9 +94,10 @@ not block anything here.
 | 12 | Hooks and safety rules: decide coverage, keep them unrestrictive | 07 | done |
 | 13 | Topic-tutor skill | 07 | done |
 | 14 | The plugin delivers the contract and Knowledge itself | 08 | done |
-| 15 | Develop on the Fedora PC only; decide how the Mac consumes the plugin | 14 | open |
+| 15 | Develop on the Fedora PC only; decide how the Mac consumes the plugin | 14 | done |
 | 16 | Ship the owner's agent rules as `agent-rules.md` | | done |
 | 17 | Install from GitHub on every machine | | done |
+| 18 | Connect the Mac to the public repo | | open |
 
 Steps 2 and 3 of the Order are issues 01 to 10. Issues 16 and 17 are hand-overs from the dotfiles. Issues 11 to 13 are steps 4
 to 6. Each of those gets its own spec before work starts.
@@ -142,8 +143,8 @@ Owned by workbench, not prioritised yet. Each gets an issue when it starts.
 | The plugin's `SessionStart` hook delivers the contract and `~/.config/workbench/knowledge.md`; the dotfiles keep only the contract include for Codex and Pi (issue 14) | Workbench does not edit the global instructions, and Knowledge is known only when the plugin is loaded |
 | `scripts/check.sh` runs `claude plugin validate --strict` and tolerates only its missing-version warning | `plugin.json` has no `version` on purpose; every other warning still fails |
 | Workbench is developed, committed and pushed only from the Fedora PC (issue 15) | One place where changes are made |
-| The repo stays private until workbench is finished, then goes public; the history rewrite that needs is approved separately at that point (issue 15) | Publishing needs an irreversible rewrite of the old trial files; nothing needs a public repo yet |
-| The Mac has no workbench checkout and gets no updates until the repo is public; then it installs from a `github` marketplace source (issue 15) | No Mac work is planned before then, and a public repo avoids the Mac's work-account auth problem |
+| The repo is public, with history rewritten so the old trial files hold no employer details (issue 15) | A public repo lets the Mac install without the personal account's credentials |
+| The Mac has no workbench checkout and installs from the `github` marketplace source when the owner gets to it (issue 18) | A public repo avoids the Mac's work-account auth problem; nothing else waits on the Mac |
 | Workbench owns the text of the owner's agent rules as `agent-rules.md`; the dotfiles only include it (issue 16) | One home for agent guidance; `CLAUDE.md` keeps its standing over hook context |
 | Every machine installs the plugin from the `tahabakhit/workbench` GitHub marketplace, the Fedora PC included (issue 17) | Same source everywhere; sessions run what is pushed |
 | `prototype`, `research` and `handoff` ship as manual skills, and mattpocock-skills is uninstalled | They were the last verdicts marked rewrite; with them built the plugin needs no reference copy. `prototype` keeps only the one-file logic demo, since the UI-variants branch assumes a web app repo |

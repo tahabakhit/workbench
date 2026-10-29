@@ -32,8 +32,8 @@ workbench`, then start a new session.
 
 ## Work tracking
 
-Follows `contract.md`. Open work is in `.scratch/workbench/` and
-`.scratch/topic-tutor/`. Settled input: `.scratch/bootstrap/decisions.md`,
+Follows `contract.md`. Open work is in `.scratch/workbench/`.
+Settled input: `.scratch/bootstrap/decisions.md`,
 which wins on conflict, and the per-skill verdicts in
 `.scratch/bootstrap/mattpocock-analysis.md`. Terms are in `GLOSSARY.md`.
 

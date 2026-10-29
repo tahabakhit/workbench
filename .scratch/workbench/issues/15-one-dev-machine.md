@@ -1,10 +1,10 @@
 # 15 Develop on the Fedora PC only; decide how the Mac consumes the plugin
 
-Status: open
+Status: done
 Blocked by: 14
 
-The decisions are in `## Decisions` in `spec.md`. The Mac part waits until
-the repo is public; the remaining done-when checks run then.
+The decisions are in `## Decisions` in `spec.md`. Connecting the Mac is
+issue 18, which blocks nothing.
 
 ## What
 
@@ -20,7 +20,7 @@ Facts gathered on the Mac:
   `contract.md` include in `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md`.
   Issue 14 removes the links and moves the contract into a plugin hook, which
   leaves only the Codex include line needing a local file.
-- The repo is private. The Mac's default `gh` and git identity is a work
+- The Mac's default `gh` and git identity is a work
   account; only this clone's local config pushes as the personal account. A
   `github` marketplace source on the Mac would clone with the default
   credentials and probably fail to fetch or auto-update. Untested.
@@ -37,36 +37,20 @@ Options for the Mac:
 2. After issue 14, switch the Mac to a `github` marketplace source and drop
    the checkout. Needs the private-repo auth above solved, or a public repo.
 
-Visibility audit (all history, all files):
-
-- gitleaks over all history: no leaks. All commit authors use the GitHub
-  noreply address.
-- Skills mention only generic tool names.
-- `.scratch/workbench/trials/onboard.md` and `record.md` describe how the
-  work machine's tools are wired (tracker CLI, chat through a company MCP
-  gateway, a pending data-handling check, a work tracker project key).
-- History before the commit that put placeholders into the onboard trial
-  holds the employer's name and its internal GitHub Enterprise host.
-  Publishing needs those files scrubbed and that history rewritten (squash or
-  `git filter-repo`), then a force push and fresh clones on both machines.
-  Irreversible; needs explicit approval.
-
-Also noticed:
-
-- The Fedora PC has the `mattpocock-skills` plugin installed but disabled,
-  so its skills do not load.
-- Issue 08's done-when says ten skills; the plugin ships fifteen.
+Publishing: the old versions of the onboard and record trials held the
+employer's name, its GitHub Enterprise host, a work account and details of a
+work repo. History was rewritten so every version of those files is the
+cleaned one, then force-pushed. A grep of all history for those terms and
+gitleaks over all history find nothing.
 
 ## Done when
 
-- The chosen Mac option is written to `## Decisions` in `spec.md`, with the
-  visibility decision, after approval.
-- On the Mac, a commit pushed from Fedora reaches a new Claude Code session
-  without a manual step: `claude plugin details workbench` shows the new
-  skill or change.
-- `git -C ~/dev/workbench log origin/main..main` on the Mac prints nothing.
+- The Mac option and the visibility decision are in `## Decisions` in
+  `spec.md`.
+- `gh repo view tahabakhit/workbench --json visibility` shows `PUBLIC`, and
+  a grep of all history for the employer terms finds nothing.
 
 ## Out of scope
 
-- Doing the history rewrite or publishing without explicit approval.
+- Connecting the Mac (issue 18).
 - The settings ownership itself (mac-dotfiles issue 04).
