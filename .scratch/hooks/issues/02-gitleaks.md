@@ -1,6 +1,6 @@
 # 02 Gitleaks on commit and push
 
-Status: open
+Status: done
 Blocked by: 01
 
 ## What
