@@ -1,6 +1,6 @@
 # 17 Install from GitHub on every machine
 
-Status: open
+Status: done
 
 The README gives the install steps from the `tahabakhit/workbench` GitHub
 marketplace. The Fedora PC switches from the `directory` source at

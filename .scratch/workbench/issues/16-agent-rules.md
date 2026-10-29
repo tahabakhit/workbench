@@ -1,6 +1,6 @@
 # 16 Ship the owner's agent rules as `agent-rules.md`
 
-Status: open
+Status: done
 
 Workbench owns the text of the owner's personal agent rules (Autonomy,
 Working practices, Git, Tools). The dotfiles include it: `~/.claude/CLAUDE.md`
