@@ -1,6 +1,6 @@
 # 10 Five-scenario trial of write-spec
 
-Status: open
+Status: done
 Blocked by: 09
 
 ## What

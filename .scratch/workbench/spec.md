@@ -85,7 +85,7 @@ not block anything here.
 | 07 | Switch this Mac to the plugin and remove skills from the agents repo | 03, 05, 06 | open |
 | 08 | Switch the Fedora PC to the plugin | 07 | open |
 | 09 | `write-spec` skill: spec and issues in one pass | 02 | done |
-| 10 | Five-scenario trial of `write-spec` | 09 | open |
+| 10 | Five-scenario trial of `write-spec` | 09 | done |
 | 11 | notebook: build the vault tool up to switch-over (own repo, own spec) | | open |
 | 12 | Hooks and safety rules: decide coverage, keep them unrestrictive | 07 | open |
 | 13 | Topic-tutor skill | 07 | open |
