@@ -14,9 +14,12 @@ to their mission, and every claim traces to a source they can open.
 Read the `learning:` entry in the `## Knowledge` sections (repo first, then
 the machine's). With none, stop and point the user to `onboard`. The topic
 folder is `<destination>/<topic-slug>/`; create it, and never overwrite a
-file already in it.
+file already in it. If it already holds `mission.md`, this is a returning
+session: read `mission.md`, `sources.md`, every lesson and `quiz.md`, then
+go to step 6.
 
-Done when the topic folder exists.
+Done when the topic folder exists, and for a returning session its files
+are read.
 
 ## 2. Mission
 
@@ -80,3 +83,19 @@ in the topic folder, with the date from `date`:
 `- YYYY-MM-DD | lesson NN | <question> | right` (or `wrong`)
 
 Done when every question has an answer line in `quiz.md`.
+
+## 6. Returning session
+
+A miss is a question whose latest line in `quiz.md` says `wrong`. Before
+anything new, ask each miss again as in step 5: reworded, through
+`scripts/shuffle.sh`, with a new line in `quiz.md` per answer.
+
+Then hold the mission's done-when against the lessons and the latest quiz
+lines. When every item is taught, quizzed and its latest answers are
+right, say so and offer to close the topic, adding `## Closed` with the date
+to `mission.md`. Otherwise, or when the user declines, write the next
+lesson, numbered after the highest in `lessons/`, as in step 4, and quiz it
+as in step 5.
+
+Done when every miss has a new answer line, and either the next lesson and
+its quiz are done or the user has been offered to close the topic.

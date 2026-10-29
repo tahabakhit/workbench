@@ -1,6 +1,6 @@
 # 05 Resume across sessions, misses first
 
-Status: open
+Status: done
 Blocked by: 04
 
 ## What
