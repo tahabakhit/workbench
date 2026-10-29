@@ -40,7 +40,7 @@ Settled input: `.scratch/bootstrap/decisions.md` (wins on conflict) and the
 |---|---|---|---|
 | 01 | Safety hook: ask on force push and remote branch delete | | done |
 | 02 | Gitleaks on commit and push | 01 | done |
-| 03 | Ask before destructive git on a dirty tree | 01 | open |
+| 03 | Ask before destructive git on a dirty tree | 01 | done |
 | 04 | Ask before `rm` outside the working areas | 01 | open |
 
 ## Out of scope

@@ -1,6 +1,6 @@
 # 03 Ask before destructive git on a dirty tree
 
-Status: open
+Status: done
 Blocked by: 01
 
 ## What

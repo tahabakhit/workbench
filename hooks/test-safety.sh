@@ -148,5 +148,33 @@ git -C "$r" commit -qm key
 run_guard "$r" 'git push -u origin feature'
 check 'push of a branch with no upstream holding a key' deny 'config.ini:1'
 
+new_repo dirty
+r="$work/dirty"
+for cmd in 'git reset --hard' 'git clean -f' 'git clean -fd' 'git clean -fdx' \
+  'git checkout -- .' 'git restore .' 'git reset --soft HEAD~1' 'git checkout main' \
+  'git clean -fn' 'git restore --staged .'; do
+  run_guard "$r" "$cmd"
+  check "$cmd in a clean repo" none
+done
+echo new > "$r/untracked"
+for cmd in 'git reset --hard' 'git clean -f' 'git clean -fdx' 'git checkout -- .' 'git restore .'; do
+  run_guard "$r" "$cmd"
+  check "$cmd with an untracked file" ask
+done
+rm "$r/untracked"
+echo more >> "$r/readme"
+for cmd in 'git reset --hard' 'git clean -fd' 'git checkout -- .' 'git restore .'; do
+  run_guard "$r" "$cmd"
+  check "$cmd with a modified file" ask
+done
+for cmd in 'git reset --soft HEAD~1' 'git checkout main' 'git clean -fn' 'git restore --staged .'; do
+  run_guard "$r" "$cmd"
+  check "$cmd with a modified file" none
+done
+run_guard "$work" "cd $r && git reset --hard"
+check 'git reset --hard after cd into a dirty repo' ask
+run_guard "$work" "cd \"$r\" && git reset --hard"
+check 'git reset --hard after cd into a quoted dirty repo' ask
+
 echo "safety hook tests: $pass passed, $fail failed"
 [ "$fail" -eq 0 ]

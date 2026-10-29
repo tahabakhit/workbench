@@ -90,6 +90,48 @@ check_push_secrets() {
   deny_leaks "$(leaks --log-opts="$range")" "commits being pushed"
 }
 
+# Prints why the git command throws away uncommitted work, or nothing.
+destroys_work() {
+  case $sub in
+    reset)
+      for w in $subargs; do
+        [ "$w" = --hard ] && { echo "reset --hard"; return; }
+      done ;;
+    clean)
+      force=
+      for w in $subargs; do
+        case $w in
+          --dry-run) return ;;
+          --force) force=$w ;;
+          --*) ;;
+          -*n*) return ;;
+          -*f*) force=$w ;;
+        esac
+      done
+      [ -z "$force" ] || echo "clean $force" ;;
+    checkout)
+      for w in $subargs; do
+        case $w in --|.) echo "checkout $w"; return ;; esac
+      done ;;
+    restore)
+      staged=
+      for w in $subargs; do
+        case $w in
+          --worktree|-W) staged= ; break ;;
+          --staged|-S) staged=1 ;;
+        esac
+      done
+      [ -n "$staged" ] || echo "restore" ;;
+  esac
+}
+
+check_dirty_tree() {
+  what=$(destroys_work)
+  [ -n "$what" ] && in_repo || return 0
+  [ -n "$(git -C "$repo" status --porcelain 2>/dev/null)" ] || return 0
+  ask "git $what discards uncommitted changes in $repo."
+}
+
 check_force_push() {
   [ "$sub" = push ] || return 0
   for w in $subargs; do
@@ -133,10 +175,11 @@ for segment in $segments; do
   IFS=' 	'
   set -- $segment
   if [ "${1-}" = cd ]; then
-    case ${2-} in
+    target=$(printf '%s' "${2-}" | tr -d "\"'")
+    case $target in
       '') dir=$HOME ;;
-      /*) dir=$2 ;;
-      *) dir=$dir/$2 ;;
+      /*) dir=$target ;;
+      *) dir=$dir/$target ;;
     esac
   fi
   git_words "$@"
@@ -144,6 +187,7 @@ for segment in $segments; do
   check_push_secrets
   check_force_push
   check_remote_delete
+  check_dirty_tree
   IFS='
 '
 done
