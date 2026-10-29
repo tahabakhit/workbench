@@ -51,9 +51,11 @@ workbench`, then start a new session.
   dates, run numbers, ticket IDs and people's names. Describe what is true
   now; history goes in the commit message.
 - A comment states a non-obvious constraint in one or two sentences.
-- Commits: plain message, no `Co-Authored-By` trailer, author email
-  `43717793+tahabakhit@users.noreply.github.com` (pass it with
-  `git -c user.email=...`; the global config holds the work address).
+- Commits: plain message, no `Co-Authored-By` trailer. This clone's local
+  git config sets the personal noreply email and makes git push as the
+  `tahabakhit` account. For `gh`, prefix
+  `GH_TOKEN=$(gh auth token -u tahabakhit)`; the active gh account is the
+  work one.
 - Never name a file `claude.md` or `agents.md` in any case. macOS matches
   them to `CLAUDE.md` and `AGENTS.md`, and harnesses load those as
   instructions.
