@@ -22,9 +22,10 @@ done
 pass=0
 fail=0
 
-# run_guard <dir> <command> [PATH]: sets $got and $reason.
+# run_guard <dir> <command> [PATH]: sets $got and $reason. The hook input's
+# cwd is $json_cwd when set, so it can name a directory that does not exist.
 run_guard() {
-  input=$(jq -n --arg c "$2" --arg d "$1" \
+  input=$(jq -n --arg c "$2" --arg d "${json_cwd:-$1}" \
     '{hook_event_name: "PreToolUse", tool_name: "Bash", cwd: $d, tool_input: {command: $c}}')
   out=$(cd "$1" && printf '%s\n' "$input" | PATH=${3:-$PATH} "$shell" "$guard")
   status=$?
@@ -175,6 +176,26 @@ run_guard "$work" "cd $r && git reset --hard"
 check 'git reset --hard after cd into a dirty repo' ask
 run_guard "$work" "cd \"$r\" && git reset --hard"
 check 'git reset --hard after cd into a quoted dirty repo' ask
+
+# rm cases run against a project outside /tmp, since all of /tmp is allowed.
+json_cwd=/srv/proj
+export CLAUDE_PROJECT_DIR=/srv/proj TMPDIR=/scratch/session/
+for cmd in 'rm -rf build' 'rm -rf ./a/../b' 'rm -rf /tmp/x' 'rm -rf /scratch/session/x' \
+  'rm file.txt' 'rm ../file.txt' 'rm -r build "dist"' 'rm -f -- -odd' 'cd .. && rm -rf proj/x' \
+  'rm -rf /srv/proj/x'; do
+  run_guard "$work" "$cmd"
+  check "$cmd" none
+done
+for cmd in 'rm -rf ~/docs' 'rm -rf ../other' 'rm -rf /' 'rm -rf "$HOME"' 'rm -rf .' \
+  'rm -fr /tmp/../etc' 'rm -R ../other' 'rm --recursive ../other' 'rm -rf build/*' \
+  'rm -rf build ../other' 'rm -rf /srv/projects' 'cd .. && rm -rf other' 'rm -rf {/etc,x}'; do
+  run_guard "$work" "$cmd"
+  check "$cmd" ask
+done
+CLAUDE_PROJECT_DIR='/srv/my proj'
+run_guard "$work" 'rm -rf /srv/proj/proj/x'
+check 'rm -rf /srv/proj/proj/x with the project at "/srv/my proj"' ask
+unset json_cwd
 
 echo "safety hook tests: $pass passed, $fail failed"
 [ "$fail" -eq 0 ]

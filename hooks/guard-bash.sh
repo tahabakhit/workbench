@@ -132,6 +132,69 @@ check_dirty_tree() {
   ask "git $what discards uncommitted changes in $repo."
 }
 
+# Prints path $1 made absolute against $dir with . and .. removed, without
+# touching the file system.
+normalize() {
+  case $1 in
+    /*) path=$1 ;;
+    *) path=$dir/$1 ;;
+  esac
+  out=
+  IFS=/
+  for part in $path; do
+    case $part in
+      ''|.) ;;
+      ..) out=${out%/*} ;;
+      *) out=$out/$part ;;
+    esac
+  done
+  printf '%s\n' "${out:-/}"
+}
+
+# True when $target is strictly inside directory $1.
+under() {
+  [ -n "$1" ] || return 1
+  root=$(normalize "$1")
+  case $target in "${root%/}"/?*) return 0 ;; esac
+  return 1
+}
+
+# True when $1 is strictly inside the project, the scratchpad or /tmp. A
+# glob, brace, variable or ~user the hook can't resolve counts as outside.
+allowed_target() {
+  case $1 in
+    *'$'*|*'*'*|*'?'*|*'['*|*'{'*|*'`'*|'~'[!/]*) return 1 ;;
+    '~') target=$HOME ;;
+    '~/'*) target=$HOME/${1#'~/'} ;;
+    *) target=$1 ;;
+  esac
+  target=$(normalize "$target")
+  under "${CLAUDE_PROJECT_DIR:-}" || under "${TMPDIR:-/tmp}" || under /tmp
+}
+
+check_rm() {
+  [ "${1-}" = rm ] || return 0
+  shift
+  recursive_or_force=
+  targets=
+  options=1
+  for w in "$@"; do
+    w=$(printf '%s' "$w" | tr -d "\"'")
+    if [ -n "$options" ]; then
+      case $w in
+        --) options= ; continue ;;
+        --recursive|--force) recursive_or_force=1; continue ;;
+        --*) continue ;;
+        -*[rRf]*) recursive_or_force=1; continue ;;
+        -*) continue ;;
+      esac
+    fi
+    allowed_target "$w" || targets="$targets $w"
+  done
+  [ -n "$recursive_or_force" ] && [ -n "$targets" ] || return 0
+  ask "rm deletes outside the project, the scratchpad and /tmp:$targets"
+}
+
 check_force_push() {
   [ "$sub" = push ] || return 0
   for w in $subargs; do
@@ -188,6 +251,7 @@ for segment in $segments; do
   check_force_push
   check_remote_delete
   check_dirty_tree
+  check_rm "$@"
   IFS='
 '
 done

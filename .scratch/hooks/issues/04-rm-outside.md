@@ -1,6 +1,6 @@
 # 04 Ask before `rm` outside the working areas
 
-Status: open
+Status: done
 Blocked by: 01
 
 ## What
