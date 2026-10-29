@@ -1,6 +1,6 @@
 # 08 Switch the Fedora PC to the plugin
 
-Status: open
+Status: done
 Blocked by: 07
 
 ## What
