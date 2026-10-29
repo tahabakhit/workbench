@@ -1,6 +1,6 @@
 # 01 Plugin skeleton with rephrase
 
-Status: open
+Status: done
 
 ## What
 

@@ -37,13 +37,14 @@ folders through `~/.agents/skills/`. Hooks and agents are for Claude Code only.
 Run after every change to the plugin, and quote the output:
 
 ```sh
-sh scripts/check.sh                   # once issue 01 adds it
-claude plugin validate --strict .     # until then
+sh scripts/check.sh
 ```
 
-`--strict` turns warnings (unknown fields, missing metadata) into failures.
-To try a change in a live session, run `claude plugin marketplace update
-workbench`, then start a new session.
+It runs `claude plugin validate --strict`, which turns warnings (unknown
+fields, missing metadata) into failures, except the missing-version warning.
+It also fails if copies of a shared side file differ between skill folders.
+The marketplace auto-updates; to pick up a commit right away, run `claude
+plugin marketplace update workbench`, then start a new session.
 
 ## Writing in this repo
 

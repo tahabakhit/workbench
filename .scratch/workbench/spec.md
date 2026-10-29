@@ -76,7 +76,7 @@ not block anything here.
 
 | # | Task | Blocked by | Status |
 |---|---|---|---|
-| 01 | Plugin skeleton with `rephrase` as the first skill, installed on this Mac | | open |
+| 01 | Plugin skeleton with `rephrase` as the first skill, installed on this Mac | | done |
 | 02 | `contract.md`, included in this Mac's global instructions | 01 | open |
 | 03 | `onboard` skill: machine and repo scopes | 02 | open |
 | 04 | Move and rename the seven one-to-one skills | 01 | open |
@@ -119,3 +119,4 @@ plugin; neither applies here.
 | herdr, moshi-visuals and rhel-fedora stay out of the plugin | Each is owned by its own tool or machine |
 | Order step 1 is tracked in `~/dev/agents`, not here | It changes only that repo |
 | `~/.agents/skills` on each machine links to this repo's skills; the agents repo stops shipping them (issues 07, 08) | One source for Claude Code, Codex and Pi |
+| `scripts/check.sh` runs `claude plugin validate --strict` and tolerates only its missing-version warning | `plugin.json` has no `version` on purpose; every other warning still fails |
