@@ -49,6 +49,8 @@ practical.
 | Decision | Reason |
 |---|---|
 | One onboarding skill with two scopes. Machine: inspects connected tools, asks which tracker, chat, calendar, code host and notes the user uses, writes the knowledge section of the global instructions. Repo: writes the repo's `AGENTS.md` and overrides | One front door; the instruction file is what every harness reads |
+| Repo onboarding starts with a read-only survey of an existing repo: instruction files and other agent-tooling artifacts (skill-plugin conventions, editor rules), git remotes (code host, likely tracker), recent history (commit style, active branches), open issues and PRs when the code host is connected, existing specs, ADRs and glossary, and verified build and test commands. It then proposes per artifact: keep, convert to this plugin's conventions, or delete, and applies only what is approved | Existing work is carried over instead of duplicated or contradicted |
+| The survey is bounded (recent history, not the full log) and runs in a subagent that returns facts with their source | Depth without filling the session's context |
 | The plugin repo holds one `contract.md` (work tracking, knowledge destinations, writing rules). Each machine's setup includes it in the global instructions next to that machine's own policy | A plugin cannot add instruction text itself; Codex and Pi read the same file |
 | A skill that needs a destination it can't find points to onboarding; skills that don't need one degrade and name their fallback | Hard versus soft dependencies |
 | Which vault a session writes to is declared per machine in the knowledge section; a repo can override | Reuses the same mechanism |
