@@ -42,7 +42,7 @@ practical.
 | Tracker updates are proposed in whichever tools the user declared (local `.scratch`, GitHub, GitLab, Jira, Linear, others), with evidence, applied on approval | The user's tools vary |
 | Closing check: an instruction line to diff the result against done-when and Out of scope in a fresh subagent. Promote to a skill only if it gets skipped | Cheapest first |
 | ADR only when all three hold: hard to reverse, surprising without context, a real trade-off | Fewer, sharper ADRs; other decisions go to the decisions destination |
-| The mattpocock-skills per-skill verdicts are the default for what to adopt; disputes are discussed per row | The analysis is done; revisit only disagreements |
+| The mattpocock-skills per-skill verdicts in `.scratch/bootstrap/mattpocock-analysis.md` are the default for what to adopt; disputes are discussed per row | The analysis is done; revisit only disagreements |
 
 ### Onboarding and contract
 
