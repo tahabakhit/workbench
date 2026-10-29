@@ -1,7 +1,9 @@
 #!/bin/sh
-# Count how often each skill in ~/.agents/skills was used in Claude Code
-# sessions from the last DAYS days (default 60), by the model or as a slash
-# command. Skills with zero uses are listed too. Codex logs no skill use.
+# Count how often each workbench skill, and each skill in ~/.agents/skills,
+# was used in Claude Code sessions from the last DAYS days (default 60), by
+# the model or as a slash command. Plugin skills are also logged as
+# workbench:<name>. Skills with zero uses are listed too. Codex logs no skill
+# use.
 set -eu
 days=${1:-60}
 since=$(date -v-"${days}"d +%Y-%m-%d 2>/dev/null || date -d "-${days} days" +%Y-%m-%d)
@@ -11,8 +13,10 @@ find "$HOME/.claude/projects" -name '*.jsonl' -newermt "$since" -print0 2>/dev/n
 		-e '"name":"Skill","input":\{"skill":"[^"]*"' \
 		-e '<command-name>/[a-z0-9:_-]+</command-name>' 2>/dev/null |
 	sed -E 's/.*"skill":"([^"]*)".*/\1/; s#<command-name>/([^<]*)</command-name>#\1#' >"$used" || true
-for dir in "$HOME/.agents/skills"/*/; do
-	name=$(basename "$dir")
-	n=$(grep -cx "$name" "$used" || true)
+plugin_skills=$(cd "$(dirname "$0")/../.." && pwd)
+for dir in "$plugin_skills"/*/ "$HOME/.agents/skills"/*/; do
+	[ -d "$dir" ] && basename "$dir"
+done | sort -u | while IFS= read -r name; do
+	n=$(grep -cxE "(workbench:)?$name" "$used" || true)
 	printf '%s\t%s\n' "$n" "$name"
 done | sort -n

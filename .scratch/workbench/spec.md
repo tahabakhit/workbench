@@ -89,7 +89,7 @@ not block anything here.
 | 11 | notebook: build the vault tool up to switch-over (own repo, own spec) | | open |
 | 12 | Hooks and safety rules: decide coverage, keep them unrestrictive | 07 | open |
 | 13 | Topic-tutor skill | 07 | open |
-| 14 | The plugin delivers the contract and Knowledge itself | 08 | open |
+| 14 | The plugin delivers the contract and Knowledge itself | 08 | done |
 | 15 | Develop on the Fedora PC only; decide how the Mac consumes the plugin | 14 | open |
 
 Steps 2 and 3 of the Order are issues 01 to 10. Issues 11 to 13 are steps 4

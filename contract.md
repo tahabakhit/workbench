@@ -25,8 +25,9 @@ Rules shared by every machine.
 ## Knowledge destinations
 
 Skills that file or gather things read where to do it from `## Knowledge`
-sections: one in each machine's global instructions, and optionally one in a
-repository's `AGENTS.md` that overrides it kind by kind. Each entry is one
+sections: one per machine in `~/.config/workbench/knowledge.md`, which the
+plugin adds to each session at start, and optionally one in a repository's
+`AGENTS.md` that overrides it kind by kind. Each entry is one
 line, `- <kind>: <where>, <how>`. A kind can be limited to some skills, as in
 `sources (for plan-day)`.
 

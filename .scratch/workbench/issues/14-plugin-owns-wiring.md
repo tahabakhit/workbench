@@ -1,6 +1,6 @@
 # 14 The plugin delivers the contract and Knowledge itself
 
-Status: open
+Status: done
 Blocked by: 08
 
 ## What

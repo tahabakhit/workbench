@@ -1,17 +1,17 @@
 ---
 name: onboard
-description: Set up a machine or a repo for agent work. Machine scope writes the Knowledge section of the global instructions from the tools found; repo scope surveys an existing repo, proposes keep, convert or delete for its agent artifacts, and writes AGENTS.md.
+description: Set up a machine or a repo for agent work. Machine scope writes the machine's Knowledge file from the tools found; repo scope surveys an existing repo, proposes keep, convert or delete for its agent artifacts, and writes AGENTS.md.
 disable-model-invocation: true
 ---
 
 # Onboard
 
 Scope comes from the argument: `machine` or `repo`. Without one, run
-`machine` when the global instructions have no `## Knowledge` section,
-otherwise `repo`. With `preview`, show every proposal and write nothing.
+`machine` when `~/.config/workbench/knowledge.md` does not exist, otherwise
+`repo`. With `preview`, show every proposal and write nothing.
 
 The format of a `## Knowledge` section is in the "Knowledge destinations"
-part of the global instructions: one line per kind,
+part of the contract: one line per kind,
 `- <kind>: <where>, <how>`, for `log`, `decisions`, `lessons`,
 `corrections`, `plan`, `goals` and `sources`.
 
@@ -19,22 +19,22 @@ part of the global instructions: one line per kind,
 
 1. **Inspect.** List the MCP servers (`claude mcp list`, or the harness's
    equivalent) and the CLIs on `PATH`: `gh`, `glab`, `acli`, `jira`, `slack`,
-   `gcloud`, `obsidian`. Read the existing global `## Knowledge` section if
-   there is one. Done when you have a table of tool, kind it serves, and
+   `gcloud`, `obsidian`. Read `~/.config/workbench/knowledge.md` if it
+   exists. Done when you have a table of tool, kind it serves, and
    whether it answers a test call (one cheap read each).
 2. **Ask.** One numbered round. For each of tracker, chat, calendar, code
    host, notes, and the vault a session writes to, give your recommendation
    from the inventory and one line on why; word it so "yes" accepts it. Ask
    also where `plan` and `goals` live when nothing found answers that. Done
    when every kind has an answer or is deliberately left out.
-3. **Write.** Draft the whole section and print it verbatim in a code
-   block, even when it is identical to the current one. Keep every
-   existing line, including skill-limited ones, unless an answer changes it. Each `sources` line names the exact command
-   or tool call and its filters. If the global file says at the top that it
-   is generated, find the source that holds the section, edit it there, and
-   give the command that regenerates the file. Show a diff; write only on
-   approval. Done when the approved section is in the source and the
-   generated file shows it.
+3. **Write.** Draft the whole section, starting with `## Knowledge`, and
+   print it verbatim in a code block, even when it is identical to the
+   current one. Keep every existing line, including skill-limited ones,
+   unless an answer changes it. Each `sources` line names the exact command
+   or tool call and its filters. Show a diff; write only on approval, to
+   `~/.config/workbench/knowledge.md`. It belongs to this machine: never
+   write it into a repository or an instructions file. Done when the
+   approved section is in the file; new sessions pick it up at start.
 
 ## Repo scope
 
@@ -55,8 +55,8 @@ part of the global instructions: one line per kind,
 2. **Propose.** A table with one row per artifact found: keep, convert to
    this plugin's conventions, or delete, and a reason. Conventions:
    `AGENTS.md` under 60 lines, with `CLAUDE.md` holding only `@AGENTS.md`;
-   work tracking in `.scratch/<feature>/` as the global instructions
-   describe; glossary and ADRs in the format of `glossary-adr-format.md` in
+   work tracking in `.scratch/<feature>/` as the contract
+   describes; glossary and ADRs in the format of `glossary-adr-format.md` in
    this skill's folder (read it before proposing a conversion); facts an
    agent can read from the code are deleted, not copied. Done when every
    survey item that is an artifact has a row.

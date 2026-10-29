@@ -2,8 +2,10 @@
 
 A Claude Code plugin, and its own marketplace, that holds one person's skills
 and shared contract for working with AI coding agents across repos and
-machines (a work Mac and a Fedora PC). Codex and Pi use the same `SKILL.md`
-folders through `~/.agents/skills/`. Hooks and agents are for Claude Code only.
+machines (a work Mac and a Fedora PC). A `SessionStart` hook in `hooks/`
+adds `contract.md` and the machine's `~/.config/workbench/knowledge.md` to
+every Claude Code session; keep the two under the hook's 10,000-character
+cap. Codex and Pi do not load this plugin.
 
 ## Work tracking
 

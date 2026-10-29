@@ -13,7 +13,7 @@ handful of proposed updates, then picks what to work on.
 
 Get the date, weekday and time from the shell (`date`); never infer them.
 Read the `plan:` entry in the `## Knowledge` sections (repo first, then
-global) and open the most recent plan from the last seven days. Its date is
+the machine's) and open the most recent plan from the last seven days. Its date is
 the window start; with no plan, use 14 days ago.
 
 Done when today's date, the window start and the previous plan (or its

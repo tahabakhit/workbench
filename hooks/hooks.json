@@ -1,0 +1,16 @@
+{
+  "description": "Adds the workbench contract and this machine's Knowledge destinations to every session",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/session-context.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

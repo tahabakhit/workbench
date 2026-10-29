@@ -17,7 +17,8 @@ Scope comes from the argument: `session` (default) or `since-last`. With
 ## 1. Destinations
 
 Read the `## Knowledge` sections: the repo's `AGENTS.md` or `CLAUDE.md` first,
-then the global instructions. A repo line replaces the global one for its
+then the machine's, which the session start context holds (from
+`~/.config/workbench/knowledge.md`). A repo line replaces the machine's one for its
 kind. A line limited to a scope, such as `log (for record since-last)`,
 replaces the plain line for that scope. Follow any filing rules written
 beside a line.
