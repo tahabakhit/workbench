@@ -19,15 +19,31 @@ describe the same agent behaviour, even when worded differently.
   `open`.
 - **Fixes that did not hold**: groups with a fix recorded and a newer entry.
 
-Done when every open line belongs to a group or is noted as seen once.
+Sort each candidate into one type, which hints at the fix:
+
+- **Navigation**: the agent was slow to find a file or fact; a pointer helps.
+- **Missing check**: a lint, test or hook could have caught the mistake. Look
+  for an existing check that is unwired or broken first.
+- **Rule**: a convention the agent broke. If a script can detect it, it gets
+  a check, not prose. Only judgement calls become instruction lines.
+
+Report a repo with no checks at all (no hook, no CI job) as a finding beside
+the candidates, even without ledger entries.
+- **No-op**: an instruction that changes nothing; propose cutting it.
+- **Tool cost**: an expensive call that a cheaper one would replace.
+- **Missing access**: information the agent needed but could not reach.
+
+Done when every open line belongs to a group or is noted as seen once, and
+each candidate has a type.
 
 ## 2. Propose fixes
 
 For each candidate, pick the cheapest form that enforces it, using the table
 in `cheapest-form.md` in this skill's folder: hook or permission rule for
-"never", an instruction line for "always", the repo's `AGENTS.md` for one
-repo, a skill only for a procedure or domain knowledge. A fix that did not
-hold moves one step stronger (instruction line to hook).
+"never", a check for anything a script can detect, an instruction line for
+other "always" rules, the repo's `AGENTS.md` for one repo, a skill only for a
+procedure or domain knowledge. A fix that did not hold moves one step
+stronger (instruction line to hook).
 
 Before drafting, read the target. If it already says this, propose a clearer
 wording or a better place, not a second copy. When a file is generated from a

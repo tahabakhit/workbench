@@ -26,6 +26,9 @@ scope.
   only for kinds that differ from the global one.
 - Keep the `setup-ts-deep-modules` verdict line: prove a check bites (pass,
   fail, pass) before recording it.
+- Copy `skills/settle/glossary-adr-format.md` unchanged into
+  `skills/onboard/`. The repo scope uses it to convert an existing glossary
+  or ADRs; `scripts/check.sh` fails if the copies differ.
 
 ## Done when
 

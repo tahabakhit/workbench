@@ -24,6 +24,9 @@ Done when each failure is a prompt plus what should have happened.
 
 ## 3. Write
 
+Read `vocabulary.md` in this skill's folder first; it names what to look for
+in each line (pointers, leading words, completion criteria, no-ops).
+
 - Write only what closes the observed gaps. Hunt no-ops sentence by sentence.
 - Concrete beats general: name the command, path, table or check.
 - Fixed steps only for order-sensitive work; judgement work gets the goal and
@@ -64,6 +67,9 @@ Done when each failure is a prompt plus what should have happened.
 3. Replay one failing case from step 2 with the skill turned off
    (`--settings '{"skillOverrides":{"<skill>":"off"}}'`) and on; keep the skill
    only if the result with it is better.
+4. When the change adds a check (a script, test or hook), prove it bites:
+   it passes, then fails on a deliberately broken case, then passes again
+   once that case is reverted. A check that never failed is not yet a check.
 
-Done when all three pass. For a skill worth tuning further, `claude plugin
+Done when all four pass. For a skill worth tuning further, `claude plugin
 eval` compares runs with and without it.
