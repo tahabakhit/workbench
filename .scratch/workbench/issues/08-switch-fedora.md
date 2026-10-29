@@ -7,7 +7,8 @@ Blocked by: 07
 
 Run on the Fedora PC. Clone this repo, add it as a marketplace, install the
 plugin with auto-update, include `contract.md` in that machine's global
-instructions, and link `~/.agents/skills` as on the Mac. Find the
+instructions (the machine's own policy states that a repository's
+`AGENTS.md` adds to the global rules and wins on conflict), and link `~/.agents/skills` as on the Mac. Find the
 `rhel-fedora` skill and move it into the Fedora machine's own setup (not this
 plugin). Run `onboard` machine scope to write the Fedora `## Knowledge`
 section.

@@ -18,6 +18,11 @@ folder, so both read the session transcript and git log. A missing required
 destination points to `onboard`. Keep harvest's state folder
 (`~/.local/state/harvest`) so the next run finds the last window.
 
+The Mac's `## Knowledge` section has a `harvest:` line, which is not one of
+the kinds `contract.md` defines. Turn it into kind lines limited to the
+`since-last` scope (for example `log (for record since-last)`) when
+`record` replaces harvest.
+
 ## Done when
 
 - `sh scripts/check.sh` exits 0.

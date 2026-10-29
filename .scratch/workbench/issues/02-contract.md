@@ -1,6 +1,6 @@
 # 02 contract.md in this Mac's global instructions
 
-Status: open
+Status: done
 Blocked by: 01
 
 ## What

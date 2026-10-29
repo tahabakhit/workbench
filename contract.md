@@ -1,7 +1,6 @@
 # Workbench contract
 
-Rules shared by every machine. A repository's `AGENTS.md` adds to them and
-wins on conflict.
+Rules shared by every machine.
 
 ## Work tracking
 
@@ -9,15 +8,14 @@ wins on conflict.
   task table and a `## Decisions` section, and one `issues/NN-slug.md` per
   task. Each issue has a plain `Status: open|done|wontfix` line (not bold),
   an optional `Blocked by: NN` line, and a "Done when" check.
-- Ad hoc work records nothing while it happens; filing reads the session
-  transcript and git log afterwards.
+- Ad hoc work gets no feature folder and no notes while it happens.
 - Finish at the done-when: run each check and quote its output. Before
   closing, diff the result against the done-when and Out of scope in a fresh
   subagent. Then the session that met it sets `Status: done` in the issue and
   in the spec table.
 - Write the failing test first. Mock only at system boundaries.
-- Tracker updates go to the trackers the `## Knowledge` sections declare,
-  with evidence, applied only on approval.
+- Tracker updates go to the trackers named in the `sources` entries, with
+  evidence, applied only on approval.
 - Decisions from a decision session are written only on approval: to
   `## Decisions` in `spec.md` when a feature folder exists, otherwise to the
   `decisions:` destination.

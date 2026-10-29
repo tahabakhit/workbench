@@ -77,7 +77,7 @@ not block anything here.
 | # | Task | Blocked by | Status |
 |---|---|---|---|
 | 01 | Plugin skeleton with `rephrase` as the first skill, installed on this Mac | | done |
-| 02 | `contract.md`, included in this Mac's global instructions | 01 | open |
+| 02 | `contract.md`, included in this Mac's global instructions | 01 | done |
 | 03 | `onboard` skill: machine and repo scopes | 02 | open |
 | 04 | Move and rename the seven one-to-one skills | 01 | done |
 | 05 | Merge retro and harvest into `record` | 02, 04 | open |
