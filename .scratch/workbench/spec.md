@@ -89,6 +89,7 @@ not block anything here.
 | 11 | notebook: build the vault tool up to switch-over (own repo, own spec) | | open |
 | 12 | Hooks and safety rules: decide coverage, keep them unrestrictive | 07 | open |
 | 13 | Topic-tutor skill | 07 | open |
+| 14 | The plugin delivers the contract and Knowledge itself | 08 | open |
 
 Steps 2 and 3 of the Order are issues 01 to 10. Issues 11 to 13 are steps 4
 to 6. Each of those gets its own spec before work starts.
@@ -118,5 +119,7 @@ plugin; neither applies here.
 | Skill names and merges as in the Skills table: `explain-gap`, `diagnose`, `settle`, `record` (retro plus harvest, scopes `session` and `since-last`), `improve`, `draft-questions`, `rephrase`, `onboard` (absorbs setup-repo), `plan-day`, `write-skill`, `write-spec` | Plain verbs naming the outcome; `simplify` and `plan` would clash with built-ins |
 | herdr, moshi-visuals and rhel-fedora stay out of the plugin | Each is owned by its own tool or machine |
 | Order step 1 is tracked in `~/dev/agents`, not here | It changes only that repo |
-| `~/.agents/skills` on each machine links to this repo's skills; the agents repo stops shipping them (issues 07, 08) | One source for Claude Code, Codex and Pi |
+| The agents repo stops shipping the skills; Claude Code gets them only from the plugin (issues 07, 08) | One source for every harness |
+| Codex and Pi get no skills from links in `~/.agents/skills`; native extensions come after the plugin (issue 14) | Each harness loads skills its own way |
+| The plugin's `SessionStart` hook delivers the contract and `~/.config/workbench/knowledge.md`; the dotfiles keep only the contract include for Codex and Pi (issue 14) | Workbench does not edit the global instructions, and Knowledge is known only when the plugin is loaded |
 | `scripts/check.sh` runs `claude plugin validate --strict` and tolerates only its missing-version warning | `plugin.json` has no `version` on purpose; every other warning still fails |
