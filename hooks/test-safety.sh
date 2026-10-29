@@ -105,11 +105,11 @@ check 'commit of a clean staged change' none
 add_key "$r"
 git -C "$r" add config.ini
 run_guard "$r" 'git commit -m "add config"'
-check 'commit of a staged key' deny 'config.ini:1' "$key"
+check 'commit of a staged key' ask 'config.ini:1' "$key"
 run_guard "$work" "git -C $r commit -m x"
-check 'commit of a staged key via git -C' deny 'config.ini:1'
+check 'commit of a staged key via git -C' ask 'config.ini:1'
 run_guard "$work" "cd $r && git commit -m x"
-check 'commit of a staged key after cd' deny 'config.ini:1'
+check 'commit of a staged key after cd' ask 'config.ini:1'
 run_guard "$r" 'git commit -m x' "$nogitleaks"
 check 'commit without gitleaks on PATH' deny 'gitleaks missing'
 
@@ -122,7 +122,7 @@ add_key "$r"
 run_guard "$r" 'git commit -m x'
 check 'commit with nothing staged and a key in the tree' none
 run_guard "$r" 'git commit -am x'
-check 'commit -a picking up an unstaged key' deny 'config.ini'
+check 'commit -a picking up an unstaged key' ask 'config.ini'
 
 new_repo upstream
 r="$work/upstream"
@@ -134,9 +134,9 @@ add_key "$r"
 git -C "$r" add config.ini
 git -C "$r" commit -qm key
 run_guard "$r" 'git push'
-check 'push of an unpushed commit holding a key' deny 'config.ini:1' "$key"
+check 'push of an unpushed commit holding a key' ask 'config.ini:1' "$key"
 run_guard "$r" 'git push --force'
-check 'force push of a key is denied, not asked' deny 'config.ini:1'
+check 'force push of a key asks with the gitleaks reason' ask 'gitleaks found'
 run_guard "$r" 'git push' "$nogitleaks"
 check 'push without gitleaks on PATH' deny 'gitleaks missing'
 
@@ -147,7 +147,7 @@ add_key "$r"
 git -C "$r" add config.ini
 git -C "$r" commit -qm key
 run_guard "$r" 'git push -u origin feature'
-check 'push of a branch with no upstream holding a key' deny 'config.ini:1'
+check 'push of a branch with no upstream holding a key' ask 'config.ini:1'
 
 new_repo dirty
 r="$work/dirty"

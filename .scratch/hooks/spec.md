@@ -4,9 +4,9 @@
 
 One `PreToolUse` hook in the workbench plugin stops the agent's Bash calls
 from doing irreversible damage, and nothing else. It asks before force
-pushes, remote branch deletes, destructive git on a dirty tree and `rm`
-outside the working areas, and it denies commits and pushes that gitleaks
-flags.
+pushes, remote branch deletes, commits and pushes that gitleaks flags,
+destructive git on a dirty tree and `rm` outside the working areas, and it
+denies commits and pushes when gitleaks is missing.
 
 Settled input: `.scratch/bootstrap/decisions.md` (wins on conflict) and the
 `## Decisions` below.
@@ -14,7 +14,7 @@ Settled input: `.scratch/bootstrap/decisions.md` (wins on conflict) and the
 ## Principles
 
 - Influence, not force. The hook replies "ask" so the owner approves in
-  place. It replies "deny" only for a gitleaks finding or missing gitleaks.
+  place. It replies "deny" only when gitleaks is missing.
   Any command it doesn't recognise passes with no reply.
 - Narrow matchers. Plugin hooks run in every session and can't be turned
   off one by one. `hooks.json` keeps a single `PreToolUse` entry on `Bash`,
@@ -66,8 +66,8 @@ Settled input: `.scratch/bootstrap/decisions.md` (wins on conflict) and the
 |---|---|
 | `git push` with `--force`, `-f`, `--force-with-lease` or a `+refspec`, on any branch: ask | Rewrites remote history; the agent rules forbid force push without explicit approval |
 | `git push --delete` or `git push <remote> :<branch>`: ask | Deletes a remote branch |
-| `git commit`: run `gitleaks git --staged --redact`; deny on a finding, naming file and line with the secret redacted | A committed secret that gets pushed can't be taken back |
-| `git push`: run gitleaks over `@{u}..HEAD`, or the branch's commits not on any remote when it has no upstream; deny on a finding | Same reason |
+| `git commit`: run `gitleaks git --staged --redact`; ask on a finding, naming file and line with the secret redacted | A committed secret that gets pushed can't be taken back, but test fixtures and false positives must stay approvable in place |
+| `git push`: run gitleaks over `@{u}..HEAD`, or the branch's commits not on any remote when it has no upstream; ask on a finding | Same reason |
 | Gitleaks not installed when committing or pushing: deny with a "gitleaks missing" message | Matches the agent rule "do not commit or push; tell the owner" |
 | `git reset --hard`, `git clean -f*`, `git checkout -- .`, `git restore .`: ask only when `git status --porcelain` is non-empty | Destroys uncommitted work; on a clean tree there is nothing to lose |
 | `rm` with `-r` or `-f` and a target that resolves outside the project dir, the session scratchpad and `/tmp`: ask | Deletes outside the repo, one of the irreversible cases in the bootstrap decisions |

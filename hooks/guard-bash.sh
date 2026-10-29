@@ -1,7 +1,7 @@
 #!/bin/sh
-# PreToolUse hook on Bash: replies "deny" when gitleaks flags a commit or push
-# or is missing, "ask" before commands that do irreversible damage, and stays
-# silent for everything else. Matching on the command text is best effort;
+# PreToolUse hook on Bash: replies "deny" when gitleaks is missing for a commit
+# or push, "ask" when gitleaks flags one or before other commands that do
+# irreversible damage, and stays silent for everything else. Matching on the command text is best effort;
 # quoting and commands built inside scripts are not parsed.
 
 reply() {
@@ -49,16 +49,18 @@ need_gitleaks() {
 }
 
 # Prints one line per finding of a gitleaks git scan of $repo; a scan that
-# fails prints nothing, so it never causes a deny.
+# fails prints nothing.
 leaks() {
   gitleaks git --no-banner --redact --log-level error --report-format json --report-path - "$@" "$repo" 2>/dev/null |
     jq -r '.[] | "- \(.File):\(.StartLine) \(.RuleID)" + (if (.Commit // "") != "" then " in commit \(.Commit[0:7])" else "" end)' 2>/dev/null
 }
 
-deny_leaks() {
+# Replies at once, so a finding's reason wins over any other ask.
+ask_leaks() {
   [ -n "$1" ] || return 0
-  reply deny "gitleaks found secrets in the $2 (redacted):
-$1"
+  reply ask "gitleaks found possible secrets in the $2 (redacted):
+$1
+Approve only for test fixtures or false positives; add their fingerprints (file:rule:line) to .gitleaksignore to stop this prompt."
 }
 
 check_commit_secrets() {
@@ -76,7 +78,7 @@ check_commit_secrets() {
 }$(leaks --pre-commit)"
     break
   done
-  deny_leaks "$found" "staged changes"
+  ask_leaks "$found" "staged changes"
 }
 
 check_push_secrets() {
@@ -87,7 +89,7 @@ check_push_secrets() {
   else
     range='HEAD --not --remotes'
   fi
-  deny_leaks "$(leaks --log-opts="$range")" "commits being pushed"
+  ask_leaks "$(leaks --log-opts="$range")" "commits being pushed"
 }
 
 # Prints why the git command throws away uncommitted work, or nothing.
