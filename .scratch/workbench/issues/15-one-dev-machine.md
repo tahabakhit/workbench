@@ -3,6 +3,9 @@
 Status: open
 Blocked by: 14
 
+The decisions are in `## Decisions` in `spec.md`. The Mac part waits until
+the repo is public; the remaining done-when checks run then.
+
 ## What
 
 Workbench is developed, committed and pushed only from the Fedora PC. The

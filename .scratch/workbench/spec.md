@@ -124,3 +124,6 @@ plugin; neither applies here.
 | Codex and Pi get no skills from links in `~/.agents/skills`; native extensions come after the plugin (issue 14) | Each harness loads skills its own way |
 | The plugin's `SessionStart` hook delivers the contract and `~/.config/workbench/knowledge.md`; the dotfiles keep only the contract include for Codex and Pi (issue 14) | Workbench does not edit the global instructions, and Knowledge is known only when the plugin is loaded |
 | `scripts/check.sh` runs `claude plugin validate --strict` and tolerates only its missing-version warning | `plugin.json` has no `version` on purpose; every other warning still fails |
+| Workbench is developed, committed and pushed only from the Fedora PC (issue 15) | One place where changes are made |
+| The repo stays private until workbench is finished, then goes public; the history rewrite that needs is approved separately at that point (issue 15) | Publishing needs an irreversible rewrite of the old trial files; nothing needs a public repo yet |
+| The Mac has no workbench checkout and gets no updates until the repo is public; then it installs from a `github` marketplace source (issue 15) | No Mac work is planned before then, and a public repo avoids the Mac's work-account auth problem |
