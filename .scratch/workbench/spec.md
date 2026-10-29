@@ -87,12 +87,12 @@ not block anything here.
 | 09 | `write-spec` skill: spec and issues in one pass | 02 | done |
 | 10 | Five-scenario trial of `write-spec` | 09 | done |
 | 11 | notebook: build the vault tool up to switch-over (own repo, own spec) | | open |
-| 12 | Hooks and safety rules: decide coverage, keep them unrestrictive | 07 | open |
+| 12 | Hooks and safety rules: decide coverage, keep them unrestrictive | 07 | done |
 | 13 | Topic-tutor skill | 07 | open |
 | 14 | The plugin delivers the contract and Knowledge itself | 08 | done |
 | 15 | Develop on the Fedora PC only; decide how the Mac consumes the plugin | 14 | open |
 | 16 | Ship the owner's agent rules as `agent-rules.md` | | done |
-| 17 | Install from GitHub on every machine | 15 | done |
+| 17 | Install from GitHub on every machine | | done |
 
 Steps 2 and 3 of the Order are issues 01 to 10. Issues 16 and 17 are hand-overs from the dotfiles. Issues 11 to 13 are steps 4
 to 6. Each of those gets its own spec before work starts.
