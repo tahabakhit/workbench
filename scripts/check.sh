@@ -54,3 +54,4 @@ fi
 echo "side files: all shared copies match"
 
 sh hooks/test-safety.sh
+sh skills/study-topic/scripts/test-shuffle.sh

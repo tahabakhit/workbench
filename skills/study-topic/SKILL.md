@@ -1,6 +1,6 @@
 ---
 name: study-topic
-description: Tutor the user through one topic across sessions. Settle a mission, gather cited primary sources and name their gaps, and write Markdown lessons into the `learning` destination. Run with the topic to study.
+description: Tutor the user through one topic across sessions. Settle a mission, gather cited primary sources and name their gaps, write Markdown lessons, and quiz with shuffled answers, all in the `learning` destination. Run with the topic to study.
 disable-model-invocation: true
 ---
 
@@ -58,7 +58,25 @@ Take the first step toward the mission's done-when and write
   supports stays out.
 - Readable in about ten minutes.
 
-Print the lesson verbatim, not a summary.
+Print the lesson verbatim, not a summary. The lesson holds no questions or
+answers; the quiz comes next.
 
 Done when the lesson file exists, every claim in it carries a source
 number, and the user has seen it in full.
+
+## 5. Quiz
+
+Write three to five retrieval questions on the lesson, each asking the user
+to predict or recall rather than recognise, with one right answer and three
+plausible wrong ones. Pass each as JSON, `{"question", "answer",
+"distractors": [...]}`, to `scripts/shuffle.sh` in this skill's folder and
+show the options lettered in exactly the order it returns; the script, not
+you, decides where the right answer sits.
+
+Ask one question at a time and reveal the answer, with its source number,
+only after the user replies. After each reply append one line to `quiz.md`
+in the topic folder, with the date from `date`:
+
+`- YYYY-MM-DD | lesson NN | <question> | right` (or `wrong`)
+
+Done when every question has an answer line in `quiz.md`.

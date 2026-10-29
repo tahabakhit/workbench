@@ -1,6 +1,6 @@
 # 04 Retrieval quiz with answers shuffled in code
 
-Status: open
+Status: done
 Blocked by: 03
 
 ## What
