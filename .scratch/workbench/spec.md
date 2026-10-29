@@ -80,7 +80,7 @@ not block anything here.
 | 02 | `contract.md`, included in this Mac's global instructions | 01 | done |
 | 03 | `onboard` skill: machine and repo scopes | 02 | done |
 | 04 | Move and rename the seven one-to-one skills | 01 | done |
-| 05 | Merge retro and harvest into `record` | 02, 04 | open |
+| 05 | Merge retro and harvest into `record` | 02, 04 | done |
 | 06 | Apply the "merge into own" verdicts to the moved skills | 04 | done |
 | 07 | Switch this Mac to the plugin and remove skills from the agents repo | 03, 05, 06 | open |
 | 08 | Switch the Fedora PC to the plugin | 07 | open |

@@ -1,6 +1,6 @@
 # 05 Merge retro and harvest into record
 
-Status: open
+Status: done
 Blocked by: 02, 04
 
 ## What
@@ -21,7 +21,8 @@ destination points to `onboard`. Keep harvest's state folder
 The Mac's `## Knowledge` section has a `harvest:` line, which is not one of
 the kinds `contract.md` defines. Turn it into kind lines limited to the
 `since-last` scope (for example `log (for record since-last)`) when
-`record` replaces harvest.
+`record` replaces harvest. That section now lives in the personal dotfiles
+repo, so this step is tracked there in `.scratch/mac-dotfiles/issues/03-instructions.md`.
 
 ## Done when
 
