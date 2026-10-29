@@ -24,17 +24,12 @@ plugin does not load it. Each machine's `~/.claude/CLAUDE.md` includes it,
 so it keeps the standing of global instructions in Claude Code, and
 `~/.agents/AGENTS.md` includes it with `contract.md` for Codex and Pi.
 
-## Skills
-
-| Skill | Invoked by | Does |
-|---|---|---|
-| `rephrase` | user | Re-explains the previous message in plain English |
-
 ## Check
 
 ```sh
 sh scripts/check.sh
 ```
 
-Validates the plugin with `claude plugin validate --strict` and fails if a
-side file copied into several skill folders differs between them.
+Validates the plugin with `claude plugin validate --strict`, fails if a side
+file copied into several skill folders differs between them, and runs the
+safety hook and quiz shuffle tests.
