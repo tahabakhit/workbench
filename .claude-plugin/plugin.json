@@ -1,0 +1,9 @@
+{
+  "name": "workbench",
+  "description": "Skills and a shared contract for working with AI coding agents across repos and machines.",
+  "author": {
+    "name": "Taha Bakhit",
+    "url": "https://github.com/tahabakhit"
+  },
+  "repository": "https://github.com/tahabakhit/workbench"
+}

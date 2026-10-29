@@ -1,0 +1,15 @@
+{
+  "name": "workbench",
+  "description": "Personal marketplace that ships the workbench plugin.",
+  "owner": {
+    "name": "Taha Bakhit",
+    "url": "https://github.com/tahabakhit"
+  },
+  "plugins": [
+    {
+      "name": "workbench",
+      "source": "./",
+      "description": "Skills and a shared contract for working with AI coding agents across repos and machines."
+    }
+  ]
+}
