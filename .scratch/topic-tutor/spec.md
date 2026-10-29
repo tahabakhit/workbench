@@ -41,7 +41,7 @@ and the `## Decisions` below.
 | # | Task | Blocked by | Status |
 |---|---|---|---|
 | 01 | Add the `learning` Knowledge kind | | done |
-| 02 | `researcher` agent: primary sources, a citation per claim, a stopping rule | 01 | open |
+| 02 | `researcher` agent: primary sources, a citation per claim, a stopping rule | 01 | done |
 | 03 | `study-topic` core: mission, sources with gaps, first lesson | 01, 02 | open |
 | 04 | Retrieval quiz with answers shuffled in code | 03 | open |
 | 05 | Resume across sessions, misses first | 04 | open |

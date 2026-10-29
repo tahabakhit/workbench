@@ -1,6 +1,6 @@
 # 02 `researcher` agent: primary sources, a citation per claim, a stopping rule
 
-Status: open
+Status: done
 Blocked by: 01
 
 ## What
