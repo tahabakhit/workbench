@@ -64,3 +64,8 @@ A PR body has three short parts. Summary: the smallest view that makes the
 point, such as pseudocode, a call tree, a file tree or a diff sketch.
 Evidence: before and after, as command output, a test run or a screenshot.
 Merge risk: a one-way or two-way door, and the blast radius in a few words.
+
+Keep the whole body under about 15 lines, one line per point. Leave out
+anything the diff already shows (file lists, change-by-change summaries),
+rejected alternatives, and the story of how you got there. A reviewer should
+read it in under a minute.
