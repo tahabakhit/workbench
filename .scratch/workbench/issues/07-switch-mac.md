@@ -1,6 +1,6 @@
 # 07 Switch this Mac to the plugin
 
-Status: open
+Status: done
 Blocked by: 03, 05, 06
 
 ## What

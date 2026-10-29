@@ -82,7 +82,7 @@ not block anything here.
 | 04 | Move and rename the seven one-to-one skills | 01 | done |
 | 05 | Merge retro and harvest into `record` | 02, 04 | done |
 | 06 | Apply the "merge into own" verdicts to the moved skills | 04 | done |
-| 07 | Switch this Mac to the plugin and remove skills from the agents repo | 03, 05, 06 | open |
+| 07 | Switch this Mac to the plugin and remove skills from the agents repo | 03, 05, 06 | done |
 | 08 | Switch the Fedora PC to the plugin | 07 | open |
 | 09 | `write-spec` skill: spec and issues in one pass | 02 | done |
 | 10 | Five-scenario trial of `write-spec` | 09 | done |
