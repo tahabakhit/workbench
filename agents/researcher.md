@@ -1,6 +1,6 @@
 ---
 name: researcher
-description: Answers one research question from primary sources, with a citation for every claim and a list of gaps. Use for study-topic source lists and lessons, or any question where uncited claims are not acceptable. Returns a report; writes nothing.
+description: Answers one research question from primary sources, with a citation for every claim and a list of gaps. Use for the research skill, study-topic source lists and lessons, or any question where uncited claims are not acceptable. Returns a report; writes nothing.
 model: inherit
 effort: medium
 tools: WebSearch, WebFetch, Read, Grep, Glob

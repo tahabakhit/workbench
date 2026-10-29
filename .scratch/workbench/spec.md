@@ -45,6 +45,9 @@ per-skill verdicts in `.scratch/bootstrap/mattpocock-analysis.md`.
 | `record` | retro and harvest, merged | user | 05 |
 | `write-spec` | new | user | 09 |
 | `study-topic` | teach | user | topic-tutor spec |
+| `prototype` | prototype, logic branch only | user | none |
+| `research` | research | user | none |
+| `handoff` | handoff and claude-handoff, merged | user | none |
 
 The plugin does not ship herdr (the herdr binary provides it through
 `herdr --skill`), moshi-visuals (the Moshi app installs it) or rhel-fedora
@@ -108,9 +111,6 @@ to 6. Each of those gets its own spec before work starts.
 - How notebook and workbench are installed together (still open in the
   decisions file).
 - The skills dropped by the verdicts, and a router skill.
-- The verdicts marked "rewrite" that no Order step covers yet: `prototype`,
-  `research`, `handoff`. They are not yet specified, not rejected. The
-  `researcher` agent that `research` would share ships in `agents/`.
 - Porting obsidian-mind commands.
 
 Where the analysis disagrees with the decisions file, the decisions file
@@ -146,5 +146,6 @@ Owned by workbench, not prioritised yet. Each gets an issue when it starts.
 | The Mac has no workbench checkout and gets no updates until the repo is public; then it installs from a `github` marketplace source (issue 15) | No Mac work is planned before then, and a public repo avoids the Mac's work-account auth problem |
 | Workbench owns the text of the owner's agent rules as `agent-rules.md`; the dotfiles only include it (issue 16) | One home for agent guidance; `CLAUDE.md` keeps its standing over hook context |
 | Every machine installs the plugin from the `tahabakhit/workbench` GitHub marketplace, the Fedora PC included (issue 17) | Same source everywhere; sessions run what is pushed |
+| `prototype`, `research` and `handoff` ship as manual skills, and mattpocock-skills is uninstalled | They were the last verdicts marked rewrite; with them built the plugin needs no reference copy. `prototype` keeps only the one-file logic demo, since the UI-variants branch assumes a web app repo |
 | Workbench owns the statusline renderer and the Pi agents; both wait under Later | Agent tooling belongs here, but neither is a priority |
 | The Mac-port hook scripts and the `om` MCP server stay in the dotfiles port folder for now | Not needed yet |

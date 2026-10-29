@@ -55,7 +55,7 @@ Also noticed:
 
 - The Fedora PC has the `mattpocock-skills` plugin installed but disabled,
   so its skills do not load.
-- Issue 08's done-when says ten skills; the plugin ships twelve.
+- Issue 08's done-when says ten skills; the plugin ships fifteen.
 
 ## Done when
 
