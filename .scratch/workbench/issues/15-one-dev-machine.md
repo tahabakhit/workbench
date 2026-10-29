@@ -53,9 +53,9 @@ Visibility audit (all history, all files):
 
 Also noticed:
 
-- The Fedora PC enables the `mattpocock-skills` plugin, which overlaps with
-  several workbench skills.
-- Issue 08's done-when says ten skills; the plugin ships eleven.
+- The Fedora PC has the `mattpocock-skills` plugin installed but disabled,
+  so its skills do not load.
+- Issue 08's done-when says ten skills; the plugin ships twelve.
 
 ## Done when
 

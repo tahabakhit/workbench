@@ -1,7 +1,10 @@
 # 06 Two-topic trial
 
-Status: open
+Status: wontfix
 Blocked by: 05
+
+The owner chose not to run a trial. `study-topic` ships as built in 03–05,
+and problems surface through `improve` in normal use.
 
 ## What
 

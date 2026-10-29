@@ -44,6 +44,7 @@ per-skill verdicts in `.scratch/bootstrap/mattpocock-analysis.md`.
 | `write-skill` | writing-skills | model | 04, 06 |
 | `record` | retro and harvest, merged | user | 05 |
 | `write-spec` | new | user | 09 |
+| `study-topic` | teach | user | topic-tutor spec |
 
 The plugin does not ship herdr (the herdr binary provides it through
 `herdr --skill`), moshi-visuals (the Moshi app installs it) or rhel-fedora
@@ -109,8 +110,7 @@ to 6. Each of those gets its own spec before work starts.
 - The skills dropped by the verdicts, and a router skill.
 - The verdicts marked "rewrite" that no Order step covers yet: `prototype`,
   `research`, `handoff`. They are not yet specified, not rejected. The
-  `researcher` agent that `research` would share is specified in
-  `.scratch/topic-tutor/`.
+  `researcher` agent that `research` would share ships in `agents/`.
 - Porting obsidian-mind commands.
 
 Where the analysis disagrees with the decisions file, the decisions file

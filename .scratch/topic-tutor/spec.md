@@ -45,7 +45,7 @@ and the `## Decisions` below.
 | 03 | `study-topic` core: mission, sources with gaps, first lesson | 01, 02 | done |
 | 04 | Retrieval quiz with answers shuffled in code | 03 | done |
 | 05 | Resume across sessions, misses first | 04 | done |
-| 06 | Two-topic trial | 05 | open |
+| 06 | Two-topic trial | 05 | wontfix |
 
 ## Out of scope
 
