@@ -1,6 +1,6 @@
 # 01 Safety hook: ask on force push and remote branch delete
 
-Status: open
+Status: done
 
 ## What
 

@@ -52,3 +52,5 @@ if [ -n "$mismatch" ]; then
   exit 1
 fi
 echo "side files: all shared copies match"
+
+sh hooks/test-safety.sh
