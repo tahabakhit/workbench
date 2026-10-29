@@ -91,8 +91,10 @@ not block anything here.
 | 13 | Topic-tutor skill | 07 | open |
 | 14 | The plugin delivers the contract and Knowledge itself | 08 | done |
 | 15 | Develop on the Fedora PC only; decide how the Mac consumes the plugin | 14 | open |
+| 16 | Ship the owner's agent rules as `agent-rules.md` | | open |
+| 17 | Install from GitHub on every machine | 15 | open |
 
-Steps 2 and 3 of the Order are issues 01 to 10. Issues 11 to 13 are steps 4
+Steps 2 and 3 of the Order are issues 01 to 10. Issues 16 and 17 are hand-overs from the dotfiles. Issues 11 to 13 are steps 4
 to 6. Each of those gets its own spec before work starts.
 
 ## Out of scope
@@ -100,7 +102,7 @@ to 6. Each of those gets its own spec before work starts.
 - Hook and safety-rule content (issue 12) and the notebook design (issue 11).
 - Permission rules in the plugin. Plugins can't ship them, so git safety
   stays in each machine's setup.
-- Hooks and agents for Codex and Pi.
+- Hooks and agents for Codex and Pi, apart from the Pi agents listed under Later.
 - An internal marketplace for colleagues.
 - How notebook and workbench are installed together (still open in the
   decisions file).
@@ -112,6 +114,19 @@ to 6. Each of those gets its own spec before work starts.
 Where the analysis disagrees with the decisions file, the decisions file
 wins. The analysis suggests hand-bumped versions and permission rules in the
 plugin; neither applies here.
+
+## Later
+
+Owned by workbench, not prioritised yet. Each gets an issue when it starts.
+
+- Statusline renderer for every harness that has a statusline. It reads a
+  spec file the dotfiles ship (proposed `~/.config/statusline/statusline.json`:
+  palette, lines of segments, thresholds). Start from the renderer in the
+  dotfiles history: `git -C ~/dev/dotfiles log --all --
+  private_dot_claude/executable_statusline.sh`.
+- The six Pi agent definitions (Coding, Deep-Review, Explore, Plan, Worker,
+  general-purpose). The live copies are in `~/.pi/agent/agents/`. History:
+  `git -C ~/dev/dotfiles log --all -- dot_pi/agent/agents`.
 
 ## Decisions
 
@@ -127,3 +142,7 @@ plugin; neither applies here.
 | Workbench is developed, committed and pushed only from the Fedora PC (issue 15) | One place where changes are made |
 | The repo stays private until workbench is finished, then goes public; the history rewrite that needs is approved separately at that point (issue 15) | Publishing needs an irreversible rewrite of the old trial files; nothing needs a public repo yet |
 | The Mac has no workbench checkout and gets no updates until the repo is public; then it installs from a `github` marketplace source (issue 15) | No Mac work is planned before then, and a public repo avoids the Mac's work-account auth problem |
+| Workbench owns the text of the owner's agent rules as `agent-rules.md`; the dotfiles only include it (issue 16) | One home for agent guidance; `CLAUDE.md` keeps its standing over hook context |
+| Every machine installs the plugin from the `tahabakhit/workbench` GitHub marketplace, the Fedora PC included (issue 17) | Same source everywhere; sessions run what is pushed |
+| Workbench owns the statusline renderer and the Pi agents; both wait under Later | Agent tooling belongs here, but neither is a priority |
+| The Mac-port hook scripts and the `om` MCP server stay in the dotfiles port folder for now | Not needed yet |

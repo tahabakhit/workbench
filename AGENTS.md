@@ -45,7 +45,8 @@ sh scripts/check.sh
 It runs `claude plugin validate --strict`, which turns warnings (unknown
 fields, missing metadata) into failures, except the missing-version warning.
 It also fails if copies of a shared side file differ between skill folders.
-The marketplace auto-updates; to pick up a commit right away, run `claude
+Sessions load the plugin from the GitHub marketplace, so a change reaches
+them only after it is pushed. To pick it up right away, push, run `claude
 plugin marketplace update workbench`, then start a new session.
 
 ## Writing in this repo
