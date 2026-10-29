@@ -1,6 +1,6 @@
 # 03 onboard skill
 
-Status: open
+Status: done
 Blocked by: 02
 
 ## What
