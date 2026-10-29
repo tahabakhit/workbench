@@ -17,6 +17,8 @@ Read `../spec.md` first.
   questions, `shuffle.sh` orders the options, and each answer is appended to
   `quiz.md` in the topic folder as one line: date, lesson, question, right or
   wrong.
+- Without a quiz step, the model ends lessons with its own "Check yourself"
+  section, answers inline. The quiz step replaces that section.
 
 ## Done when
 

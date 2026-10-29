@@ -1,6 +1,6 @@
 # 03 `study-topic` core: mission, sources with gaps, first lesson
 
-Status: open
+Status: done
 Blocked by: 01, 02
 
 ## What
