@@ -88,7 +88,7 @@ not block anything here.
 | 10 | Five-scenario trial of `write-spec` | 09 | done |
 | 11 | notebook: build the vault tool up to switch-over (own repo, own spec) | | open |
 | 12 | Hooks and safety rules: decide coverage, keep them unrestrictive | 07 | done |
-| 13 | Topic-tutor skill | 07 | open |
+| 13 | Topic-tutor skill | 07 | done |
 | 14 | The plugin delivers the contract and Knowledge itself | 08 | done |
 | 15 | Develop on the Fedora PC only; decide how the Mac consumes the plugin | 14 | open |
 | 16 | Ship the owner's agent rules as `agent-rules.md` | | done |
@@ -108,7 +108,9 @@ to 6. Each of those gets its own spec before work starts.
   decisions file).
 - The skills dropped by the verdicts, and a router skill.
 - The verdicts marked "rewrite" that no Order step covers yet: `prototype`,
-  `research`, `handoff`. They are not yet specified, not rejected.
+  `research`, `handoff`. They are not yet specified, not rejected. The
+  `researcher` agent that `research` would share is specified in
+  `.scratch/topic-tutor/`.
 - Porting obsidian-mind commands.
 
 Where the analysis disagrees with the decisions file, the decisions file

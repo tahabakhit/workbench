@@ -1,6 +1,6 @@
 # 13 Topic-tutor skill
 
-Status: open
+Status: done
 Blocked by: 07
 
 Step 6 of the Order. Spec it with `write-spec`, using the `teach` and
@@ -9,3 +9,5 @@ Step 6 of the Order. Spec it with `write-spec`, using the `teach` and
 ## Done when
 
 A spec exists in `.scratch/topic-tutor/spec.md` and this issue links to it.
+
+Spec: `.scratch/topic-tutor/spec.md`.
