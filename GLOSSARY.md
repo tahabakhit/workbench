@@ -10,7 +10,7 @@ The rules in `contract.md` that the plugin adds to every session.
 _Avoid_: Global rules, agent rules
 
 **Notebook**:
-The markdown vault in a git repository at `~/notebook` where skills file
+The markdown vault in a git repository at `~/.agents/notebook` where skills file
 logs, decisions, lessons, corrections, plans, goals and studied topics, and
 the tool in this plugin that searches and files into it.
 _Avoid_: Knowledge destination, brain

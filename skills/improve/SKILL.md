@@ -11,7 +11,7 @@ approves it. Small edits only, never rewrites.
 
 ## 1. Read the ledger
 
-Open `~/notebook/corrections.md`. Group lines that
+Open `~/.agents/notebook/corrections.md`. Group lines that
 describe the same agent behaviour, even when worded differently.
 
 - **Candidates**: groups with entries from two or more sessions and fix

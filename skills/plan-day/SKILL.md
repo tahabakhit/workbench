@@ -12,9 +12,9 @@ handful of proposed updates, then picks what to work on.
 ## 1. Date and window
 
 Get the date, weekday and time from the shell (`date`); never infer them.
-Open the most recent plan in `~/notebook/plans/` from the last seven days.
+Open the most recent plan in `~/.agents/notebook/plans/` from the last seven days.
 Its date is the window start; with no plan, use 14 days ago. Read
-`~/notebook/goals.md` when it exists.
+`~/.agents/notebook/goals.md` when it exists.
 
 Done when today's date, the window start and the previous plan (or its
 absence) are known.
@@ -82,7 +82,7 @@ Ask which updates to apply and whether the ranking needs changes.
 ## 6. Apply and save
 
 Apply only the approved updates, with the user's edits, and report each
-result. Then write the plan to `~/notebook/plans/YYYY-MM-DD.md` under a
+result. Then write the plan to `~/.agents/notebook/plans/YYYY-MM-DD.md` under a
 `## Plan` heading, replacing that section if today's file already has one,
 and commit it. Open the
 section with a Mermaid `mindmap`: the root is the date, branches are Now,

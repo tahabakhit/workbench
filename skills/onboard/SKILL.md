@@ -30,8 +30,8 @@ Scope comes from the argument: `machine` or `repo`. Without one, run
    which skills it is limited to, if any. Show a diff; write only on
    approval, to `~/.config/workbench/sources.md`. It belongs to this
    machine: never write it into a repository or an instructions file.
-   Create `~/notebook` with `git init` if it is missing. Done when the
-   approved file is written and `~/notebook` is a git repository.
+   Create `~/.agents/notebook` with `git init` if it is missing. Done when the
+   approved file is written and `~/.agents/notebook` is a git repository.
 
 ## Repo scope
 

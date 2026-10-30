@@ -17,10 +17,10 @@ Scope comes from the argument: `session` (default) or `since-last`. With
 ## 1. Notebook
 
 Entries go to the notebook paths in the contract: `log/`, `decisions/`,
-`lessons/` and `corrections.md` under `~/notebook`. Create the repository
+`lessons/` and `corrections.md` under `~/.agents/notebook`. Create the repository
 or a folder when it is missing.
 
-Done when `~/notebook` is a git repository.
+Done when `~/.agents/notebook` is a git repository.
 
 ## 2. Gather
 

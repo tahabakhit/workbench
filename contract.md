@@ -27,7 +27,7 @@ Rules shared by every machine.
 ## Notebook
 
 Records live in the notebook: plain markdown in a git repository at
-`~/notebook`, one folder per kind, the same on every machine. The plugin's
+`~/.agents/notebook`, one folder per kind, the same on every machine. The plugin's
 `notebook` tool will search and file into it; until it does, skills write the
 files directly. Create the repository with `git init` and a folder with its
 first file, and commit each write there.

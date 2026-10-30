@@ -18,7 +18,7 @@ per-skill verdicts in `.scratch/bootstrap/mattpocock-analysis.md`.
   an instruction line in `contract.md`, and a hook covers only what must not
   be skipped.
 - One home for records. Logs, decisions, lessons, corrections, plans, goals
-  and studied topics go to the notebook at `~/notebook`, in the layout the
+  and studied topics go to the notebook at `~/.agents/notebook`, in the layout the
   contract defines, on every machine.
 - Sources stay neutral. No skill hardcodes a tracker, chat or calendar;
   skills read the machine's `~/.config/workbench/sources.md` and work from
@@ -153,6 +153,6 @@ Owned by workbench, not prioritised yet. Each gets an issue when it starts.
 | Workbench owns the statusline renderer and the Pi agents; both wait under Later | Agent tooling belongs here, but neither is a priority |
 | The Mac-port hook scripts and the `om` MCP server stay in the dotfiles port folder for now | Not needed yet |
 | notebook is developed in this repo and ships in this plugin; workbench is the skills plus the notebook | They only make sense together, and one repo keeps the notebook layout and the skills that file into it in step |
-| Records go to the notebook at `~/notebook` in one fixed layout on every machine; no per-machine or per-repo record destinations | A plugin for any machine has one home for records; per-machine destinations only bent it around an older vault setup |
+| Records go to the notebook at `~/.agents/notebook` in one fixed layout on every machine; no per-machine or per-repo record destinations | A plugin for any machine has one home for records; per-machine destinations only bent it around an older vault setup |
 | Until the notebook tool exists, skills write the notebook's markdown files directly and commit them | Plain markdown in git, so the tool takes the files over without a migration |
 | Each machine keeps only its work sources in `~/.config/workbench/sources.md`, written by `onboard`; the session hook no longer loads it | Sources really differ by person and job; only the skills that gather work need them |

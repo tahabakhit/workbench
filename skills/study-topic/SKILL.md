@@ -11,7 +11,7 @@ to their mission, and every claim traces to a source they can open.
 
 ## 1. Topic folder
 
-The topic folder is `~/notebook/learning/<topic-slug>/`; create it, and
+The topic folder is `~/.agents/notebook/learning/<topic-slug>/`; create it, and
 never overwrite a file already in it. Commit the notebook after each step
 that writes. If it already holds `mission.md`, this is a returning
 session: read `mission.md`, `sources.md`, every lesson and `quiz.md`, then
