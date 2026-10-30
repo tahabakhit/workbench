@@ -54,7 +54,7 @@ practical.
 | The survey is bounded (recent history, not the full log) and runs in a subagent that returns facts with their source | Depth without filling the session's context |
 | The plugin repo holds one `contract.md` (work tracking, knowledge destinations, writing rules). Each machine's setup includes it in the global instructions next to that machine's own policy | A plugin cannot add instruction text itself; Codex and Pi read the same file |
 | A skill that needs a destination it can't find points to onboarding; skills that don't need one degrade and name their fallback | Hard versus soft dependencies |
-| Records go to the notebook at `~/.agents/notebook` in one layout on every machine; only work sources are declared per machine | One home for records; sources differ by person and job |
+| Records go to the notebook at `~/.local/share/workbench/notebook` in one layout on every machine; only work sources are declared per machine | One home for records; sources differ by person and job |
 
 ### Plugin shape and distribution
 

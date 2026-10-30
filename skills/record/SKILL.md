@@ -17,10 +17,10 @@ Scope comes from the argument: `session` (default) or `since-last`. With
 ## 1. Notebook
 
 Entries go to the notebook paths in the contract: `log/`, `decisions/`,
-`lessons/` and `corrections.md` under `~/.agents/notebook`. Create the repository
+`lessons/` and `corrections.md` under `~/.local/share/workbench/notebook`. Create the repository
 or a folder when it is missing.
 
-Done when `~/.agents/notebook` is a git repository.
+Done when `~/.local/share/workbench/notebook` is a git repository.
 
 ## 2. Gather
 
@@ -29,7 +29,7 @@ started: work done, decisions and rejected alternatives, surprises, how
 results were verified, open threads.
 
 **since-last**: the window starts at a date given as an argument, else at
-the timestamp in `~/.local/state/harvest/last-run`; if neither exists, ask
+the timestamp in `~/.local/share/workbench/state/record-last-run`; if neither exists, ask
 for a start date. It ends now. Query every source:
 
 | Source | How |
@@ -37,7 +37,7 @@ for a start date. It ends now. Query every source:
 | Sessions | `scripts/sessions.sh <start>` in this skill's folder lists Claude Code and interactive Codex sessions, one JSON line each. Skip this session, sessions with `recorded: true`, and one- or two-prompt sessions with no edits. `scripts/digest.sh <file>` prints a session without tool output. |
 | Native memories | `find ~/.claude/projects/*/memory -name '*.md' ! -name MEMORY.md -newermt <start>` |
 | Git | per repo seen in the sessions: `git -C <repo> log --since=<start> --author="$(git -C <repo> config user.email)" --format='%h %ad %s' --date=short` |
-| Declared | every line in `~/.config/workbench/sources.md`, with its stated limits; without the file, note the gap |
+| Declared | every line in `~/.local/share/workbench/sources.md` and in the `## Sources` of each repo seen, with its stated limits; with neither, note the gap |
 
 With more than five sessions, hand each project's digests to a subagent for
 candidates; verify each kept candidate against its digest. Group evidence
@@ -45,7 +45,7 @@ into tasks: a ticket key, branch or PR ties a session, commits and a ticket
 together.
 
 **Both scopes**: flagged corrections in
-`~/.local/state/agent-corrections/pending.jsonl` inside the session or window
+`~/.local/share/workbench/state/pending-corrections.jsonl` inside the session or window
 (for `session`, also matching this repo's `cwd`), plus moments the hook missed
 where the user rejected or redid the agent's work. In `since-last`, confirm
 each flagged line against its session digest. Then search the notebook
@@ -102,7 +102,7 @@ Update an overlapping entry rather than adding a near-duplicate; on a
 collision keep the existing entry unless the draft corrects it. Commit the
 notebook with one message naming the entries. Remove the
 pending correction lines handled. In `since-last`, write the window end to
-`~/.local/state/harvest/last-run` (create the folder if needed). If a
+`~/.local/share/workbench/state/record-last-run` (create the folder if needed). If a
 correction has now been seen in two or more sessions, suggest `improve`.
 
 Report each entry with its notebook path, what was dropped and

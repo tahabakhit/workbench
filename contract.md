@@ -16,7 +16,7 @@ Rules shared by every machine.
   subagent. Then the session that met it sets `Status: done` in the issue and
   in the spec table.
 - Write the failing test first. Mock only at system boundaries.
-- Tracker updates go to the trackers named in the `sources` entries, with
+- Tracker updates go to the trackers named in the Sources, with
   evidence, applied only on approval.
 - Decisions from a decision session are written only on approval: to
   `## Decisions` in `spec.md` when a feature folder exists, otherwise to
@@ -26,11 +26,15 @@ Rules shared by every machine.
 
 ## Notebook
 
+Everything workbench keeps on a machine is under `~/.local/share/workbench/`:
+the notebook, `sources.md` and `state/`.
+
 Records live in the notebook: plain markdown in a git repository at
-`~/.agents/notebook`, one folder per kind, the same on every machine. The plugin's
-`notebook` tool will search and file into it; until it does, skills write the
-files directly. Create the repository with `git init` and a folder with its
-first file, and commit each write there.
+`~/.local/share/workbench/notebook`, one folder per kind, the same on every
+machine. The plugin's `notebook` tool will search and file into it; until it
+does, skills write the files directly. Create the repository with `git init`
+and a folder with its first file, and commit each write there. Flagged
+corrections and run timestamps go in `state/`.
 
 | Path | Holds |
 |---|---|
@@ -49,10 +53,14 @@ from one; a lesson also holds `scope` and, when it replaces one, `supersedes`.
 
 Where work comes from (tracker, chat, calendar, meeting notes, code host)
 differs by person, so each machine lists it in
-`~/.config/workbench/sources.md`, which `onboard` writes: one line per
+`~/.local/share/workbench/sources.md`, which `onboard` writes: one line per
 source, `- <tool>: <exact command or tool call, with filters and limits>`.
-A skill that gathers work reads that file; without it, the skill says so and
-gathers from git and `.scratch/` alone.
+A repository's `AGENTS.md` can hold a `## Sources` section in the same
+format for work in that repository, such as its own tracker; each of its
+lines replaces the machine's line for the same tool and adds the rest.
+Tracker updates for a repository go to the tracker its sources name. A
+skill that gathers work reads both; without either, it says so and gathers
+from git and `.scratch/` alone.
 
 ## Writing that lands in a repository
 

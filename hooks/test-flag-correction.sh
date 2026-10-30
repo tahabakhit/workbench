@@ -1,19 +1,19 @@
 #!/bin/sh
 # Pipes sample UserPromptSubmit input into flag-correction.sh and checks
-# which prompts land in pending.jsonl, and that the hook prints nothing.
+# which prompts land in pending-corrections.jsonl, and that the hook prints nothing.
 set -u
 
 hook="$(cd "$(dirname "$0")" && pwd)/flag-correction.sh"
 work=$(mktemp -d)
 trap 'rm -rf "$work"' EXIT
-pending=$work/state/agent-corrections/pending.jsonl
+pending=$work/data/workbench/state/pending-corrections.jsonl
 fail=0
 
 # run <prompt>: feeds one prompt to the hook; fails the test on any output.
 run() {
   out=$(jq -n --arg p "$1" \
     '{hook_event_name: "UserPromptSubmit", session_id: "s1", cwd: "/repo", prompt: $p}' |
-    XDG_STATE_HOME=$work/state sh "$hook")
+    XDG_DATA_HOME=$work/data sh "$hook")
   if [ -n "$out" ]; then
     echo "FAIL  printed output for: $1"
     fail=1

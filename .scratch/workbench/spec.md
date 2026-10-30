@@ -18,10 +18,10 @@ per-skill verdicts in `.scratch/bootstrap/mattpocock-analysis.md`.
   an instruction line in `contract.md`, and a hook covers only what must not
   be skipped.
 - One home for records. Logs, decisions, lessons, corrections, plans, goals
-  and studied topics go to the notebook at `~/.agents/notebook`, in the layout the
+  and studied topics go to the notebook at `~/.local/share/workbench/notebook`, in the layout the
   contract defines, on every machine.
 - Sources stay neutral. No skill hardcodes a tracker, chat or calendar;
-  skills read the machine's `~/.config/workbench/sources.md` and work from
+  skills read the machine's `~/.local/share/workbench/sources.md` and work from
   git and `.scratch/` alone without it.
 - Self-contained skills. A skill never loads another skill. Reference
   material is a side file inside the skill's own folder, read at a named step.
@@ -156,8 +156,10 @@ Owned by workbench, not prioritised yet. Each gets an issue when it starts.
 | Workbench owns the statusline renderer and the Pi agents; both wait under Later | Agent tooling belongs here, but neither is a priority |
 | The Mac-port hook scripts and the `om` MCP server stay in the dotfiles port folder for now | Not needed yet |
 | notebook is developed in this repo and ships in this plugin; workbench is the skills plus the notebook | They only make sense together, and one repo keeps the notebook layout and the skills that file into it in step |
-| Records go to the notebook at `~/.agents/notebook` in one fixed layout on every machine; no per-machine or per-repo record destinations | A plugin for any machine has one home for records; per-machine destinations only bent it around an older vault setup |
+| Records go to the notebook at `~/.local/share/workbench/notebook` in one fixed layout on every machine; no per-machine or per-repo record destinations | A plugin for any machine has one home for records; per-machine destinations only bent it around an older vault setup |
 | Until the notebook tool exists, skills write the notebook's markdown files directly and commit them | Plain markdown in git, so the tool takes the files over without a migration |
-| Each machine keeps only its work sources in `~/.config/workbench/sources.md`, written by `onboard`; the session hook no longer loads it | Sources really differ by person and job; only the skills that gather work need them |
+| Each machine keeps only its work sources in `~/.local/share/workbench/sources.md`, written by `onboard`; the session hook no longer loads it | Sources really differ by person and job; only the skills that gather work need them |
 | The plugin ships the correction-flag `UserPromptSubmit` hook, written fresh, not ported from the Mac setup | It only feeds `record` and `improve`, so it belongs with them and runs on every machine |
 | `choose-skill` is the router over the skills, with the phase-boundary tree as its side file | The manual skills reached the count the ask-matt verdict set for a router, and `handoff` needs the tree that says when to use it |
+| Everything workbench keeps on a machine is under `~/.local/share/workbench/`: `notebook/`, `sources.md` and `state/` | One place for one tool's files, in the standard data folder and outside the dotfiles' `~/.agents` |
+| `onboard` with no argument sets up the machine the first time, then the current repo; a repo's `AGENTS.md` can hold `## Sources` that replace the machine's line per tool | One command to type, and repos can use their own tracker |

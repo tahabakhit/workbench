@@ -12,17 +12,18 @@ handful of proposed updates, then picks what to work on.
 ## 1. Date and window
 
 Get the date, weekday and time from the shell (`date`); never infer them.
-Open the most recent plan in `~/.agents/notebook/plans/` from the last seven days.
+Open the most recent plan in `~/.local/share/workbench/notebook/plans/` from the last seven days.
 Its date is the window start; with no plan, use 14 days ago. Read
-`~/.agents/notebook/goals.md` when it exists.
+`~/.local/share/workbench/notebook/goals.md` when it exists.
 
 Done when today's date, the window start and the previous plan (or its
 absence) are known.
 
 ## 2. Gather
 
-Sources are the lines in `~/.config/workbench/sources.md` that apply to
-`plan-day`, plus three every machine has: the previous plan's open items, open
+Sources are the lines in `~/.local/share/workbench/sources.md` and in the
+current repo's `## Sources` (which replaces the machine's line for the same
+tool) that apply to `plan-day`, plus three every machine has: the previous plan's open items, open
 tasks in `.scratch/*/spec.md` of the current repo, and the user's commits in
 the window. Follow any limit written beside a source.
 
@@ -82,7 +83,7 @@ Ask which updates to apply and whether the ranking needs changes.
 ## 6. Apply and save
 
 Apply only the approved updates, with the user's edits, and report each
-result. Then write the plan to `~/.agents/notebook/plans/YYYY-MM-DD.md` under a
+result. Then write the plan to `~/.local/share/workbench/notebook/plans/YYYY-MM-DD.md` under a
 `## Plan` heading, replacing that section if today's file already has one,
 and commit it. Open the
 section with a Mermaid `mindmap`: the root is the date, branches are Now,

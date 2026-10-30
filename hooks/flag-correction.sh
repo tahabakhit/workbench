@@ -1,8 +1,8 @@
 #!/bin/sh
 # UserPromptSubmit hook: appends prompts that read like a correction of the
-# agent to pending.jsonl for the record skill, which confirms each one. It
+# agent to pending-corrections.jsonl for the record skill, which confirms each one. It
 # prints nothing, so the prompt and the session context are unchanged.
-pending="${XDG_STATE_HOME:-$HOME/.local/state}/agent-corrections/pending.jsonl"
+pending="${XDG_DATA_HOME:-$HOME/.local/share}/workbench/state/pending-corrections.jsonl"
 
 line=$(jq -c '
   select(.prompt | test(

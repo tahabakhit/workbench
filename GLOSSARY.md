@@ -10,13 +10,13 @@ The rules in `contract.md` that the plugin adds to every session.
 _Avoid_: Global rules, agent rules
 
 **Notebook**:
-The markdown vault in a git repository at `~/.agents/notebook` where skills file
+The markdown vault in a git repository at `~/.local/share/workbench/notebook` where skills file
 logs, decisions, lessons, corrections, plans, goals and studied topics, and
 the tool in this plugin that searches and files into it.
 _Avoid_: Knowledge destination, brain
 
 **Sources file**:
-`~/.config/workbench/sources.md`, the machine's list of where work comes
+`~/.local/share/workbench/sources.md`, the machine's list of where work comes
 from: tracker, chat, calendar, meeting notes, code host.
 _Avoid_: Knowledge file
 

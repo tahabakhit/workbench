@@ -26,7 +26,7 @@ workbench`, then start a new session.
 - A skill never loads another skill. Shared reference material is a side
   file copied into each skill folder that reads it.
 - Records go to the notebook layout in `contract.md`. No skill hardcodes a
-  tracker, chat or calendar; skills read `~/.config/workbench/sources.md`.
+  tracker, chat or calendar; skills read `~/.local/share/workbench/sources.md`.
 - `plugin.json` has no `version`, so every commit counts as an update.
 - Scripts are POSIX `sh` with `jq`, executable, under the skill's `scripts/`.
 

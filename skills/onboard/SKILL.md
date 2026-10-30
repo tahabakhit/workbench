@@ -1,20 +1,21 @@
 ---
 name: onboard
-description: Set up a machine or a repo for agent work. Machine scope writes the machine's work sources file from the tools found and creates the notebook; repo scope surveys an existing repo, proposes keep, convert or delete for its agent artifacts, and writes AGENTS.md.
+description: Set up this machine and the current repo for agent work, each the first time. Machine scope writes the machine's work sources file from the tools found and creates the notebook; repo scope surveys an existing repo, proposes keep, convert or delete for its agent artifacts, and writes AGENTS.md.
 disable-model-invocation: true
 ---
 
 # Onboard
 
 Scope comes from the argument: `machine` or `repo`. Without one, run
-`machine` when `~/.config/workbench/sources.md` does not exist, otherwise
-`repo`. With `preview`, show every proposal and write nothing.
+`machine` first when `~/.local/share/workbench/sources.md` does not exist, then
+`repo` when the session is in a git repository. With `preview`, show every
+proposal and write nothing.
 
 ## Machine scope
 
 1. **Inspect.** List the MCP servers (`claude mcp list`, or the harness's
    equivalent) and the CLIs on `PATH`: `gh`, `glab`, `acli`, `jira`, `slack`,
-   `gcloud`. Read `~/.config/workbench/sources.md` if it exists. Done when
+   `gcloud`. Read `~/.local/share/workbench/sources.md` if it exists. Done when
    you have a table of tool, what it serves (tracker, chat, calendar,
    meeting notes, code host), and whether it answers a test call (one cheap
    read each).
@@ -28,10 +29,10 @@ Scope comes from the argument: `machine` or `repo`. Without one, run
    to the current one. Keep every existing line unless an answer changes
    it. Each line names the exact command or tool call, its filters, and
    which skills it is limited to, if any. Show a diff; write only on
-   approval, to `~/.config/workbench/sources.md`. It belongs to this
+   approval, to `~/.local/share/workbench/sources.md`. It belongs to this
    machine: never write it into a repository or an instructions file.
-   Create `~/.agents/notebook` with `git init` if it is missing. Done when the
-   approved file is written and `~/.agents/notebook` is a git repository.
+   Create `~/.local/share/workbench/notebook` with `git init` if it is missing. Done when the
+   approved file is written and `~/.local/share/workbench/notebook` is a git repository.
 
 ## Repo scope
 
@@ -49,7 +50,11 @@ Scope comes from the argument: `machine` or `repo`. Without one, run
 
    Done when every item has facts or "none found", and every command is
    marked run with its result or not run with the reason.
-2. **Propose.** A table with one row per artifact found: keep, convert to
+2. **Propose.** Ask whether work in this repo comes from a different
+   tracker, chat or code host than the machine's `sources.md` names, such as
+   a Jira project; if so, propose a `## Sources` section for `AGENTS.md` in
+   the contract's format. Then a table with one row per artifact found:
+   keep, convert to
    this plugin's conventions, or delete, and a reason. Conventions:
    `AGENTS.md` under 60 lines, with `CLAUDE.md` holding only `@AGENTS.md`;
    work tracking in `.scratch/<feature>/` as the contract
@@ -59,7 +64,7 @@ Scope comes from the argument: `machine` or `repo`. Without one, run
    survey item that is an artifact has a row.
 3. **Apply on approval.** Apply only the approved rows. Draft `AGENTS.md`:
    commands first, then conventions an agent would get wrong, work tracking,
-   domain docs. With an existing file, show a diff and keep what the
+   domain docs, and the approved `## Sources` section. With an existing file, show a diff and keep what the
    user wrote unless they agree to change it. Never name a file `claude.md`
    or `agents.md` in lower case. Done when the approved changes are written
    and nothing else changed (`git status`).

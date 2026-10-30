@@ -6,7 +6,7 @@ Status: done
 
 A `UserPromptSubmit` hook in the plugin, `hooks/flag-correction.sh`, appends
 prompts that read like a correction of the agent to
-`${XDG_STATE_HOME:-~/.local/state}/agent-corrections/pending.jsonl`, one
+`${XDG_DATA_HOME:-~/.local/share}/workbench/state/pending-corrections.jsonl`, one
 JSON line with `ts`, `session_id`, `cwd` and the first 500 characters of the
 prompt. It prints nothing. `record` confirms each line against its session
 and files real corrections into the notebook's `corrections.md`.
