@@ -27,6 +27,12 @@ hooks have none, so the likely cause is that they are untrusted. Whether a
 trusted hook runs, and whether Codex sets `CLAUDE_PLUGIN_ROOT` for it, is not
 tested. The owner has to trust the hook; a bypass flag was refused.
 
+After the owner trusted the hooks, a new `codex exec` session answered with
+`~/.local/share/workbench/notebook/decisions/YYYY-MM-DD-<slug>.md`, and its
+session record holds the contract. Codex delivery is the hook.
+
+Pi: open. It gets a dedicated extension layer.
+
 ## Done when
 
 - A new Codex session and a new Pi session each answer "where does a

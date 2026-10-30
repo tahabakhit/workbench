@@ -2,8 +2,8 @@
 
 A Claude Code plugin, and its own marketplace, that holds one person's skills,
 shared contract and the notebook (the markdown vault the skills file into)
-for working with AI coding agents on any machine. Codex and Pi do not load
-this plugin.
+for working with AI coding agents on any machine. Codex installs the same
+plugin; Pi does not load it.
 
 ## Validate
 

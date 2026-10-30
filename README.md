@@ -17,6 +17,11 @@ pick up each pushed commit.
 To pull a change in by hand, run `claude plugin marketplace update workbench`
 and start a new session.
 
+For Codex, run `codex plugin marketplace add tahabakhit/workbench` and
+`codex plugin add workbench@workbench`, then accept the workbench hooks when
+`codex` next starts.
+
+
 ## Use
 
 Run `/workbench:onboard machine` once per machine, and
