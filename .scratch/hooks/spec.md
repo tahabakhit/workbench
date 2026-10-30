@@ -3,7 +3,7 @@
 ## Goal
 
 The plugin ships no Bash guard. Git policy, gitleaks included, is an agent
-rule in `agent-rules.md` only; no git hook enforces it. The tasks below
+rule in the global instructions the dotfiles own; no git hook enforces it. The tasks below
 built a `PreToolUse` guard that the last row of Decisions removes; the rest
 of this spec describes that guard.
 
@@ -54,7 +54,7 @@ Settled input: `.scratch/bootstrap/decisions.md` (wins on conflict) and the
 - Repo-specific guards such as the `claude.md`/`agents.md` filename rule.
   They go in that repo's own settings.
 - New safety lines in `contract.md`. The hook enforces what
-  `agent-rules.md` already says.
+  the global instructions already say.
 - Hooks for Codex and Pi.
 - Commits or pushes made from inside scripts or aliases.
 
@@ -71,4 +71,4 @@ Settled input: `.scratch/bootstrap/decisions.md` (wins on conflict) and the
 | `rm` with `-r` or `-f` and a target that resolves outside the project dir, the session scratchpad and `/tmp`: ask | Deletes outside the repo, one of the irreversible cases in the bootstrap decisions |
 | No hooks for `gh` actions, `git branch -D`, `Stop` checks or repo-specific rules, and no new contract lines | Influence, not force; each is reviewable, recoverable or covered elsewhere |
 | One hook, one script, a single `PreToolUse` entry in `hooks.json`; tests in `hooks/test-safety.sh`, run by `scripts/check.sh` | Narrow matchers and one place to read the rules |
-| The guard hook, its tests and its `hooks.json` entry are removed | The owner keeps git rules, gitleaks included, as text in `agent-rules.md` and adds permission rules by hand per machine |
+| The guard hook, its tests and its `hooks.json` entry are removed | The owner keeps git rules, gitleaks included, as text in the global instructions and adds permission rules by hand per machine |

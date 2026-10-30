@@ -101,6 +101,7 @@ not block anything here.
 | 17 | Install from GitHub on every machine | | done |
 | 18 | Connect the Mac to the public repo | | open |
 | 19 | Flag corrections in every session | | done |
+| 20 | Deliver the contract to Codex and Pi | | open |
 
 Steps 2 and 3 of the Order are issues 01 to 10. Issues 16 and 17 are hand-overs from the dotfiles. Issues 11 to 13 are steps 4
 to 6. Each of those gets its own spec before work starts.
@@ -109,7 +110,7 @@ to 6. Each of those gets its own spec before work starts.
 
 - Hook and safety-rule content (issue 12) and the notebook design (issue 11).
 - Permission rules and Bash guards in the plugin. Git safety, gitleaks
-  included, is an agent rule in `agent-rules.md` only.
+  included, is a rule in the global instructions the dotfiles own.
 - Hooks and agents for Codex and Pi, apart from the Pi agents listed under Later.
 - An internal marketplace for colleagues.
 - How notebook and workbench are installed together (still open in the
@@ -148,7 +149,7 @@ Owned by workbench, not prioritised yet. Each gets an issue when it starts.
 | Workbench is developed, committed and pushed only from the Fedora PC (issue 15) | One place where changes are made |
 | The repo is public, with history rewritten so the old trial files hold no employer details (issue 15) | A public repo lets the Mac install without the personal account's credentials |
 | The Mac has no workbench checkout and installs from the `github` marketplace source when the owner gets to it (issue 18) | A public repo avoids the Mac's work-account auth problem; nothing else waits on the Mac |
-| Workbench owns the text of the owner's agent rules as `agent-rules.md`; the dotfiles only include it (issue 16) | One home for agent guidance; `CLAUDE.md` keeps its standing over hook context |
+| The dotfiles own the global instruction text (`~/.agents/AGENTS.md`); workbench ships no agent rules (issue 16) | The plugin never loaded that text, and the global instructions have one owner |
 | Every machine installs the plugin from the `tahabakhit/workbench` GitHub marketplace, the Fedora PC included (issue 17) | Same source everywhere; sessions run what is pushed |
 | `prototype`, `research` and `handoff` ship as manual skills, and mattpocock-skills is uninstalled | They were the last verdicts marked rewrite; with them built the plugin needs no reference copy. `prototype` keeps only the one-file logic demo, since the UI-variants branch assumes a web app repo |
 | Workbench owns the statusline renderer and the Pi agents; both wait under Later | Agent tooling belongs here, but neither is a priority |

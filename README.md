@@ -17,13 +17,6 @@ pick up each pushed commit.
 To pull a change in by hand, run `claude plugin marketplace update workbench`
 and start a new session.
 
-## Agent rules
-
-`agent-rules.md` holds the owner's personal rules for every harness. The
-plugin does not load it. Each machine's `~/.claude/CLAUDE.md` includes it,
-so it keeps the standing of global instructions in Claude Code, and
-`~/.agents/AGENTS.md` includes it with `contract.md` for Codex and Pi.
-
 ## Check
 
 ```sh
