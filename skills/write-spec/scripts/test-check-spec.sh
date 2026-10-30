@@ -65,6 +65,15 @@ expect two-cycle fail 'cycle'
 feature three-cycle '01|03|open' '02|01|open' '03|02|open'
 expect three-cycle fail 'cycle'
 
+feature tracker-and-fog '01||open' '02|01|open'
+awk '{ print } /^Status: open$/ { print "Tracker: https://example.test/1" }' \
+  "$work/tracker-and-fog/issues/01-task.md" >"$work/issue"
+mv "$work/issue" "$work/tracker-and-fog/issues/01-task.md"
+awk '/^## Out of scope$/ { print "## Not yet specified\n\n- A vague question.\n" } { print }' \
+  "$work/tracker-and-fog/spec.md" >"$work/spec"
+mv "$work/spec" "$work/tracker-and-fog/spec.md"
+expect tracker-and-fog pass
+
 if [ "$fail" -ne 0 ]; then
   echo "check-spec tests: failed"
   exit 1

@@ -27,7 +27,7 @@ proposal and write nothing.
 3. **Write.** Draft the whole file in the format of the contract's Sources
    section and print it verbatim in a code block, even when it is identical
    to the current one. Keep every existing line unless an answer changes
-   it. Each line names the exact command or tool call, its filters, and
+   it, and rekey any line that doesn't start with a contract kind. Each line names the exact command or tool call, its filters, and
    which skills it is limited to, if any. Show a diff; write only on
    approval, to `~/.local/share/workbench/sources.md`. It belongs to this
    machine: never write it into a repository or an instructions file.
@@ -50,25 +50,41 @@ proposal and write nothing.
 
    Done when every item has facts or "none found", and every command is
    marked run with its result or not run with the reason.
-2. **Propose.** Ask whether work in this repo comes from a different
-   tracker, chat or code host than the machine's `sources.md` names, such as
-   a Jira project; if so, propose a `## Sources` section for `AGENTS.md` in
-   the contract's format. Then a table with one row per artifact found:
-   keep, convert to
+2. **Ask.** One numbered round. Read `tracker-lines.md` in this skill's
+   folder first; ask these, each with a recommendation worded so "yes"
+   accepts it:
+   1. Where do tasks for this repo live? The spec and issue files stay in
+      `.scratch/<feature>/` either way. This picks who else sees them and
+      where they get closed. Offer local markdown, GitHub Issues, GitLab
+      Issues, or other (Jira, Linear, anything: ask for the list, create and
+      close commands or tool calls).
+   2. Is this repo shared with people who don't use workbench? Recommend yes
+      when the last 30 commits have other authors.
+   3. Do chat or code host differ from the machine's `sources.md`?
+
+   Recommend the tracker that already holds this repo's open issues, or that
+   the machine's sources name for it; with neither, local. A remote alone is
+   no evidence that anyone uses its issues. Run the chosen list command once.
+   Done when every question has an answer and that command has answered.
+3. **Propose.** The answers become source lines in the contract's format: a
+   `## Sources` section for `AGENTS.md`, or machine lines when the repo is
+   shared. Then a table with one row per artifact found: keep, convert to
    this plugin's conventions, or delete, and a reason. Conventions:
    `AGENTS.md` under 60 lines, with `CLAUDE.md` holding only `@AGENTS.md`;
    work tracking in `.scratch/<feature>/` as the contract
    describes; glossary and ADRs in the format of `glossary-adr-format.md` in
    this skill's folder (read it before proposing a conversion); facts an
-   agent can read from the code are deleted, not copied. Done when every
+   agent can read from the code are deleted, not copied. In a shared repo,
+   apply the contract's shared-repository rule: existing instruction files
+   are kept and `.scratch/` goes in `.git/info/exclude`. Done when every
    survey item that is an artifact has a row.
-3. **Apply on approval.** Apply only the approved rows. Draft `AGENTS.md`:
+4. **Apply on approval.** Apply only the approved rows. Draft `AGENTS.md`:
    commands first, then conventions an agent would get wrong, work tracking,
    domain docs, and the approved `## Sources` section. With an existing file, show a diff and keep what the
    user wrote unless they agree to change it. Never name a file `claude.md`
    or `agents.md` in lower case. Done when the approved changes are written
    and nothing else changed (`git status`).
-4. **Prove each check bites.** Before recording a check (a lint rule, a test
+5. **Prove each check bites.** Before recording a check (a lint rule, a test
    command, a hook) in `AGENTS.md`, show it passes, fails on a deliberately
    broken case, then passes once that case is reverted. Done when every
    recorded check has that pass, fail, pass, or is recorded as unproven.

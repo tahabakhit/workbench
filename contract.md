@@ -8,6 +8,12 @@ Rules shared by every machine.
   task table and a `## Decisions` section, and one `issues/NN-slug.md` per
   task. Each issue has a plain `Status: open|done|wontfix` line (not bold),
   an optional `Blocked by: NN` line, and a "Done when" check.
+- `.scratch/` is the working copy in every repository. The `tracker` source
+  says where issues are also published: with `local` or no line, nowhere. A
+  published issue holds a plain `Tracker: <url or key>` line under `Status:`.
+  If the two disagree, the tracker wins and `Status:` is corrected.
+- A spec can hold `## Not yet specified`: questions too vague to ask yet. When
+  a "Decide X" issue closes, each one the decision made sharp becomes an issue.
 - An issue set to `wontfix` takes the open issues it blocks with it in the
   same change: each becomes `wontfix` too or names another blocker.
 - Ad hoc work gets no feature folder and no notes while it happens.
@@ -54,13 +60,20 @@ from one; a lesson also holds `scope` and, when it replaces one, `supersedes`.
 Where work comes from (tracker, chat, calendar, meeting notes, code host)
 differs by person, so each machine lists it in
 `~/.local/share/workbench/sources.md`, which `onboard` writes: one line per
-source, `- <tool>: <exact command or tool call, with filters and limits>`.
+source, `- <kind>: <tool, with its exact command or tool call, filters and
+limits>`. The kinds are `tracker`, `chat`, `calendar`, `notes` and `host`.
 A repository's `AGENTS.md` can hold a `## Sources` section in the same
 format for work in that repository, such as its own tracker; each of its
-lines replaces the machine's line for the same tool and adds the rest.
+lines replaces the machine's line of the same kind and adds the rest.
 Tracker updates for a repository go to the tracker its sources name. A
 skill that gathers work reads both; without either, it says so and gathers
 from git and `.scratch/` alone.
+
+In a repository shared with people who don't use workbench, `.scratch/` stays
+out of git through `.git/info/exclude`, the shared instruction files stay as
+they are, and its sources go in the machine's file, keyed `<kind> (<repo>)`.
+Such a line applies only in that repository, where it replaces the machine's
+line of that kind.
 
 ## Writing that lands in a repository
 

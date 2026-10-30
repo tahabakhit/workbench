@@ -19,7 +19,9 @@ and start a new session.
 
 ## Use
 
-Run `/workbench:onboard machine` once per machine. When unsure which skill
+Run `/workbench:onboard machine` once per machine, and
+`/workbench:onboard repo` once per repository to choose where its tasks live:
+local markdown, GitHub, GitLab or another tracker. When unsure which skill
 fits, run `/workbench:choose-skill <your situation>`.
 
 ## Check

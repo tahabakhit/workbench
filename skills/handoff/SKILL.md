@@ -44,7 +44,8 @@ instead of repeating them.
 
 A handoff in a feature folder reaches another machine only once it is
 committed and pushed: commit it, and push when the next session runs
-elsewhere.
+elsewhere. When `.scratch/` is excluded from git, it stays on this machine;
+say so.
 
 When the user asks to start the next session now in Claude Code, run
 `claude --bg --name "<goal in a few words>" -- "$(cat <handoff file>)"`;

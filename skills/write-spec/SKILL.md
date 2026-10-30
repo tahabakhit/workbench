@@ -17,7 +17,8 @@ Read the conversation and every input file the user names. List:
 - the goal, in two to four sentences;
 - each settled decision, with its reason;
 - what was explicitly put out of scope or deferred;
-- open questions the slicing depends on.
+- open questions the slicing depends on;
+- questions still too vague to ask, for `## Not yet specified`.
 
 An open question gets no interview here. It becomes its own task ("Decide
 X", with the options in its issue) or goes to Out of scope, and the quiz in
@@ -67,6 +68,8 @@ issues after the highest existing one and append rows to the task table.
   rule from the input that each issue must obey; an inventory or a layout
   gets its own section. No user stories.
 - `## Tasks`: a table `| # | Task | Blocked by | Status |`, one row per issue.
+- `## Not yet specified`, only when step 1 listed any: one line per question.
+  Each stays toward the goal; anything that won't be built is Out of scope.
 - `## Out of scope`: each deferred or rejected item, with where it went (a
   later task, another spec, dropped).
 - `## Decisions`: empty, except a Decision and Reason table for answers the
@@ -96,7 +99,17 @@ only if it exists; otherwise the issue creates it first.
 Done when `scripts/check-spec.sh .scratch/<feature>` in this skill's folder
 prints that spec and issues agree. Fix what it reports and rerun.
 
-## 5. Hand off
+## 5. Publish
+
+Read the `tracker` source: the repo's `## Sources`, else the machine's. With
+`local` or no line, skip this step and say so once. Otherwise show the issues
+and, on approval, run its create command for each in number order, carrying
+`Blocked by` across as the line allows, and add `Tracker: <url or key>` under
+`Status:`.
+
+Done when each issue has a Tracker line, or the user declined.
+
+## 6. Hand off
 
 Reread issue 01 as a session that has seen nothing but the repo. Fix
 anything it would have to ask. Then give the user the prompt to start it:

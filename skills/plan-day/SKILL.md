@@ -22,8 +22,8 @@ absence) are known.
 ## 2. Gather
 
 Sources are the lines in `~/.local/share/workbench/sources.md` and in the
-current repo's `## Sources` (which replaces the machine's line for the same
-tool) that apply to `plan-day`, plus three every machine has: the previous plan's open items, open
+current repo's `## Sources` (which replaces the machine's line of the same
+kind) that apply to `plan-day`, plus three every machine has: the previous plan's open items, open
 tasks in `.scratch/*/spec.md` of the current repo, and the user's commits in
 the window. Follow any limit written beside a source.
 
