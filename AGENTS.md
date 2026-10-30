@@ -28,22 +28,23 @@ workbench`, then start a new session.
 - Records go to the notebook layout in `contract.md`. No skill hardcodes a
   tracker, chat or calendar; skills read `~/.local/share/workbench/sources.md`.
 - `plugin.json` has no `version`, so every commit counts as an update.
-- Scripts are POSIX `sh` with `jq`, executable, under the skill's `scripts/`.
+- Scripts are POSIX `sh` with `jq`, executable: a skill's under its `scripts/`,
+  plugin hooks under `hooks/`, repo checks under `scripts/`.
 
 ## Work tracking
 
 Follows `contract.md`. Open work is in `.scratch/workbench/`.
-Settled input: `.scratch/bootstrap/decisions.md`,
-which wins on conflict, and the per-skill verdicts in
-`.scratch/bootstrap/mattpocock-analysis.md`. Terms are in `GLOSSARY.md`.
+Background input: `.scratch/bootstrap/decisions.md` and the per-skill verdicts
+in `.scratch/bootstrap/mattpocock-analysis.md`. On conflict, the newest
+`## Decisions` entry in a spec wins. Terms are in `GLOSSARY.md`.
 
 ## Git and naming
 
-- Commits: plain message, no `Co-Authored-By` trailer. This clone's local
-  git config sets the personal noreply email and makes git push as the
-  `tahabakhit` account. For `gh`, prefix
-  `GH_TOKEN=$(gh auth token -u tahabakhit)`; the active gh account is the
-  work one.
-- Never name a file `claude.md` or `agents.md` in any case. macOS matches
-  them to `CLAUDE.md` and `AGENTS.md`, and harnesses load those as
+- Commits: plain message, no `Co-Authored-By` trailer, from the personal
+  noreply email.
+- Git pushes through the `gh` credential helper, as the active `gh` account.
+  This repo belongs to `tahabakhit`; where another account is active, prefix
+  `gh` with `GH_TOKEN=$(gh auth token -u tahabakhit)`.
+- Never name a file `claude.md` or `agents.md` in lower or mixed case. macOS
+  matches them to `CLAUDE.md` and `AGENTS.md`, and harnesses load those as
   instructions.

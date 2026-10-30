@@ -4,11 +4,11 @@
 
 A Claude Code plugin that holds one person's skills, shared contract and
 notebook for working with AI coding agents in every repo, on any machine. It replaces the skills in the agents setup repo
-(`~/dev/agents/home/dot_agents/skills/`). Codex and Pi get the same skills as
-plain `SKILL.md` folders.
+(`~/dev/agents/home/dot_agents/skills/`). Codex and Pi do not load the plugin.
 
-Settled input: `.scratch/bootstrap/decisions.md` (it wins on conflict) and the
-per-skill verdicts in `.scratch/bootstrap/mattpocock-analysis.md`.
+Background input: `.scratch/bootstrap/decisions.md` and the per-skill verdicts
+in `.scratch/bootstrap/mattpocock-analysis.md`. On conflict, the newest entry
+under `## Decisions` wins.
 
 ## Principles
 
@@ -71,10 +71,8 @@ AGENTS.md                        instructions for agents working in this repo
 README.md                        install steps and the order to use the skills in
 ```
 
-`contract.md` reaches the agents through each machine's setup. On the work
-Mac, chezmoi templates in `~/dev/agents` build `~/.claude/CLAUDE.md` and
-`~/.codex/AGENTS.md`. They include `contract.md` next to that machine's own
-policy.
+`contract.md` reaches Claude Code through the plugin's `SessionStart` hook.
+Codex and Pi do not receive it yet (issue 20).
 
 ## Tasks
 
@@ -145,7 +143,7 @@ Owned by workbench, not prioritised yet. Each gets an issue when it starts.
 | Order step 1 is tracked in `~/dev/agents`, not here | It changes only that repo |
 | The agents repo stops shipping the skills; Claude Code gets them only from the plugin (issues 07, 08) | One source for every harness |
 | Codex and Pi get no skills from links in `~/.agents/skills`; native extensions come after the plugin (issue 14) | Each harness loads skills its own way |
-| The plugin's `SessionStart` hook delivers the contract; the dotfiles keep only the contract include for Codex and Pi (issue 14) | Workbench does not edit the global instructions |
+| The plugin's `SessionStart` hook delivers the contract to Claude Code; delivery to Codex and Pi is open (issues 14 and 20) | Workbench does not edit the global instructions |
 | `scripts/check.sh` runs `claude plugin validate --strict` and tolerates only its missing-version warning | `plugin.json` has no `version` on purpose; every other warning still fails |
 | Workbench is developed, committed and pushed only from the Fedora PC (issue 15) | One place where changes are made |
 | The repo is public, with history rewritten so the old trial files hold no employer details (issue 15) | A public repo lets the Mac install without the personal account's credentials |
