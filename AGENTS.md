@@ -43,8 +43,7 @@ in `.scratch/bootstrap/mattpocock-analysis.md`. On conflict, the newest
 - Commits: plain message, no `Co-Authored-By` trailer, from the personal
   noreply email.
 - Git pushes through the `gh` credential helper, as the active `gh` account.
-  This repo belongs to `tahabakhit`; where another account is active, prefix
-  `gh` with `GH_TOKEN=$(gh auth token -u tahabakhit)`.
+  This repo belongs to `tahabakhit`, so that account must be the active one.
 - Never name a file `claude.md` or `agents.md` in lower or mixed case. macOS
   matches them to `CLAUDE.md` and `AGENTS.md`, and harnesses load those as
   instructions.

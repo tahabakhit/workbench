@@ -7,8 +7,8 @@ rule in the global instructions the dotfiles own; no git hook enforces it. The t
 built a `PreToolUse` guard that the last row of Decisions removes; the rest
 of this spec describes that guard.
 
-Settled input: `.scratch/bootstrap/decisions.md` (wins on conflict) and the
-`## Decisions` below.
+Background input: `.scratch/bootstrap/decisions.md`. On conflict, the newest
+entry under `## Decisions` below wins.
 
 ## Principles
 

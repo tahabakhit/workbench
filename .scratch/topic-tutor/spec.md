@@ -9,9 +9,9 @@ order comes from code, and keeps learning records so the next session picks
 up where the last one stopped, misses first. A shared `researcher` agent
 does the source work.
 
-Settled input: `.scratch/bootstrap/decisions.md` (wins on conflict), the
-`teach` and `research` rows of `.scratch/bootstrap/mattpocock-analysis.md`,
-and the `## Decisions` below.
+Background input: `.scratch/bootstrap/decisions.md` and the `teach` and
+`research` rows of `.scratch/bootstrap/mattpocock-analysis.md`. On conflict,
+the newest entry under `## Decisions` below wins.
 
 ## Principles
 
