@@ -8,6 +8,8 @@ Rules shared by every machine.
   task table and a `## Decisions` section, and one `issues/NN-slug.md` per
   task. Each issue has a plain `Status: open|done|wontfix` line (not bold),
   an optional `Blocked by: NN` line, and a "Done when" check.
+- An issue set to `wontfix` takes the open issues it blocks with it in the
+  same change: each becomes `wontfix` too or names another blocker.
 - Ad hoc work gets no feature folder and no notes while it happens.
 - Finish at the done-when: run each check and quote its output. Before
   closing, diff the result against the done-when and Out of scope in a fresh

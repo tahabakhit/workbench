@@ -1,6 +1,6 @@
 # 15 Develop on the Fedora PC only; decide how the Mac consumes the plugin
 
-Status: done
+Status: open
 Blocked by: 14
 
 The decisions are in `## Decisions` in `spec.md`. Connecting the Mac is
@@ -41,7 +41,9 @@ Publishing: the old versions of the onboard and record trials held the
 employer's name, its GitHub Enterprise host, a work account and details of a
 work repo. History was rewritten so every version of those files is the
 cleaned one, then force-pushed. A grep of all history for those terms and
-gitleaks over all history find nothing.
+gitleaks over all history find nothing. GitHub keeps the old commits
+reachable by hash until it garbage-collects them, so the clean history goes
+to a fresh public repo; the current one is renamed and stays private.
 
 ## Done when
 

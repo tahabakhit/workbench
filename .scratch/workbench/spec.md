@@ -94,7 +94,7 @@ not block anything here.
 | 12 | Hooks and safety rules: decide coverage, keep them unrestrictive | 07 | done |
 | 13 | Topic-tutor skill | 07 | done |
 | 14 | The plugin delivers the contract and Knowledge itself | 08 | done |
-| 15 | Develop on the Fedora PC only; decide how the Mac consumes the plugin | 14 | done |
+| 15 | Develop on the Fedora PC only; decide how the Mac consumes the plugin | 14 | open |
 | 16 | Ship the owner's agent rules as `agent-rules.md` | | done |
 | 17 | Install from GitHub on every machine | | done |
 | 18 | Connect the Mac to the public repo | | open |

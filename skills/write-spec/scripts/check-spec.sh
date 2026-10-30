@@ -18,6 +18,13 @@ done
 
 trim() { sed 's/^[[:space:]]*//; s/[[:space:]]*$//'; }
 
+# blockers <NN>: the issue numbers on that issue's Blocked by line.
+blockers() {
+  for f in "$dir"/issues/"$1"-*.md; do
+    if [ -f "$f" ]; then sed -n 's/^Blocked by: //p' "$f" | tr ',' ' '; fi
+  done
+}
+
 # Task table rows look like: | NN | title | blockers | status |
 rows=$(grep -E '^\| *[0-9]{2} *\|' "$spec" || true)
 [ -n "$rows" ] || say "$spec: task table has no rows"
@@ -47,10 +54,31 @@ for issue in "$dir"/issues/*.md; do
   [ "$n" = 1 ] || say "$issue: needs exactly one plain 'Status: open|done|wontfix' line, found $n"
   ! grep -q '\*\*Status' "$issue" || say "$issue: bold **Status** breaks grep; use a plain line"
   grep -qx '## Done when' "$issue" || say "$issue: missing '## Done when'"
-  blocked=$(sed -n 's/^Blocked by: //p' "$issue")
-  for b in $(printf '%s\n' "$blocked" | tr ',' ' '); do
+  status=$(sed -n 's/^Status: //p' "$issue")
+  for b in $(blockers "$nn"); do
     set -- "$dir"/issues/"$b"-*.md
-    [ -f "$1" ] || say "$issue: blocked by $b, which has no issue file"
+    if [ ! -f "$1" ]; then
+      say "$issue: blocked by $b, which has no issue file"
+    elif [ "$status" = open ] && grep -qx 'Status: wontfix' "$1"; then
+      say "$issue: blocked by $b, which is wontfix; wontfix this issue too or name another blocker"
+    fi
+  done
+  # Walk the blockers breadth-first; reaching this issue again is a cycle.
+  frontier=$(blockers "$nn")
+  seen=
+  while [ -n "$frontier" ]; do
+    next=
+    for b in $frontier; do
+      if [ "$b" = "$nn" ]; then
+        say "$issue: Blocked by forms a cycle back to $nn"
+        next=
+        break
+      fi
+      case " $seen " in *" $b "*) continue ;; esac
+      seen="$seen $b"
+      next="$next $(blockers "$b")"
+    done
+    frontier=$(printf '%s\n' $next)
   done
 done
 
