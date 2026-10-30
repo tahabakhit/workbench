@@ -34,7 +34,7 @@ Offer one only when all three hold:
 2. Surprising without context: a future reader would ask "why this way?".
 3. A real trade-off: there were genuine alternatives.
 
-Otherwise the decision goes to the decisions destination instead.
+Otherwise the decision goes to `decisions/` in the notebook instead.
 
 ```md
 # {Short title of the decision}

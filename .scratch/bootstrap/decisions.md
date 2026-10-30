@@ -12,8 +12,9 @@ agents across every repo and machine (a work Mac and a personal Fedora PC):
 - **workbench**: a Claude Code plugin with the skills, the shared contract and
   later the hooks for working in repos, tracking work, and filing work,
   decisions and lessons.
-- **notebook**: a Go tool that keeps a markdown knowledge vault, serves it over
-  MCP and as a CLI, and ships its own small plugin.
+- **notebook**: a Go tool that keeps a markdown knowledge vault and serves it
+  over MCP and as a CLI. It is developed in the workbench repo and ships in
+  the workbench plugin.
 
 Claude Code is the main target. Codex and Pi are kept compatible where
 practical.
@@ -26,7 +27,7 @@ practical.
 |---|---|
 | Influence, not force. Hooks and rules mainly add context, remind, or check the result at the end. Blocking only for irreversible damage (force push to the main branch, deletes outside the repo, secrets in a commit) | Agents stay autonomous; the contract steers outcomes without limiting how models work |
 | Procedures are skills, always-on rules are instruction lines, hooks and rules only for what must not be skipped | Cheapest mechanism that holds |
-| Sources stay neutral: no skill hardcodes a tracker, chat, calendar or vault | The same plugin serves work and personal setups |
+| Sources stay neutral: no skill hardcodes a tracker, chat or calendar. Records have one home, the notebook | The same plugin serves work and personal setups |
 | Skill names are plain English verbs naming the outcome; no jargon or metaphors (`settle`, not `grill`) | Names should say what happens |
 | Self-contained skills that read named side files, not skills that call other skills | Skill-to-skill loading is unreliable |
 
@@ -53,7 +54,7 @@ practical.
 | The survey is bounded (recent history, not the full log) and runs in a subagent that returns facts with their source | Depth without filling the session's context |
 | The plugin repo holds one `contract.md` (work tracking, knowledge destinations, writing rules). Each machine's setup includes it in the global instructions next to that machine's own policy | A plugin cannot add instruction text itself; Codex and Pi read the same file |
 | A skill that needs a destination it can't find points to onboarding; skills that don't need one degrade and name their fallback | Hard versus soft dependencies |
-| Which vault a session writes to is declared per machine in the knowledge section; a repo can override | Reuses the same mechanism |
+| Records go to the notebook at `~/notebook` in one layout on every machine; only work sources are declared per machine | One home for records; sources differ by person and job |
 
 ### Plugin shape and distribution
 
@@ -73,7 +74,7 @@ practical.
 | Notes are plain markdown in git with wikilinks, frontmatter and Mermaid. Obsidian is the viewer only; the tool never needs it running | Best browser today, replaceable without migration |
 | Start with keyword search (SQLite full-text); add semantic search and rank fusion later | Smallest working core first |
 | Capabilities to cover: search, recall, follow links and backlinks, file a dated work note into a project folder, file a lesson with scope and supersedes, push relevant notes at session start, validate writes | Gaps to fill; designed fresh, no existing command is ported up front |
-| Its repo ships a small plugin of its own (MCP config, session-start push); workbench reaches it only through the declared knowledge destinations | Each works without the other |
+| Developed in the workbench repo and shipped in the workbench plugin (MCP config, session-start push); skills file into it through the notebook layout in `contract.md` | They only make sense together |
 | Prior art for search: `lstpsche/obsidian-mcp` (Rust, MIT). Libraries: `mark3labs/mcp-go`, SQLite FTS5, later `chromem-go` or `bleve` | No Go or Rust tool covers filing plus search together |
 | The current obsidian-mind fork keeps running until notebook covers the capabilities above; then switch | No gap in daily use |
 
@@ -90,4 +91,3 @@ practical.
 
 - The rename table for every skill (proposed in the spec, approved by the user).
 - Which hooks and safety rules exist, and what each checks.
-- How notebook and workbench are installed on each machine (both repos as marketplaces, or one marketplace listing both).

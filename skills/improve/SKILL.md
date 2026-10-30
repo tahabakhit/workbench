@@ -11,8 +11,7 @@ approves it. Small edits only, never rewrites.
 
 ## 1. Read the ledger
 
-Open the `corrections` destination from `## Knowledge`
-(`~/.local/state/agent-corrections/ledger.md` by default). Group lines that
+Open `~/notebook/corrections.md`. Group lines that
 describe the same agent behaviour, even when worded differently.
 
 - **Candidates**: groups with entries from two or more sessions and fix

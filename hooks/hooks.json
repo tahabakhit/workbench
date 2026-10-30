@@ -1,5 +1,5 @@
 {
-  "description": "Adds the workbench contract and this machine's Knowledge destinations to every session",
+  "description": "Adds the workbench contract to every session",
   "hooks": {
     "SessionStart": [
       {

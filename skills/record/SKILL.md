@@ -1,6 +1,6 @@
 ---
 name: record
-description: File finished work, decisions, lessons and corrections into the destinations the Knowledge sections declare. Scope `session` (default) covers this session; `since-last` catches up on every session and source since the last run, after a preview the user approves.
+description: File finished work, decisions, lessons and corrections into the notebook. Scope `session` (default) covers this session; `since-last` catches up on every session and source since the last run, after a preview the user approves.
 disable-model-invocation: true
 ---
 
@@ -14,23 +14,13 @@ user had to fix how the agent worked. Everything else is dropped.
 Scope comes from the argument: `session` (default) or `since-last`. With
 `preview`, show every draft and file nothing, in either scope.
 
-## 1. Destinations
+## 1. Notebook
 
-Read the `## Knowledge` sections: the repo's `AGENTS.md` or `CLAUDE.md` first,
-then the machine's, which the session start context holds (from
-`~/.config/workbench/knowledge.md`). A repo line replaces the machine's one for its
-kind. A line limited to a scope, such as `log (for record since-last)`,
-replaces the plain line for that scope. Follow any filing rules written
-beside a line.
+Entries go to the notebook paths in the contract: `log/`, `decisions/`,
+`lessons/` and `corrections.md` under `~/notebook`. Create the repository
+or a folder when it is missing.
 
-A destination is usable when its MCP tool is available or its path is
-writable. Corrections default to `~/.local/state/agent-corrections/ledger.md`.
-If no section declares `log`, stop and point the user to `onboard`. For
-`decisions` or `lessons` with no usable destination, fall back to
-`.scratch/record/<date>-<topic>.md` in the repo, or print the entry outside a
-repo, and say so.
-
-Done when each kind has a destination or a stated fallback.
+Done when `~/notebook` is a git repository.
 
 ## 2. Gather
 
@@ -47,7 +37,7 @@ for a start date. It ends now. Query every source:
 | Sessions | `scripts/sessions.sh <start>` in this skill's folder lists Claude Code and interactive Codex sessions, one JSON line each. Skip this session, sessions with `recorded: true`, and one- or two-prompt sessions with no edits. `scripts/digest.sh <file>` prints a session without tool output. |
 | Native memories | `find ~/.claude/projects/*/memory -name '*.md' ! -name MEMORY.md -newermt <start>` |
 | Git | per repo seen in the sessions: `git -C <repo> log --since=<start> --author="$(git -C <repo> config user.email)" --format='%h %ad %s' --date=short` |
-| Declared | every `sources` line in the Knowledge sections, with its stated limits |
+| Declared | every line in `~/.config/workbench/sources.md`, with its stated limits; without the file, note the gap |
 
 With more than five sessions, hand each project's digests to a subagent for
 candidates; verify each kept candidate against its digest. Group evidence
@@ -58,7 +48,7 @@ together.
 `~/.local/state/agent-corrections/pending.jsonl` inside the session or window
 (for `session`, also matching this repo's `cwd`), plus moments the hook missed
 where the user rejected or redid the agent's work. In `since-last`, confirm
-each flagged line against its session digest. Then search each destination
+each flagged line against its session digest. Then search the notebook
 for what it already holds on these topics.
 
 Done when every task has its evidence, every source was queried or its
@@ -90,8 +80,8 @@ Done when each kept candidate has a one-line reason it survived.
   context, or a real trade-off; the alternatives and why they lost.
 - **Lessons**: at most five, each titled as the claim, with confidence, the
   narrowest scope that fits, and what it supersedes.
-- **Corrections**: one ledger line each, in the format at the top of the
-  ledger (create it with this header if missing):
+- **Corrections**: one line each in `corrections.md`, in the format at its
+  top (create it with this header if missing):
 
   ```markdown
   # Agent corrections
@@ -99,8 +89,7 @@ Done when each kept candidate has a one-line reason it survived.
   - YYYY-MM-DD | <repo> | claude | guessed a CLI flag | check --help first | open
   ```
 
-Use the destination's dry run where it has one. Done when every kept
-candidate has a draft in its destination's shape.
+Done when every kept candidate has a draft in its notebook file's shape.
 
 ## 5. File and report
 
@@ -110,11 +99,12 @@ candidate has a draft in its destination's shape.
   user approves, with their edits.
 
 Update an overlapping entry rather than adding a near-duplicate; on a
-collision keep the existing entry unless the draft corrects it. Remove the
+collision keep the existing entry unless the draft corrects it. Commit the
+notebook with one message naming the entries. Remove the
 pending correction lines handled. In `since-last`, write the window end to
 `~/.local/state/harvest/last-run` (create the folder if needed). If a
 correction has now been seen in two or more sessions, suggest `improve`.
 
-Report each entry with its destination, fallbacks used, what was dropped and
+Report each entry with its notebook path, what was dropped and
 why, and anything that failed. Done when the report is shown; in `preview`,
 when the drafts are shown and nothing was filed or written.

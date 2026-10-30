@@ -1,8 +1,9 @@
 # workbench
 
-A Claude Code plugin, and its own marketplace, that holds one person's skills
-and shared contract for working with AI coding agents across repos and
-machines. Codex and Pi do not load this plugin.
+A Claude Code plugin, and its own marketplace, that holds one person's skills,
+shared contract and the notebook (the markdown vault the skills file into)
+for working with AI coding agents on any machine. Codex and Pi do not load
+this plugin.
 
 ## Validate
 
@@ -19,14 +20,13 @@ workbench`, then start a new session.
 
 ## Plugin rules
 
-- `hooks/session-context.sh` adds `contract.md` and the machine's
-  `~/.config/workbench/knowledge.md` to every session; keep the two under its
-  10,000-character cap.
+- `hooks/session-context.sh` adds `contract.md` to every session; keep it
+  under the hook's 10,000-character cap.
 - Skill names are plain English verbs that name the outcome.
 - A skill never loads another skill. Shared reference material is a side
   file copied into each skill folder that reads it.
-- No skill hardcodes a tracker, chat, calendar or vault. Skills read the
-  `## Knowledge` destinations.
+- Records go to the notebook layout in `contract.md`. No skill hardcodes a
+  tracker, chat or calendar; skills read `~/.config/workbench/sources.md`.
 - `plugin.json` has no `version`, so every commit counts as an update.
 - Scripts are POSIX `sh` with `jq`, executable, under the skill's `scripts/`.
 

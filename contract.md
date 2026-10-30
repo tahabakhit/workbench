@@ -19,36 +19,40 @@ Rules shared by every machine.
 - Tracker updates go to the trackers named in the `sources` entries, with
   evidence, applied only on approval.
 - Decisions from a decision session are written only on approval: to
-  `## Decisions` in `spec.md` when a feature folder exists, otherwise to the
-  `decisions:` destination.
+  `## Decisions` in `spec.md` when a feature folder exists, otherwise to
+  `decisions/` in the notebook.
 - Write an ADR in `docs/adr/` only when all three hold: hard to reverse,
   surprising without context, a real trade-off.
 
-## Knowledge destinations
+## Notebook
 
-Skills that file or gather things read where to do it from `## Knowledge`
-sections: one per machine in `~/.config/workbench/knowledge.md`, which the
-plugin adds to each session at start, and optionally one in a repository's
-`AGENTS.md` that overrides it kind by kind. Each entry is one
-line, `- <kind>: <where>, <how>`. A kind can be limited to some skills, as in
-`sources (for plan-day)`.
+Records live in the notebook: plain markdown in a git repository at
+`~/notebook`, one folder per kind, the same on every machine. The plugin's
+`notebook` tool will search and file into it; until it does, skills write the
+files directly. Create the repository with `git init` and a folder with its
+first file, and commit each write there.
 
-| Kind | Holds |
+| Path | Holds |
 |---|---|
-| `log` | records of finished work |
-| `decisions` | decisions made outside a feature folder |
-| `lessons` | lessons that would help in another repository |
-| `corrections` | the ledger of corrections the user made |
-| `plan` | the daily plan |
-| `goals` | long-term goals the plan ranks against |
-| `learning` | missions, source lists, lessons and quiz records for topics being studied |
-| `sources` | where work is gathered from: tracker, chat, calendar, notes, code host |
+| `log/YYYY-MM-DD-<repo>-<slug>.md` | one finished task |
+| `decisions/YYYY-MM-DD-<slug>.md` | a decision made outside a feature folder, with the alternatives rejected |
+| `lessons/<slug>.md` | a lesson that would help in another repository |
+| `corrections.md` | the ledger of corrections the user made |
+| `plans/YYYY-MM-DD.md` | the daily plan |
+| `goals.md` | long-term goals the plan ranks against; changed only when the user asks |
+| `learning/<topic>/` | a topic being studied: `mission.md`, `sources.md`, `lessons/`, `quiz.md` |
 
-- The vault a session writes to is the one the machine's section names; a
-  repository's section can name another.
-- A skill that needs a destination no section declares stops and points the
-  user to `onboard`. Any other skill carries on and says which fallback it
-  used.
+Each note opens with frontmatter holding `date`, plus `repo` when it came
+from one; a lesson also holds `scope` and, when it replaces one, `supersedes`.
+
+## Sources
+
+Where work comes from (tracker, chat, calendar, meeting notes, code host)
+differs by person, so each machine lists it in
+`~/.config/workbench/sources.md`, which `onboard` writes: one line per
+source, `- <tool>: <exact command or tool call, with filters and limits>`.
+A skill that gathers work reads that file; without it, the skill says so and
+gathers from git and `.scratch/` alone.
 
 ## Writing that lands in a repository
 

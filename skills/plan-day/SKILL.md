@@ -1,6 +1,6 @@
 ---
 name: plan-day
-description: Sweep the declared work sources (tracker, notes, calendar, chat, open specs), rank what needs doing now, save a short daily plan, and propose tracker updates for work that is already done. Run at the start of a session with no set task.
+description: Sweep the machine's work sources (tracker, notes, calendar, chat, open specs), rank what needs doing now, save a short daily plan, and propose tracker updates for work that is already done. Run at the start of a session with no set task.
 disable-model-invocation: true
 ---
 
@@ -12,16 +12,16 @@ handful of proposed updates, then picks what to work on.
 ## 1. Date and window
 
 Get the date, weekday and time from the shell (`date`); never infer them.
-Read the `plan:` entry in the `## Knowledge` sections (repo first, then
-the machine's) and open the most recent plan from the last seven days. Its date is
-the window start; with no plan, use 14 days ago.
+Open the most recent plan in `~/notebook/plans/` from the last seven days.
+Its date is the window start; with no plan, use 14 days ago. Read
+`~/notebook/goals.md` when it exists.
 
 Done when today's date, the window start and the previous plan (or its
 absence) are known.
 
 ## 2. Gather
 
-Sources are the `sources:` lines in the `## Knowledge` sections that apply to
+Sources are the lines in `~/.config/workbench/sources.md` that apply to
 `plan-day`, plus three every machine has: the previous plan's open items, open
 tasks in `.scratch/*/spec.md` of the current repo, and the user's commits in
 the window. Follow any limit written beside a source.
@@ -82,8 +82,9 @@ Ask which updates to apply and whether the ranking needs changes.
 ## 6. Apply and save
 
 Apply only the approved updates, with the user's edits, and report each
-result. Then write the plan to the `plan:` destination under a `## Plan`
-heading, replacing that section if today's note already has one. Open the
+result. Then write the plan to `~/notebook/plans/YYYY-MM-DD.md` under a
+`## Plan` heading, replacing that section if today's file already has one,
+and commit it. Open the
 section with a Mermaid `mindmap`: the root is the date, branches are Now,
 Today and Later, leaves are each item in a few words. Keep brackets out of
 labels, since they change node shapes. Below it list the ranked items with
@@ -91,6 +92,4 @@ links, carried-over items, and the updates applied. Items from a
 source whose limit forbids storing its content appear as a link and a
 few-word action, or not at all if the limit says so.
 
-With no `plan:` destination, print the plan and say it was not saved.
-
-Done when approved updates are applied and the plan is saved or printed.
+Done when approved updates are applied and the plan is committed in the notebook.

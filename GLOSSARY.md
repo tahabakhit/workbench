@@ -9,14 +9,16 @@ session shares.
 The rules in `contract.md` that the plugin adds to every session.
 _Avoid_: Global rules, agent rules
 
-**Knowledge destination**:
-One `- <kind>: <where>, <how>` line in a `## Knowledge` section, naming where
-a kind of record is filed or gathered from.
-_Avoid_: Sink, target
+**Notebook**:
+The markdown vault in a git repository at `~/notebook` where skills file
+logs, decisions, lessons, corrections, plans, goals and studied topics, and
+the tool in this plugin that searches and files into it.
+_Avoid_: Knowledge destination, brain
 
-**Kind**:
-The category a Knowledge destination serves, such as `log`, `plan` or
-`sources`.
+**Sources file**:
+`~/.config/workbench/sources.md`, the machine's list of where work comes
+from: tracker, chat, calendar, meeting notes, code host.
+_Avoid_: Knowledge file
 
 **Side file**:
 Reference material a skill reads, copied byte for byte into each skill folder

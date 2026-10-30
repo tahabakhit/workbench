@@ -1,41 +1,37 @@
 ---
 name: onboard
-description: Set up a machine or a repo for agent work. Machine scope writes the machine's Knowledge file from the tools found; repo scope surveys an existing repo, proposes keep, convert or delete for its agent artifacts, and writes AGENTS.md.
+description: Set up a machine or a repo for agent work. Machine scope writes the machine's work sources file from the tools found and creates the notebook; repo scope surveys an existing repo, proposes keep, convert or delete for its agent artifacts, and writes AGENTS.md.
 disable-model-invocation: true
 ---
 
 # Onboard
 
 Scope comes from the argument: `machine` or `repo`. Without one, run
-`machine` when `~/.config/workbench/knowledge.md` does not exist, otherwise
+`machine` when `~/.config/workbench/sources.md` does not exist, otherwise
 `repo`. With `preview`, show every proposal and write nothing.
-
-The format of a `## Knowledge` section is in the "Knowledge destinations"
-part of the contract: one line per kind,
-`- <kind>: <where>, <how>`, for `log`, `decisions`, `lessons`,
-`corrections`, `plan`, `goals`, `learning` and `sources`.
 
 ## Machine scope
 
 1. **Inspect.** List the MCP servers (`claude mcp list`, or the harness's
    equivalent) and the CLIs on `PATH`: `gh`, `glab`, `acli`, `jira`, `slack`,
-   `gcloud`, `obsidian`. Read `~/.config/workbench/knowledge.md` if it
-   exists. Done when you have a table of tool, kind it serves, and
-   whether it answers a test call (one cheap read each).
-2. **Ask.** One numbered round. For each of tracker, chat, calendar, code
-   host, notes, and the vault a session writes to, give your recommendation
-   from the inventory and one line on why; word it so "yes" accepts it. Ask
-   also where `plan`, `goals` and `learning` live when nothing found
-   answers that. Done when every kind has an answer or is deliberately left
-   out.
-3. **Write.** Draft the whole section, starting with `## Knowledge`, and
-   print it verbatim in a code block, even when it is identical to the
-   current one. Keep every existing line, including skill-limited ones,
-   unless an answer changes it. Each `sources` line names the exact command
-   or tool call and its filters. Show a diff; write only on approval, to
-   `~/.config/workbench/knowledge.md`. It belongs to this machine: never
-   write it into a repository or an instructions file. Done when the
-   approved section is in the file; new sessions pick it up at start.
+   `gcloud`. Read `~/.config/workbench/sources.md` if it exists. Done when
+   you have a table of tool, what it serves (tracker, chat, calendar,
+   meeting notes, code host), and whether it answers a test call (one cheap
+   read each).
+2. **Ask.** One numbered round. For each of tracker, chat, calendar, meeting
+   notes and code host, give your recommendation from the inventory and one
+   line on why; word it so "yes" accepts it. Ask also for any limit on a
+   source, such as content that must not be stored. Done when every kind has
+   a source or is deliberately left out.
+3. **Write.** Draft the whole file in the format of the contract's Sources
+   section and print it verbatim in a code block, even when it is identical
+   to the current one. Keep every existing line unless an answer changes
+   it. Each line names the exact command or tool call, its filters, and
+   which skills it is limited to, if any. Show a diff; write only on
+   approval, to `~/.config/workbench/sources.md`. It belongs to this
+   machine: never write it into a repository or an instructions file.
+   Create `~/notebook` with `git init` if it is missing. Done when the
+   approved file is written and `~/notebook` is a git repository.
 
 ## Repo scope
 
@@ -63,8 +59,7 @@ part of the contract: one line per kind,
    survey item that is an artifact has a row.
 3. **Apply on approval.** Apply only the approved rows. Draft `AGENTS.md`:
    commands first, then conventions an agent would get wrong, work tracking,
-   domain docs. Add a repo `## Knowledge` section only for kinds that differ
-   from the global one. With an existing file, show a diff and keep what the
+   domain docs. With an existing file, show a diff and keep what the
    user wrote unless they agree to change it. Never name a file `claude.md`
    or `agents.md` in lower case. Done when the approved changes are written
    and nothing else changed (`git status`).
@@ -76,7 +71,7 @@ part of the contract: one line per kind,
 ## Check
 
 Start a fresh session with a question the written file answers ("how do I
-run the tests here?", "where do lessons go?") and confirm the answer comes
+run the tests here?", "where does a new task go?") and confirm the answer comes
 from it. A subagent of this session does not count: it sees the instructions
 as they were when the session started. If you cannot start one, give the user
 the question. Done when the answer matches the file.

@@ -2,9 +2,8 @@
 
 ## Goal
 
-A Claude Code plugin that holds one person's skills and shared contract for
-working with AI coding agents in every repo, on a work Mac and a personal
-Fedora PC. It replaces the skills in the agents setup repo
+A Claude Code plugin that holds one person's skills, shared contract and
+notebook for working with AI coding agents in every repo, on any machine. It replaces the skills in the agents setup repo
 (`~/dev/agents/home/dot_agents/skills/`). Codex and Pi get the same skills as
 plain `SKILL.md` folders.
 
@@ -18,10 +17,12 @@ per-skill verdicts in `.scratch/bootstrap/mattpocock-analysis.md`.
 - Cheapest mechanism that holds. A procedure is a skill, an always-on rule is
   an instruction line in `contract.md`, and a hook covers only what must not
   be skipped.
-- Sources stay neutral. No skill hardcodes a tracker, chat, calendar or vault.
-  Skills read the destinations in the `## Knowledge` sections.
-- Hard and soft dependencies. A skill that needs a destination it can't find
-  points to `onboard`. Every other skill degrades and names its fallback.
+- One home for records. Logs, decisions, lessons, corrections, plans, goals
+  and studied topics go to the notebook at `~/notebook`, in the layout the
+  contract defines, on every machine.
+- Sources stay neutral. No skill hardcodes a tracker, chat or calendar;
+  skills read the machine's `~/.config/workbench/sources.md` and work from
+  git and `.scratch/` alone without it.
 - Self-contained skills. A skill never loads another skill. Reference
   material is a side file inside the skill's own folder, read at a named step.
   When several skills need the same side file, each folder gets a copy and
@@ -62,7 +63,8 @@ skills/<name>/SKILL.md           one folder per skill
 skills/<name>/agents/openai.yaml Codex metadata for user-invoked skills
 skills/<name>/scripts/           POSIX sh helpers, executable bit set
 skills/<name>/<side-file>.md     reference material the skill reads
-contract.md                      work tracking, knowledge destinations, writing rules
+contract.md                      work tracking, notebook layout, sources, writing rules
+notebook/                        the notebook tool's Go source (issue 11)
 scripts/check.sh                 plugin validation plus side-file copy check
 AGENTS.md                        instructions for agents working in this repo
 README.md                        install steps and the order to use the skills in
@@ -90,7 +92,7 @@ not block anything here.
 | 08 | Switch the Fedora PC to the plugin | 07 | done |
 | 09 | `write-spec` skill: spec and issues in one pass | 02 | done |
 | 10 | Five-scenario trial of `write-spec` | 09 | done |
-| 11 | notebook: build the vault tool up to switch-over (own repo, own spec) | | open |
+| 11 | notebook: build the vault tool in this repo, up to switch-over | | open |
 | 12 | Hooks and safety rules: decide coverage, keep them unrestrictive | 07 | done |
 | 13 | Topic-tutor skill | 07 | done |
 | 14 | The plugin delivers the contract and Knowledge itself | 08 | done |
@@ -140,7 +142,7 @@ Owned by workbench, not prioritised yet. Each gets an issue when it starts.
 | Order step 1 is tracked in `~/dev/agents`, not here | It changes only that repo |
 | The agents repo stops shipping the skills; Claude Code gets them only from the plugin (issues 07, 08) | One source for every harness |
 | Codex and Pi get no skills from links in `~/.agents/skills`; native extensions come after the plugin (issue 14) | Each harness loads skills its own way |
-| The plugin's `SessionStart` hook delivers the contract and `~/.config/workbench/knowledge.md`; the dotfiles keep only the contract include for Codex and Pi (issue 14) | Workbench does not edit the global instructions, and Knowledge is known only when the plugin is loaded |
+| The plugin's `SessionStart` hook delivers the contract; the dotfiles keep only the contract include for Codex and Pi (issue 14) | Workbench does not edit the global instructions |
 | `scripts/check.sh` runs `claude plugin validate --strict` and tolerates only its missing-version warning | `plugin.json` has no `version` on purpose; every other warning still fails |
 | Workbench is developed, committed and pushed only from the Fedora PC (issue 15) | One place where changes are made |
 | The repo is public, with history rewritten so the old trial files hold no employer details (issue 15) | A public repo lets the Mac install without the personal account's credentials |
@@ -150,3 +152,7 @@ Owned by workbench, not prioritised yet. Each gets an issue when it starts.
 | `prototype`, `research` and `handoff` ship as manual skills, and mattpocock-skills is uninstalled | They were the last verdicts marked rewrite; with them built the plugin needs no reference copy. `prototype` keeps only the one-file logic demo, since the UI-variants branch assumes a web app repo |
 | Workbench owns the statusline renderer and the Pi agents; both wait under Later | Agent tooling belongs here, but neither is a priority |
 | The Mac-port hook scripts and the `om` MCP server stay in the dotfiles port folder for now | Not needed yet |
+| notebook is developed in this repo and ships in this plugin; workbench is the skills plus the notebook | They only make sense together, and one repo keeps the notebook layout and the skills that file into it in step |
+| Records go to the notebook at `~/notebook` in one fixed layout on every machine; no per-machine or per-repo record destinations | A plugin for any machine has one home for records; per-machine destinations only bent it around an older vault setup |
+| Until the notebook tool exists, skills write the notebook's markdown files directly and commit them | Plain markdown in git, so the tool takes the files over without a migration |
+| Each machine keeps only its work sources in `~/.config/workbench/sources.md`, written by `onboard`; the session hook no longer loads it | Sources really differ by person and job; only the skills that gather work need them |

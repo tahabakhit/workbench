@@ -1,6 +1,6 @@
 ---
 name: study-topic
-description: Tutor the user through one topic across sessions. Settle a mission, gather cited primary sources and name their gaps, write Markdown lessons, and quiz with shuffled answers, all in the `learning` destination. Run with the topic to study.
+description: Tutor the user through one topic across sessions. Settle a mission, gather cited primary sources and name their gaps, write Markdown lessons, and quiz with shuffled answers, all in the notebook's `learning/` folder. Run with the topic to study.
 disable-model-invocation: true
 ---
 
@@ -11,10 +11,9 @@ to their mission, and every claim traces to a source they can open.
 
 ## 1. Topic folder
 
-Read the `learning:` entry in the `## Knowledge` sections (repo first, then
-the machine's). With none, stop and point the user to `onboard`. The topic
-folder is `<destination>/<topic-slug>/`; create it, and never overwrite a
-file already in it. If it already holds `mission.md`, this is a returning
+The topic folder is `~/notebook/learning/<topic-slug>/`; create it, and
+never overwrite a file already in it. Commit the notebook after each step
+that writes. If it already holds `mission.md`, this is a returning
 session: read `mission.md`, `sources.md`, every lesson and `quiz.md`, then
 go to step 6.
 
