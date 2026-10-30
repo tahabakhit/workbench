@@ -25,7 +25,6 @@ For Pi, run `pi install git:github.com/tahabakhit/workbench`. It adds the
 contract, the skills and correction flagging. A personal skill with the same
 name wins over the package's, and the `researcher` agent is not included.
 
-
 ## Use
 
 Run `/workbench:onboard machine` once per machine, and

@@ -2,13 +2,13 @@
 
 ## Goal
 
-Prove the two untested paths of the per-repo tracker and Codex work: a live Codex session loading the plugin (issue 20), and `onboard` plus `write-spec` publishing to a real tracker.
+Prove the untested tracker path: `onboard` plus `write-spec` publishing to a real tracker.
 
 ## State
 
-- Branch `main`, ahead of `origin/main` by the handoff commits only; `origin/main` is `568284e`.
+- Branch `main`, level with `origin/main`.
 - Done: per-repo tracker choice, shared-repo rule, `## Not yet specified`, self-noticed struggles in `record`, router check in `check.sh`, stale text fixes.
-- Open issues: 11 (notebook tool), 18 (connect the Mac), 20 (contract for Codex and Pi).
+- Open issues: 11 (notebook tool), 18 (connect the Mac).
 
 ## Claims
 
@@ -21,14 +21,14 @@ Prove the two untested paths of the per-repo tracker and Codex work: a live Code
 - verified: this machine's `~/.local/share/workbench/sources.md` is keyed by kind (`host`, `tracker`).
 - verified: the plugin is installed in the real `~/.codex`. A live `codex exec` session loads the 3 model-invoked skills, not the 13 user-invoked ones, and does not get the contract (issue 20).
 - verified: after the owner trusted the hooks, a new `codex exec` session answers the issue 20 question from the contract.
+- verified: Pi has the package from git; a plain `pi -p` session answers the same question from the contract, and all 16 skills load. `researcher` is not installed in Pi.
 - assumed: the `write-spec` publish step works against a real tracker. It has never run.
 - assumed: the GitLab line in `tracker-lines.md` works. Its commands come from upstream's template and `glab` is not installed here.
 
 ## Next
 
-1. With the owner's approval, merge branch `pi-extension`, push, run `pi install git:github.com/tahabakhit/workbench`, and ask a plain `pi` session the question in issue 20. Done when it answers with `decisions/` in the notebook and issue 20 is closed.
-2. Trial publishing on a repo the owner names, with a GitHub tracker line and a throwaway issue. Creating an issue needs the owner's approval. Done when an issue file holds a `Tracker:` line whose URL resolves.
-3. Run `/workbench:onboard machine` on each other machine. Done when each `sources.md` is keyed by kind.
+1. Trial publishing on a repo the owner names, with a GitHub tracker line and a throwaway issue. Creating an issue needs the owner's approval. Done when an issue file holds a `Tracker:` line whose URL resolves.
+2. Run `/workbench:onboard machine` on each other machine. Done when each `sources.md` is keyed by kind.
 
 ## Read first
 

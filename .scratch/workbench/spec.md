@@ -100,7 +100,7 @@ not block anything here.
 | 17 | Install from GitHub on every machine | | done |
 | 18 | Connect the Mac to the public repo | | open |
 | 19 | Flag corrections in every session | | done |
-| 20 | Deliver the contract to Codex and Pi | | open |
+| 20 | Deliver the contract to Codex and Pi | | done |
 
 Steps 2 and 3 of the Order are issues 01 to 10. Issues 16 and 17 are hand-overs from the dotfiles. Issues 11 to 13 are steps 4
 to 6. Each of those gets its own spec before work starts.
