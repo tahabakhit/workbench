@@ -1,6 +1,6 @@
 # 15 Develop on the Fedora PC only; decide how the Mac consumes the plugin
 
-Status: open
+Status: done
 Blocked by: 14
 
 The decisions are in `## Decisions` in `spec.md`. Connecting the Mac is
