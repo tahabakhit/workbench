@@ -21,6 +21,10 @@ For Codex, run `codex plugin marketplace add tahabakhit/workbench` and
 `codex plugin add workbench@workbench`, then accept the workbench hooks when
 `codex` next starts.
 
+For Pi, run `pi install git:github.com/tahabakhit/workbench`. It adds the
+contract, the skills and correction flagging. A personal skill with the same
+name wins over the package's, and the `researcher` agent is not included.
+
 
 ## Use
 

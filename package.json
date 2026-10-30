@@ -1,0 +1,8 @@
+{
+  "name": "workbench",
+  "private": true,
+  "pi": {
+    "extensions": ["./pi/workbench.ts"],
+    "skills": ["./skills"]
+  }
+}

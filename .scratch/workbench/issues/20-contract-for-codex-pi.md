@@ -31,7 +31,14 @@ After the owner trusted the hooks, a new `codex exec` session answered with
 `~/.local/share/workbench/notebook/decisions/YYYY-MM-DD-<slug>.md`, and its
 session record holds the contract. Codex delivery is the hook.
 
-Pi: open. It gets a dedicated extension layer.
+Pi: `package.json` makes this repo a Pi package. It loads all 16 skills, and
+`pi/workbench.ts` adds the contract as a system prompt section and flags
+corrections through the `input` event. A `pi -p` session in an empty repo
+answered "NOT IN MY INSTRUCTIONS" without it and `decisions/` in the notebook
+with `-e <repo>`. Left: push and `pi install`; then a plain `pi` session is the
+done-when. Gaps: personal `handoff`, `prototype` and `research` skills shadow
+the package's once installed, and `researcher` cannot ship in a package because
+pi-subagents reads only `.pi/agents/` and the agent dir.
 
 ## Done when
 

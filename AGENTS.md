@@ -3,7 +3,8 @@
 A Claude Code plugin, and its own marketplace, that holds one person's skills,
 shared contract and the notebook (the markdown vault the skills file into)
 for working with AI coding agents on any machine. Codex installs the same
-plugin; Pi does not load it.
+plugin; Pi installs this repo as a package, through `package.json` and
+`pi/workbench.ts`.
 
 ## Validate
 
@@ -29,6 +30,8 @@ workbench`, then start a new session.
 - Records go to the notebook layout in `contract.md`. No skill hardcodes a
   tracker, chat or calendar; skills read `~/.local/share/workbench/sources.md`.
 - `plugin.json` has no `version`, so every commit counts as an update.
+- `pi/workbench.ts` is the one TypeScript file: Pi extensions cannot be shell.
+  It mirrors `hooks/hooks.json`, so change them together.
 - Scripts are POSIX `sh` with `jq`, executable: a skill's under its `scripts/`,
   plugin hooks under `hooks/`, repo checks under `scripts/`.
 

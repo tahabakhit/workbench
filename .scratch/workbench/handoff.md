@@ -26,7 +26,7 @@ Prove the two untested paths of the per-repo tracker and Codex work: a live Code
 
 ## Next
 
-1. Build the Pi extension layer. Done when a plain `pi` session answers the issue 20 question with `decisions/` in the notebook and issue 20 is closed.
+1. With the owner's approval, merge branch `pi-extension`, push, run `pi install git:github.com/tahabakhit/workbench`, and ask a plain `pi` session the question in issue 20. Done when it answers with `decisions/` in the notebook and issue 20 is closed.
 2. Trial publishing on a repo the owner names, with a GitHub tracker line and a throwaway issue. Creating an issue needs the owner's approval. Done when an issue file holds a `Tracker:` line whose URL resolves.
 3. Run `/workbench:onboard machine` on each other machine. Done when each `sources.md` is keyed by kind.
 
