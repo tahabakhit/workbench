@@ -47,8 +47,12 @@ together.
 **Both scopes**: flagged corrections in
 `~/.local/share/workbench/state/pending-corrections.jsonl` inside the session or window
 (for `session`, also matching this repo's `cwd`), plus moments the hook missed
-where the user rejected or redid the agent's work. In `since-last`, confirm
-each flagged line against its session digest. Then search the notebook
+where the user rejected or redid the agent's work, plus struggles nobody
+corrected: a file or fact that took many tool calls to find, or a call a
+cheaper one would replace. A struggle counts only with a transcript quote
+that shows it; file it as a correction with `self-noticed` as what the user
+wanted. In `since-last`, confirm each flagged line against its session
+digest. Then search the notebook
 for what it already holds on these topics.
 
 Done when every task has its evidence, every source was queried or its

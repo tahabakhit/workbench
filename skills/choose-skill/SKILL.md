@@ -42,6 +42,8 @@ written from the interview itself, not a summary of it.
   `diagnose`. It runs on its own when a bug comes up.
 - **Two numbers that should match don't**: `explain-gap`. Also runs on its
   own.
+- **A report comes in on a shared tracker**: verify it first, with `diagnose`
+  for a bug and `settle` for a request.
 
 ## Upkeep
 

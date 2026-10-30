@@ -47,7 +47,7 @@ corrections and run timestamps go in `state/`.
 | `log/YYYY-MM-DD-<repo>-<slug>.md` | one finished task |
 | `decisions/YYYY-MM-DD-<slug>.md` | a decision made outside a feature folder, with the alternatives rejected |
 | `lessons/<slug>.md` | a lesson that would help in another repository |
-| `corrections.md` | the ledger of corrections the user made |
+| `corrections.md` | the ledger of corrections the user made and struggles the agent noticed |
 | `plans/YYYY-MM-DD.md` | the daily plan |
 | `goals.md` | long-term goals the plan ranks against; changed only when the user asks |
 | `learning/<topic>/` | a topic being studied: `mission.md`, `sources.md`, `lessons/`, `quiz.md` |

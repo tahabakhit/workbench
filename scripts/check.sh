@@ -53,6 +53,18 @@ if [ -n "$mismatch" ]; then
 fi
 echo "side files: all shared copies match"
 
+unrouted=$(for d in skills/*/; do
+    name=$(basename "$d")
+    [ "$name" = choose-skill ] && continue
+    grep -q "\`$name\`" skills/choose-skill/SKILL.md || echo "choose-skill does not name: $name"
+  done)
+
+if [ -n "$unrouted" ]; then
+  printf '%s\n' "$unrouted" >&2
+  exit 1
+fi
+echo "choose-skill: names every skill"
+
 sh hooks/test-flag-correction.sh
 sh skills/study-topic/scripts/test-shuffle.sh
 sh skills/write-spec/scripts/test-check-spec.sh

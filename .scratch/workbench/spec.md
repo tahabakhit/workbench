@@ -114,7 +114,7 @@ to 6. Each of those gets its own spec before work starts.
 - An internal marketplace for colleagues.
 - How notebook and workbench are installed together (still open in the
   decisions file).
-- The skills dropped by the verdicts, and a router skill.
+- The skills dropped by the verdicts.
 - Porting obsidian-mind commands.
 
 Where the analysis disagrees with the decisions file, the decisions file

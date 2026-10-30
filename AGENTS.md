@@ -23,6 +23,7 @@ workbench`, then start a new session.
 - `hooks/session-context.sh` adds `contract.md` to every session; keep it
   under the hook's 10,000-character cap.
 - Skill names are plain English verbs that name the outcome.
+- `choose-skill` names every skill; change its map when a skill changes.
 - A skill never loads another skill. Shared reference material is a side
   file copied into each skill folder that reads it.
 - Records go to the notebook layout in `contract.md`. No skill hardcodes a

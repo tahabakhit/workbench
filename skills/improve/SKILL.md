@@ -25,12 +25,12 @@ Sort each candidate into one type, which hints at the fix:
   for an existing check that is unwired or broken first.
 - **Rule**: a convention the agent broke. If a script can detect it, it gets
   a check, not prose. Only judgement calls become instruction lines.
-
-Report a repo with no checks at all (no hook, no CI job) as a finding beside
-the candidates, even without ledger entries.
 - **No-op**: an instruction that changes nothing; propose cutting it.
 - **Tool cost**: an expensive call that a cheaper one would replace.
 - **Missing access**: information the agent needed but could not reach.
+
+Report a repo with no checks at all (no hook, no CI job) as a finding beside
+the candidates, even without ledger entries.
 
 Done when every open line belongs to a group or is noted as seen once, and
 each candidate has a type.
@@ -41,7 +41,8 @@ For each candidate, pick the cheapest form that enforces it, using the table
 in `cheapest-form.md` in this skill's folder: hook or permission rule for
 "never", a check for anything a script can detect, an instruction line for
 other "always" rules, the repo's `AGENTS.md` for one repo, a skill only for a
-procedure or domain knowledge. A fix that did not hold moves one step
+procedure or domain knowledge. A standard that only a review needs goes in
+the file the reviewer reads, not in instructions every session loads. A fix that did not hold moves one step
 stronger (instruction line to hook).
 
 Before drafting, read the target. If it already says this, propose a clearer

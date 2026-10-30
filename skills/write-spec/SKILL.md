@@ -43,7 +43,8 @@ Cut the work into vertical slices: each one delivers an outcome that can be
 checked on its own (a command that runs, a query that returns the right
 rows, a document a reader can act on, a host that answers), not one layer
 of a later outcome. Put any prefactor (restructuring that makes the rest
-easy) first. Size each slice for one fresh session.
+easy) first. Size each slice for one fresh session. A rename too wide for
+one slice goes in three: add the new form, move callers, remove the old form.
 
 Show the slicing as a numbered list, one line per issue: title, `Blocked
 by`, what it delivers, its done-when. Then ask, numbered, each with your

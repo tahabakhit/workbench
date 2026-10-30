@@ -31,5 +31,12 @@ sh scripts/check.sh
 ```
 
 Validates the plugin with `claude plugin validate --strict`, fails if a side
-file copied into several skill folders differs between them, and runs the
-correction flag, quiz shuffle and spec check tests.
+file copied into several skill folders differs between them or `choose-skill`
+misses a skill, and runs the correction flag, quiz shuffle and spec check
+tests.
+
+## Safety
+
+The plugin ships no git safety: nothing here blocks a force push or scans for
+secrets, because plugins cannot carry permission rules. Set those up in each
+machine's own Claude Code settings or git hooks.

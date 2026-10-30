@@ -49,10 +49,10 @@ practical.
 
 | Decision | Reason |
 |---|---|
-| One onboarding skill with two scopes. Machine: inspects connected tools, asks which tracker, chat, calendar, code host and notes the user uses, writes the knowledge section of the global instructions. Repo: writes the repo's `AGENTS.md` and overrides | One front door; the instruction file is what every harness reads |
+| One onboarding skill with two scopes. Machine: inspects connected tools, asks which tracker, chat, calendar, code host and notes the user uses, writes `~/.local/share/workbench/sources.md`. Repo: writes the repo's `AGENTS.md` and overrides | One front door; sources stay on the machine |
 | Repo onboarding starts with a read-only survey of an existing repo: instruction files and other agent-tooling artifacts (skill-plugin conventions, editor rules), git remotes (code host, likely tracker), recent history (commit style, active branches), open issues and PRs when the code host is connected, existing specs, ADRs and glossary, and verified build and test commands. It then proposes per artifact: keep, convert to this plugin's conventions, or delete, and applies only what is approved | Existing work is carried over instead of duplicated or contradicted |
 | The survey is bounded (recent history, not the full log) and runs in a subagent that returns facts with their source | Depth without filling the session's context |
-| The plugin repo holds one `contract.md` (work tracking, knowledge destinations, writing rules). Each machine's setup includes it in the global instructions next to that machine's own policy | A plugin cannot add instruction text itself; Codex and Pi read the same file |
+| The plugin repo holds one `contract.md` (work tracking, notebook, sources, writing rules), added to Claude Code sessions by the plugin's `SessionStart` hook | One copy of the rules on every machine; delivery to Codex and Pi is issue 20 |
 | A skill that needs a destination it can't find points to onboarding; skills that don't need one degrade and name their fallback | Hard versus soft dependencies |
 | Records go to the notebook at `~/.local/share/workbench/notebook` in one layout on every machine; only work sources are declared per machine | One home for records; sources differ by person and job |
 
@@ -61,7 +61,7 @@ practical.
 | Decision | Reason |
 |---|---|
 | The repo is its own marketplace (`source: "./"`); `version` is omitted so every commit is an update; auto-update is turned on per machine | No hand-bumped versions to forget |
-| Codex and Pi floor: `SKILL.md` skills from `~/.agents/skills/`. Hooks and agents are Claude Code only until a need shows up | Hooks, agents and plugin manifests differ per harness |
+| Codex and Pi do not load the plugin; `spec.md` and issue 20 hold what they get. Hooks and agents are Claude Code only until a need shows up | Hooks, agents and plugin manifests differ per harness |
 | Plugins cannot ship permission rules (their `settings.json` honours only `agent` and `subagentStatusLine`); git safety rules live in each machine's setup | Platform constraint |
 | Plugin hooks run in every session and cannot be disabled one by one, so each needs a narrow matcher | Platform constraint |
 | Colleagues install from the repo; an internal marketplace is decided when someone asks | No demand yet |
