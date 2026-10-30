@@ -1,5 +1,5 @@
 {
-  "description": "Adds the workbench contract and this machine's Knowledge destinations to every session, and asks before Bash commands that do irreversible damage",
+  "description": "Adds the workbench contract and this machine's Knowledge destinations to every session",
   "hooks": {
     "SessionStart": [
       {
@@ -8,55 +8,6 @@
             "type": "command",
             "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/session-context.sh",
             "timeout": 10
-          }
-        ]
-      }
-    ],
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "if": "Bash(git push *)",
-            "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/guard-bash.sh",
-            "timeout": 30
-          },
-          {
-            "type": "command",
-            "if": "Bash(git commit *)",
-            "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/guard-bash.sh",
-            "timeout": 30
-          },
-          {
-            "type": "command",
-            "if": "Bash(git reset *)",
-            "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/guard-bash.sh",
-            "timeout": 30
-          },
-          {
-            "type": "command",
-            "if": "Bash(git clean *)",
-            "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/guard-bash.sh",
-            "timeout": 30
-          },
-          {
-            "type": "command",
-            "if": "Bash(git checkout *)",
-            "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/guard-bash.sh",
-            "timeout": 30
-          },
-          {
-            "type": "command",
-            "if": "Bash(git restore *)",
-            "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/guard-bash.sh",
-            "timeout": 30
-          },
-          {
-            "type": "command",
-            "if": "Bash(rm *)",
-            "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/guard-bash.sh",
-            "timeout": 30
           }
         ]
       }

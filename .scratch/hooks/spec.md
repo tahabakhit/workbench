@@ -2,11 +2,10 @@
 
 ## Goal
 
-One `PreToolUse` hook in the workbench plugin stops the agent's Bash calls
-from doing irreversible damage, and nothing else. It asks before force
-pushes, remote branch deletes, commits and pushes that gitleaks flags,
-destructive git on a dirty tree and `rm` outside the working areas, and it
-denies commits and pushes when gitleaks is missing.
+The plugin ships no Bash guard. Git policy is text in `agent-rules.md`, and
+gitleaks runs on every push through a global git pre-push hook the dotfiles
+ship. The tasks below built a `PreToolUse` guard that the last row of
+Decisions removes; the rest of this spec describes that guard.
 
 Settled input: `.scratch/bootstrap/decisions.md` (wins on conflict) and the
 `## Decisions` below.
@@ -45,9 +44,8 @@ Settled input: `.scratch/bootstrap/decisions.md` (wins on conflict) and the
 
 ## Out of scope
 
-- Permission rules in `~/.claude/settings.json`. The dotfiles own that file.
-  If any are wanted, they go to the dotfiles as an issue, `ask` and `deny`
-  only.
+- Permission rules in `~/.claude/settings.json`. No repo manages that file;
+  the owner adds rules by hand on each machine.
 - `gh` and other outward-facing actions (merge, release, repo delete,
   workflow runs). They stay with the agent rules and the permission mode.
 - `git branch -D`, because the reflog recovers it.
@@ -73,3 +71,4 @@ Settled input: `.scratch/bootstrap/decisions.md` (wins on conflict) and the
 | `rm` with `-r` or `-f` and a target that resolves outside the project dir, the session scratchpad and `/tmp`: ask | Deletes outside the repo, one of the irreversible cases in the bootstrap decisions |
 | No hooks for `gh` actions, `git branch -D`, `Stop` checks or repo-specific rules, and no new contract lines | Influence, not force; each is reviewable, recoverable or covered elsewhere |
 | One hook, one script, a single `PreToolUse` entry in `hooks.json`; tests in `hooks/test-safety.sh`, run by `scripts/check.sh` | Narrow matchers and one place to read the rules |
+| The guard hook, its tests and its `hooks.json` entry are removed | The owner keeps git rules as text in `agent-rules.md` and adds permission rules by hand per machine; gitleaks on push is the dotfiles' global pre-push hook |

@@ -105,8 +105,8 @@ to 6. Each of those gets its own spec before work starts.
 ## Out of scope
 
 - Hook and safety-rule content (issue 12) and the notebook design (issue 11).
-- Permission rules in the plugin. Plugins can't ship them, so git safety
-  stays in each machine's setup.
+- Permission rules and Bash guards in the plugin. Git safety is text in
+  `agent-rules.md`, plus the global git pre-push hook the dotfiles ship.
 - Hooks and agents for Codex and Pi, apart from the Pi agents listed under Later.
 - An internal marketplace for colleagues.
 - How notebook and workbench are installed together (still open in the
