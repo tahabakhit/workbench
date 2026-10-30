@@ -32,4 +32,4 @@ sh scripts/check.sh
 
 Validates the plugin with `claude plugin validate --strict`, fails if a side
 file copied into several skill folders differs between them, and runs the
-quiz shuffle and spec check tests.
+correction flag, quiz shuffle and spec check tests.

@@ -100,6 +100,7 @@ not block anything here.
 | 16 | Ship the owner's agent rules as `agent-rules.md` | | done |
 | 17 | Install from GitHub on every machine | | done |
 | 18 | Connect the Mac to the public repo | | open |
+| 19 | Flag corrections in every session | | done |
 
 Steps 2 and 3 of the Order are issues 01 to 10. Issues 16 and 17 are hand-overs from the dotfiles. Issues 11 to 13 are steps 4
 to 6. Each of those gets its own spec before work starts.
@@ -156,3 +157,4 @@ Owned by workbench, not prioritised yet. Each gets an issue when it starts.
 | Records go to the notebook at `~/.agents/notebook` in one fixed layout on every machine; no per-machine or per-repo record destinations | A plugin for any machine has one home for records; per-machine destinations only bent it around an older vault setup |
 | Until the notebook tool exists, skills write the notebook's markdown files directly and commit them | Plain markdown in git, so the tool takes the files over without a migration |
 | Each machine keeps only its work sources in `~/.config/workbench/sources.md`, written by `onboard`; the session hook no longer loads it | Sources really differ by person and job; only the skills that gather work need them |
+| The plugin ships the correction-flag `UserPromptSubmit` hook, written fresh, not ported from the Mac setup | It only feeds `record` and `improve`, so it belongs with them and runs on every machine |

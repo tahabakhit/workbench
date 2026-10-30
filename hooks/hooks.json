@@ -1,5 +1,5 @@
 {
-  "description": "Adds the workbench contract to every session",
+  "description": "Adds the workbench contract to every session and flags prompts that correct the agent for the record skill",
   "hooks": {
     "SessionStart": [
       {
@@ -7,6 +7,17 @@
           {
             "type": "command",
             "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/session-context.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/flag-correction.sh",
             "timeout": 10
           }
         ]
