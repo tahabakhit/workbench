@@ -38,8 +38,9 @@ answered "NOT IN MY INSTRUCTIONS" without it and `decisions/` in the notebook
 with `-e <repo>`. After `pi install` from git, a plain `pi -p` session answered
 with `decisions/` too. Gaps: a personal skill with the same name shadows the
 package's (the owner deleted `handoff`, `prototype` and `research`), and
-`researcher` cannot ship in a package because
-pi-subagents reads only `.pi/agents/` and the agent dir.
+`researcher` cannot ship in a package, so `pi/workbench.ts` writes it to the
+agent dir at session start, leaving a user's own `researcher.md` alone. A live
+`pi -p` run through it returned a cited report.
 
 ## Done when
 

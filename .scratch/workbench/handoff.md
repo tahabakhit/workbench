@@ -21,7 +21,7 @@ Prove the untested tracker path: `onboard` plus `write-spec` publishing to a rea
 - verified: this machine's `~/.local/share/workbench/sources.md` is keyed by kind (`host`, `tracker`).
 - verified: the plugin is installed in the real `~/.codex`. A live `codex exec` session loads the 3 model-invoked skills, not the 13 user-invoked ones, and does not get the contract (issue 20).
 - verified: after the owner trusted the hooks, a new `codex exec` session answers the issue 20 question from the contract.
-- verified: Pi has the package from git; a plain `pi -p` session answers the same question from the contract, and all 16 skills load. `researcher` is not installed in Pi.
+- verified: Pi has the package from git; a plain `pi -p` session answers the same question from the contract, and all 16 skills load. `researcher` runs in Pi; it needs `pi-subagents` and `pi-web-access`.
 - assumed: the `write-spec` publish step works against a real tracker. It has never run.
 - assumed: the GitLab line in `tracker-lines.md` works. Its commands come from upstream's template and `glab` is not installed here.
 

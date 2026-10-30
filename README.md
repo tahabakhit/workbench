@@ -23,7 +23,9 @@ For Codex, run `codex plugin marketplace add tahabakhit/workbench` and
 
 For Pi, run `pi install git:github.com/tahabakhit/workbench`. It adds the
 contract, the skills and correction flagging. A personal skill with the same
-name wins over the package's, and the `researcher` agent is not included.
+name wins over the package's. It also writes the `researcher` agent to
+`~/.pi/agent/agents/`, unless a `researcher.md` of your own is there; that agent
+needs the `pi-subagents` and `pi-web-access` packages.
 
 ## Use
 
