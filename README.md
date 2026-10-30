@@ -17,6 +17,11 @@ pick up each pushed commit.
 To pull a change in by hand, run `claude plugin marketplace update workbench`
 and start a new session.
 
+## Use
+
+Run `/workbench:onboard machine` once per machine. When unsure which skill
+fits, run `/workbench:choose-skill <your situation>`.
+
 ## Check
 
 ```sh

@@ -49,6 +49,7 @@ per-skill verdicts in `.scratch/bootstrap/mattpocock-analysis.md`.
 | `prototype` | prototype, logic branch only | user | none |
 | `research` | research | user | none |
 | `handoff` | handoff and claude-handoff, merged | user | none |
+| `choose-skill` | ask-matt, with the phase-boundary tree | user | none |
 
 The plugin does not ship herdr (the herdr binary provides it through
 `herdr --skill`), moshi-visuals (the Moshi app installs it) or rhel-fedora
@@ -159,3 +160,4 @@ Owned by workbench, not prioritised yet. Each gets an issue when it starts.
 | Until the notebook tool exists, skills write the notebook's markdown files directly and commit them | Plain markdown in git, so the tool takes the files over without a migration |
 | Each machine keeps only its work sources in `~/.config/workbench/sources.md`, written by `onboard`; the session hook no longer loads it | Sources really differ by person and job; only the skills that gather work need them |
 | The plugin ships the correction-flag `UserPromptSubmit` hook, written fresh, not ported from the Mac setup | It only feeds `record` and `improve`, so it belongs with them and runs on every machine |
+| `choose-skill` is the router over the skills, with the phase-boundary tree as its side file | The manual skills reached the count the ask-matt verdict set for a router, and `handoff` needs the tree that says when to use it |
