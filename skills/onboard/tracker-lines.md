@@ -14,3 +14,8 @@ says.
 
 `glab` works out the project from the clone's remote, so run its commands
 inside the repo.
+
+A line with a create command names one repo, so it belongs to that repo: in
+its `## Sources`, or keyed `tracker (<repo>)` when the repo is shared. The
+machine's plain `tracker` line gathers work across repos and can stay
+search-only; `write-spec` cannot publish from it.

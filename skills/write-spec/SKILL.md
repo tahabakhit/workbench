@@ -101,13 +101,18 @@ prints that spec and issues agree. Fix what it reports and rerun.
 
 ## 5. Publish
 
-Read the `tracker` source: the repo's `## Sources`, else the machine's. With
-`local` or no line, skip this step and say so once. Otherwise show the issues
-and, on approval, run its create command for each in number order, carrying
-`Blocked by` across as the line allows, and add `Tracker: <url or key>` under
-`Status:`.
+Read the `tracker` source: the repo's `## Sources`, else the machine's
+`tracker (<repo>)` line, else its `tracker` line. With `local` or no line,
+skip this step and say so once. A line with no create command cannot publish:
+skip this step, say so, and to publish later use the `onboard` skill, repo
+scope. Otherwise show the issues and, on approval, run its create command for
+each in number order. Send a copy of the issue from `## What` on, because
+`Status:` would go stale on the tracker; for a blocked issue, open the copy
+with `Blocked by:` and the blocker's Tracker value, as the line allows. Then
+add `Tracker: <url or key>` under `Status:`.
 
-Done when each issue has a Tracker line, or the user declined.
+Done when each issue has a Tracker line, the user declined, or the line
+cannot publish.
 
 ## 6. Hand off
 

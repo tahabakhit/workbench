@@ -6,7 +6,7 @@ Prove the untested tracker path: `onboard` plus `write-spec` publishing to a rea
 
 ## State
 
-- Branch `main`, level with `origin/main`.
+- Branch `main`, ahead of `origin/main`, not pushed.
 - Done: per-repo tracker choice, shared-repo rule, `## Not yet specified`, self-noticed struggles in `record`, router check in `check.sh`, stale text fixes.
 - Open issues: 11 (notebook tool).
 
@@ -23,12 +23,13 @@ Prove the untested tracker path: `onboard` plus `write-spec` publishing to a rea
 - verified: after the owner trusted the hooks, a new `codex exec` session answers the issue 20 question from the contract.
 - verified: Pi has the package from git; a plain `pi -p` session answers the same question from the contract, and all 16 skills load. `researcher` runs in Pi; it needs `pi-subagents` and `pi-web-access`.
 - verified: `write-spec` step 5 against a real GitHub tracker, run by hand in the working session: create, `Tracker:` line, URL resolves, close, `check-spec.sh` agrees (`.scratch/workbench/trials/write-spec.md`).
-- assumed: a fresh session follows step 5 on its own. Only the by-hand run has happened.
+- verified: fresh headless sessions follow the fixed step 5 against a fake tracker, including a search-only line. The `tracker (<repo>)` lookup is unproven.
 - assumed: the GitLab line in `tracker-lines.md` works. Its commands come from upstream's template and `glab` is not installed here.
 
 ## Next
 
-1. Decide the two findings at the end of `.scratch/workbench/trials/write-spec.md`: a machine tracker line with no create command, and issue bodies that carry a stale `Status:` line.
+1. Push `main` once the owner approves: it is ahead of `origin/main`, and sessions get the plugin only from GitHub.
+2. Start issue 11 in a fresh session: `Work .scratch/workbench/issues/11-notebook.md. Start with the write-spec skill, from the notebook section of .scratch/bootstrap/decisions.md.`
 
 ## Read first
 

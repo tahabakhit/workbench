@@ -89,10 +89,23 @@ to keep to the one approved issue.
 | Close, from the line's command | issue CLOSED (COMPLETED) with the evidence comment |
 | Local status after close | issue and spec table set to `done`; `check-spec.sh` agrees |
 
-Findings:
+Findings, both fixed in step 5:
 
-- The machine's `sources.md` tracker line has only a search command and no
-  create command. A repo without its own `## Sources` line would pass step 5's
-  "not local" test with nothing to run. Step 5 does not say what to do then.
-- `gh issue create --body-file` sends the whole issue file, so the body repeats
-  the title heading and `Status: open`, which go stale once the issue closes.
+- The machine's `sources.md` tracker line has only a search command. A repo
+  without its own line had nothing to run, and a fresh session stopped but
+  probed `gh` and suggested no route. A line with no create command now skips
+  publishing and points to `onboard`.
+- `--body-file` sent the whole issue file, so the body kept a `Status: open`
+  that goes stale and a local `Blocked by: 01`. The copy now starts at
+  `## What` and opens with the blocker's Tracker value.
+
+Fresh headless sessions ran step 5 before and after the fix, with Read, Write,
+Edit and a fake create script, in throwaway repos.
+
+| Scenario | Before | After |
+|---|---|---|
+| Only the machine's search line | stopped, no route, tried `gh repo view` | skipped, named `onboard` repo scope |
+| Repo line, two issues, one blocked | body held `Status: open` and `Blocked by: 01` | body starts at `## What`; 02 opens with `Blocked by: https://tracker.test/issues/1` |
+
+The `tracker (<repo>)` lookup in step 5 is unproven; these scenarios did not
+exercise it.

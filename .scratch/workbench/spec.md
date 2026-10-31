@@ -168,3 +168,4 @@ Owned by workbench, not prioritised yet. Each gets an issue when it starts.
 | Skills call each other by writing "use the `name` skill" at the step that needs it | The owner wants workflows to run on from one skill to the next; side files stay for shared reference |
 | A subagent is always optional in a skill and in the contract | The owner decided workbench must not force an agent or harness into delegating; each harness and model chooses |
 | Issue 18 and running `onboard machine` on other machines are dropped | The owner dropped both |
+| A tracker line with a create command belongs to one repo; the machine's plain `tracker` line can stay search-only and `write-spec` skips publishing from it | A create command has to name one repo, so a machine-wide one would send every repo's issues there |

@@ -67,7 +67,8 @@ proposal and write nothing.
    Done when every question has an answer and that command has answered.
 3. **Propose.** The answers become source lines in the contract's format: a
    `## Sources` section for `AGENTS.md`, or machine lines when the repo is
-   shared. Then a table with one row per artifact found: keep, convert to
+   shared. Any tracker but local gets a full line from `tracker-lines.md`,
+   even when the machine's line already searches it. Then a table with one row per artifact found: keep, convert to
    this plugin's conventions, or delete, and a reason. Conventions:
    `AGENTS.md` under 60 lines, with `CLAUDE.md` holding only `@AGENTS.md`;
    work tracking in `.scratch/<feature>/` as the contract
