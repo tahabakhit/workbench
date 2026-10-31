@@ -142,7 +142,7 @@ func TestTitleFallsBackToFileNameAndSkipsCodeFences(t *testing.T) {
 	if len(got) != 1 || got[0].Title != "01-quoting" {
 		t.Errorf("no-heading note: %+v", got)
 	}
-	got = e.search(t, "sqlite")
+	got = e.search(t, "sqlite", "--kind", "decisions")
 	if len(got) != 1 || got[0].Title != "Use SQLite for the index" {
 		t.Errorf("decision note: %+v", got)
 	}
@@ -360,4 +360,191 @@ func snapshot(t *testing.T, root string) map[string]string {
 		t.Fatal(err)
 	}
 	return files
+}
+
+func TestRecall(t *testing.T) {
+	e := newEnv(t)
+	whole, err := os.ReadFile("testdata/vault/" + forcePushNote)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, q := range []string{
+		forcePushNote,
+		strings.TrimSuffix(forcePushNote, ".md"),
+		"2026-10-29-workbench-hooks-01-force-push",
+		"hooks issue 01, ask on force push and remote branch delete",
+		forcePushID,
+	} {
+		out, errOut, code := e.run("recall", q)
+		if code != 0 || out != string(whole) {
+			t.Errorf("recall %q: exit %d, err %q, out %q", q, code, errOut, out)
+		}
+	}
+}
+
+func TestRecallTitleInSeveralArguments(t *testing.T) {
+	if _, errOut, code := newEnv(t).run("recall", "Keep", "commits", "small"); code != 0 {
+		t.Errorf("exit %d: %s", code, errOut)
+	}
+}
+
+func TestRecallNoMatchListsCandidates(t *testing.T) {
+	out, errOut, code := newEnv(t).run("recall", "use sqlite")
+	if code != 1 || out != "" {
+		t.Errorf("exit %d, out %q", code, out)
+	}
+	if !strings.Contains(errOut, "no note matches") || !strings.Contains(errOut, "decisions/2026-10-20-use-sqlite.md") {
+		t.Errorf("err %q", errOut)
+	}
+}
+
+func TestRecallTwoMatchesListsBoth(t *testing.T) {
+	out, errOut, code := newEnv(t).run("recall", "Duplicate title")
+	if code != 1 || out != "" {
+		t.Errorf("exit %d, out %q", code, out)
+	}
+	for _, want := range []string{"more than one", "decisions/2026-10-21-duplicate-a.md", "log/2026-10-21-workbench-duplicate-b.md"} {
+		if !strings.Contains(errOut, want) {
+			t.Errorf("err %q lacks %q", errOut, want)
+		}
+	}
+}
+
+func TestRecallSeesAnEditAndKeepsSupersededNotes(t *testing.T) {
+	e := newEnv(t)
+	if _, errOut, code := e.run("recall", "lessons/keep-commits-small.md"); code != 0 {
+		t.Errorf("superseded: exit %d: %s", code, errOut)
+	}
+	write(t, filepath.Join(e.vault, forcePushNote), "# Fresh\n", time.Now().Add(time.Hour))
+	if out, _, _ := e.run("recall", "Fresh"); out != "# Fresh\n" {
+		t.Errorf("out %q", out)
+	}
+}
+
+func links(t *testing.T, e env, note string) []link {
+	t.Helper()
+	out, errOut, code := e.run("links", note, "--json")
+	if code != 0 {
+		t.Fatalf("links %s: exit %d: %s", note, code, errOut)
+	}
+	var got []link
+	if err := json.Unmarshal([]byte(out), &got); err != nil {
+		t.Fatalf("bad JSON %q: %v", out, err)
+	}
+	return got
+}
+
+func TestLinks(t *testing.T) {
+	want := []link{
+		{Target: "Duplicate title", Status: "ambiguous", Paths: []string{"decisions/2026-10-21-duplicate-a.md", "log/2026-10-21-workbench-duplicate-b.md"}},
+		{Target: "Keep commits small", Status: "ok", Paths: []string{"lessons/keep-commits-small.md"}},
+		{Target: "decisions/2026-10-20-use-sqlite.md", Status: "ok", Paths: []string{"decisions/2026-10-20-use-sqlite.md"}},
+		{Target: "keep-commits-small", Status: "ok", Paths: []string{"lessons/keep-commits-small.md"}},
+		{Target: "later-note", Status: "broken", Paths: []string{}},
+		{Target: "lessons/one-change-per-commit", Status: "ok", Paths: []string{"lessons/one-change-per-commit.md"}},
+		{Target: "no-such-note", Status: "broken", Paths: []string{}},
+	}
+	if got := links(t, newEnv(t), "Link source"); !reflect.DeepEqual(got, want) {
+		t.Errorf("\n got %+v\nwant %+v", got, want)
+	}
+}
+
+func TestLinkResolvesOnceItsTargetIsAdded(t *testing.T) {
+	e := newEnv(t)
+	status := func() string {
+		for _, l := range links(t, e, "Link source") {
+			if l.Target == "later-note" {
+				return l.Status + " " + strings.Join(l.Paths, ",")
+			}
+		}
+		return "missing"
+	}
+	if got := status(); got != "broken " {
+		t.Fatalf("before: %q", got)
+	}
+	write(t, filepath.Join(e.vault, "lessons/later-note.md"), "# Later\n", time.Now())
+	if got := status(); got != "ok lessons/later-note.md" {
+		t.Errorf("after: %q", got)
+	}
+}
+
+func TestLinkStaysUnresolvedWhenASecondMatchAppears(t *testing.T) {
+	e := newEnv(t)
+	write(t, filepath.Join(e.vault, "log/keep-commits-small.md"), "# Other\n", time.Now())
+	for _, l := range links(t, e, "Link source") {
+		if l.Target == "keep-commits-small" && l.Status != "ambiguous" {
+			t.Errorf("%+v", l)
+		}
+	}
+}
+
+func TestPathTierBeatsNameTier(t *testing.T) {
+	e := newEnv(t)
+	write(t, filepath.Join(e.vault, "lessons/name.md"), "# lessons/keep-commits-small\n", time.Now())
+	if out, _, code := e.run("recall", "lessons/keep-commits-small"); code != 0 || !strings.Contains(out, "# Keep commits small") {
+		t.Errorf("exit %d, out %q", code, out)
+	}
+}
+
+func TestLinksPlainOutput(t *testing.T) {
+	out, errOut, code := newEnv(t).run("links", "Link source")
+	if code != 0 {
+		t.Fatalf("exit %d: %s", code, errOut)
+	}
+	for _, want := range []string{
+		"broken\tno-such-note\n",
+		"ambiguous\tDuplicate title\tdecisions/2026-10-21-duplicate-a.md, log/2026-10-21-workbench-duplicate-b.md\n",
+		"ok\tkeep-commits-small\tlessons/keep-commits-small.md\n",
+	} {
+		if !strings.Contains(out, want) {
+			t.Errorf("out %q lacks %q", out, want)
+		}
+	}
+}
+
+func TestBacklinks(t *testing.T) {
+	e := newEnv(t)
+	out, errOut, code := e.run("backlinks", "keep-commits-small")
+	if code != 0 || out != "lessons/link-source.md\n" {
+		t.Errorf("exit %d, err %q, out %q", code, errOut, out)
+	}
+	out, _, code = e.run("backlinks", "keep-commits-small", "--json")
+	var got []string
+	if err := json.Unmarshal([]byte(out), &got); code != 0 || err != nil || !reflect.DeepEqual(got, []string{"lessons/link-source.md"}) {
+		t.Errorf("JSON: exit %d, err %v, out %q", code, err, out)
+	}
+}
+
+func TestAmbiguousLinkIsNoBacklink(t *testing.T) {
+	out, errOut, code := newEnv(t).run("backlinks", "decisions/2026-10-21-duplicate-a.md")
+	if code != 0 || out != "" || !strings.Contains(errOut, "no backlinks") {
+		t.Errorf("exit %d, err %q, out %q", code, errOut, out)
+	}
+}
+
+func TestLinksAndBacklinksNeedExactlyOneNote(t *testing.T) {
+	e := newEnv(t)
+	for _, cmd := range []string{"links", "backlinks", "recall"} {
+		if _, _, code := e.run(cmd, "Duplicate title"); code != 1 {
+			t.Errorf("%s two matches: exit %d", cmd, code)
+		}
+		if _, _, code := e.run(cmd, "no-such-note"); code != 1 {
+			t.Errorf("%s no match: exit %d", cmd, code)
+		}
+		var out, errOut bytes.Buffer
+		if code := run([]string{cmd}, &out, &errOut); code != 2 {
+			t.Errorf("%s no argument: exit %d", cmd, code)
+		}
+	}
+}
+
+func TestDeletedIndexKeepsLinks(t *testing.T) {
+	e := newEnv(t)
+	before := links(t, e, "Link source")
+	if err := os.Remove(e.index); err != nil {
+		t.Fatal(err)
+	}
+	if after := links(t, e, "Link source"); !reflect.DeepEqual(before, after) {
+		t.Errorf("\nbefore %+v\nafter  %+v", before, after)
+	}
 }

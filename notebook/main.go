@@ -14,7 +14,12 @@ import (
 const usageText = `usage: notebook <command> [flags]
 
 commands:
-  search <query>  ranked snippets; run "notebook search --help" for flags
+  search <query>   ranked snippets
+  recall <note>    one whole note
+  links <note>     outgoing wikilinks, flagging broken and ambiguous
+  backlinks <note> notes that link to it
+
+run "notebook <command> --help" for flags
 `
 
 // usageError is a mistake in the command line, reported with exit code 2.
@@ -35,6 +40,12 @@ func run(args []string, stdout, stderr io.Writer) int {
 	switch args[0] {
 	case "search":
 		err = runSearch(args[1:], stdout, stderr)
+	case "recall":
+		err = runRecall(args[1:], stdout, stderr)
+	case "links":
+		err = runLinks(args[1:], stdout, stderr)
+	case "backlinks":
+		err = runBacklinks(args[1:], stdout, stderr)
 	default:
 		err = usageError(fmt.Sprintf("unknown command %q\n%s", args[0], usageText))
 	}

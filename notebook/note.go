@@ -12,6 +12,7 @@ type note struct {
 	id, kind, date, repo, scope string
 	supersedes                  string // vault-relative path, or empty
 	title, body                 string
+	links                       []string // raw targets, resolved at query time
 }
 
 // noteID is derived from the path alone, so it survives edits and rebuilds.
@@ -39,6 +40,7 @@ func parseNote(rel string, data []byte) note {
 		supersedes: supersededPath(rel, fields["supersedes"]),
 		title:      title,
 		body:       body,
+		links:      parseLinks(body),
 	}
 }
 

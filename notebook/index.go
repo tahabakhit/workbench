@@ -8,6 +8,7 @@ import (
 	"io/fs"
 	"net/url"
 	"os"
+	"path"
 	"path/filepath"
 	"strings"
 
@@ -16,7 +17,7 @@ import (
 
 // schemaVersion is raised on any schema change; an index at another version is
 // rebuilt, which is always safe because the files are the truth.
-const schemaVersion = 1
+const schemaVersion = 2
 
 const schema = `
 CREATE TABLE notes (
@@ -28,15 +29,34 @@ CREATE TABLE notes (
 	repo TEXT NOT NULL,
 	scope TEXT NOT NULL,
 	title TEXT NOT NULL,
+	stem TEXT NOT NULL,
 	mtime INTEGER NOT NULL
 );
 CREATE TABLE supersedes (path TEXT NOT NULL, target TEXT NOT NULL);
 CREATE INDEX supersedes_target ON supersedes(target);
+CREATE TABLE links (path TEXT NOT NULL, target TEXT NOT NULL, PRIMARY KEY (path, target));
 CREATE VIRTUAL TABLE notes_fts USING fts5(
 	title, body,
 	tokenize = 'porter unicode61 remove_diacritics 1'
 );
 `
+
+// openFresh opens the index and brings it up to date, as every command does
+// first. A missing vault fails before an empty index is created for it.
+func openFresh(ctx context.Context, loc *locations) (*sql.DB, error) {
+	if err := checkVault(loc.vault); err != nil {
+		return nil, err
+	}
+	db, err := openIndex(loc.index)
+	if err != nil {
+		return nil, err
+	}
+	if err := refresh(ctx, db, loc.vault); err != nil {
+		db.Close()
+		return nil, err
+	}
+	return db, nil
+}
 
 // openIndex opens the index file, creating or rebuilding its schema as needed.
 // Every transaction takes the write lock up front, so concurrent sessions wait
@@ -80,7 +100,7 @@ func migrate(db *sql.DB) error {
 	if version, err = userVersion(tx); err != nil || version == schemaVersion {
 		return err
 	}
-	for _, table := range []string{"notes", "supersedes", "notes_fts"} {
+	for _, table := range []string{"notes", "supersedes", "links", "notes_fts"} {
 		if _, err := tx.Exec("DROP TABLE IF EXISTS " + table); err != nil {
 			return err
 		}
@@ -231,14 +251,17 @@ func dropNote(tx *sql.Tx, rel string) error {
 	if _, err := tx.Exec("DELETE FROM notes WHERE path = ?", rel); err != nil {
 		return err
 	}
+	if _, err := tx.Exec("DELETE FROM links WHERE path = ?", rel); err != nil {
+		return err
+	}
 	_, err := tx.Exec("DELETE FROM supersedes WHERE path = ?", rel)
 	return err
 }
 
 func addNote(tx *sql.Tx, rel string, mtime int64, n note) error {
 	res, err := tx.Exec(
-		"INSERT INTO notes (path, id, kind, date, repo, scope, title, mtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-		rel, n.id, n.kind, n.date, n.repo, n.scope, n.title, mtime)
+		"INSERT INTO notes (path, id, kind, date, repo, scope, title, stem, mtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+		rel, n.id, n.kind, n.date, n.repo, n.scope, n.title, strings.TrimSuffix(path.Base(rel), ".md"), mtime)
 	if err != nil {
 		return err
 	}
@@ -248,6 +271,11 @@ func addNote(tx *sql.Tx, rel string, mtime int64, n note) error {
 	}
 	if _, err := tx.Exec("INSERT INTO notes_fts (rowid, title, body) VALUES (?, ?, ?)", rowid, n.title, n.body); err != nil {
 		return err
+	}
+	for _, target := range n.links {
+		if _, err := tx.Exec("INSERT INTO links (path, target) VALUES (?, ?)", rel, target); err != nil {
+			return err
+		}
 	}
 	if n.supersedes != "" {
 		_, err = tx.Exec("INSERT INTO supersedes (path, target) VALUES (?, ?)", rel, n.supersedes)

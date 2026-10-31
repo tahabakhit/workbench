@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"database/sql"
-	"encoding/json"
 	"flag"
 	"fmt"
 	"io"
@@ -67,28 +66,19 @@ func runSearch(args []string, stdout, stderr io.Writer) error {
 		return usageError("the query has no words to search for")
 	}
 
-	// A missing vault must fail before an empty index is created for it.
-	if err := checkVault(loc.vault); err != nil {
-		return err
-	}
-	db, err := openIndex(loc.index)
+	ctx := context.Background()
+	db, err := openFresh(ctx, loc)
 	if err != nil {
 		return err
 	}
 	defer db.Close()
-	ctx := context.Background()
-	if err := refresh(ctx, db, loc.vault); err != nil {
-		return err
-	}
 	results, err := search(ctx, db, match, *repo, *kind, *all, *limit)
 	if err != nil {
 		return err
 	}
 
 	if *asJSON {
-		enc := json.NewEncoder(stdout)
-		enc.SetIndent("", "  ")
-		return enc.Encode(results)
+		return printJSON(stdout, results)
 	}
 	if len(results) == 0 {
 		fmt.Fprintln(stderr, "no matches")

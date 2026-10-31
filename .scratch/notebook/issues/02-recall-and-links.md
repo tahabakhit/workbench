@@ -1,6 +1,6 @@
 # 02 recall, links and backlinks
 
-Status: open
+Status: done
 Blocked by: 01
 
 ## What
