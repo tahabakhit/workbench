@@ -81,6 +81,7 @@ sh hooks/test-flag-correction.sh
 sh hooks/test-session-context.sh
 sh skills/study-topic/scripts/test-shuffle.sh
 sh skills/write-spec/scripts/test-check-spec.sh
+sh skills/onboard/scripts/test-repo-audience.sh
 sh scripts/test-pi-extension.sh
 sh scripts/test-notebook.sh
 sh scripts/test-notebook-shim.sh

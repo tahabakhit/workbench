@@ -82,11 +82,12 @@ Tracker updates for a repository go to the tracker its sources name. A
 skill that gathers work reads both; without either, it says so and gathers
 from git and `.scratch/` alone.
 
-In a repository shared with people who don't use workbench, `.scratch/` stays
-out of git through `.git/info/exclude`, the shared instruction files stay as
-they are, and its sources go in the machine's file, keyed `<kind> (<repo>)`.
-Such a line applies only in that repository, where it replaces the machine's
-line of that kind.
+In a repository that people who don't use workbench can read, now or once it
+is published, `.scratch/` stays out of git through `.git/info/exclude` and its
+sources go in the machine's file, keyed `<kind> (<repo>)`, unless the owner
+chose to work in the open there. Such a line applies only in that repository,
+where it replaces the machine's line of that kind. Where such people also work
+in the repository, the shared instruction files stay as they are.
 
 ## Writing that lands in a repository
 

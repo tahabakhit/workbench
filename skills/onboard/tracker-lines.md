@@ -20,6 +20,6 @@ once. Its board sets new items to Todo and closed ones to Done by itself.
 inside the repo.
 
 A line with a create command names one repo, so it belongs to that repo: in
-its `## Sources`, or keyed `tracker (<repo>)` when the repo is shared. The
+its `## Sources`, or keyed `tracker (<repo>)` when others can read the repo. The
 machine's plain `tracker` line gathers work across repos and can stay
 search-only; `write-spec` cannot publish from it.

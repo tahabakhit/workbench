@@ -32,3 +32,19 @@ tests passed, a format check failed) and listed the unsafe ones as not run.
 It also found two tickets marked open whose commits had already implemented
 them. Spot-checked claims held. Nothing applied: `git status --short` was
 empty before and after.
+
+## Repo scope, preview, audience and skipped questions
+
+Two throwaway repos, each by a fresh headless session with this working copy
+as the plugin, Write and Edit disallowed. Details below are from their output.
+
+- Solo repo with a public GitHub remote: placement `public`. All source
+  questions became findings ("No questions apply"), the tracker finding warned
+  that `write-spec` copies issue text to a public repo, and the only change
+  proposed was `.scratch/` in `.git/info/exclude`.
+- Solo repo with no remote, tracked `.scratch/` and a committed `## Sources`:
+  placement `ask`. The one question was whether it will go public, with a
+  recommended yes. It proposed a keyed machine line, `git rm --cached`, and
+  said git history still holds both.
+
+Both left `sources.md` checksums and `git status --short` unchanged.
