@@ -1,6 +1,6 @@
 # 06 Session push
 
-Status: open
+Status: done
 Blocked by: 02, 05
 
 ## What
@@ -29,3 +29,23 @@ the push row in `## Decisions` in `.scratch/notebook/spec.md`.
 - `sh hooks/session-context.sh` run in this repo prints the contract followed
   by the `log/2026-10-29-workbench-*` notes, quoted in this issue.
 - The same hook run with the binary removed prints the contract and exits 0.
+
+## Result
+
+`sh hooks/session-context.sh` in this repo, after the contract:
+
+```
+## Notebook
+
+Notes for workbench. Read one with "notebook recall <path>".
+
+- log/2026-10-29-workbench-topic-tutor-01-05.md: topic-tutor spec and issues 01-05
+- log/2026-10-29-workbench-hooks-02-04-gitleaks-dirty-rm.md: hooks issues 02-04, gitleaks deny, dirty-tree and rm asks
+- log/2026-10-29-workbench-hooks-01-force-push.md: hooks issue 01, ask on force push and remote branch delete
+```
+
+With the binary moved away, the output equals `contract.md`, exit 0. The
+contract is 5,306 characters, so with the push it stays under 10,000.
+
+Inside the lessons tiers, notes go newest first. "Prefers lessons that work as
+rules" in `## Decisions` has no check here: nothing marks a lesson as a rule.
