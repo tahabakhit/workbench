@@ -33,13 +33,26 @@ Rules shared by every machine.
 ## Notebook
 
 Everything workbench keeps on a machine is under `~/.local/share/workbench/`:
-the notebook, `sources.md` and `state/`.
+the notebook, `sources.md`, `state/` and `bin/`.
 
 Records live in the notebook: plain markdown in a git repository at
 `~/.local/share/workbench/notebook`, one folder per kind, the same on every
-machine. The plugin's `notebook` tool will search and file into it; until it
-does, skills write the files directly. Create the repository with `git init`
-and a folder with its first file, and commit each write there. Flagged
+machine. `notebook` means the binary at
+`~/.local/share/workbench/bin/notebook`:
+
+- `notebook search <query>`, with `--repo`, `--kind` and `--all`, finds notes;
+  `recall <note>`, `links <note>` and `backlinks <note>` read them. Use these
+  in place of scanning files.
+- `notebook file <path> < note.md` validates, writes and commits one new note,
+  creating the repository and folder if needed.
+- `notebook file <path> --update < note.md` replaces `corrections.md`,
+  `goals.md`, a plan, or a topic's `mission.md`, `sources.md` or `quiz.md`, and
+  creates them when missing. To add to one, pipe in its text plus the new text.
+- A refusal changes nothing: fix the note and file again. `notebook validate`
+  checks one note or the vault.
+
+When the binary is missing, write the file directly, create the repository
+with `git init` if needed, and commit each write. Flagged
 corrections and run timestamps go in `state/`.
 
 | Path | Holds |

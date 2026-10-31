@@ -27,6 +27,13 @@ name wins over the package's. It also writes the `researcher` agent to
 `~/.pi/agent/agents/`, unless a `researcher.md` of your own is there; that agent
 needs the `pi-subagents` and `pi-web-access` packages.
 
+## Notebook
+
+`notebook/` holds a Go tool that searches and files into the notebook. A release
+is built on each push that changes it, and the plugin installs the matching
+binary to `~/.local/share/workbench/bin/notebook`, so a machine needs no Go. Claude
+Code gets it as an MCP server too; Codex and Pi use the command line.
+
 ## Use
 
 Run `/workbench:onboard machine` once per machine, and
@@ -42,8 +49,8 @@ sh scripts/check.sh
 
 Validates the plugin with `claude plugin validate --strict`, fails if a side
 file copied into several skill folders differs between them or `choose-skill`
-misses a skill, and runs the correction flag, quiz shuffle and spec check
-tests.
+misses a skill, and runs the correction flag, session context, quiz shuffle,
+spec check, Pi, notebook and notebook shim tests.
 
 ## Safety
 

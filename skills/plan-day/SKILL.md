@@ -84,7 +84,8 @@ Ask which updates to apply and whether the ranking needs changes.
 Apply only the approved updates, with the user's edits, and report each
 result. Then write the plan to `~/.local/share/workbench/notebook/plans/YYYY-MM-DD.md` under a
 `## Plan` heading, replacing that section if today's file already has one,
-and commit it. Open the
+and file it with `notebook file plans/YYYY-MM-DD.md --update`, or write and
+commit it directly with no binary. It opens with frontmatter holding `date`. Open the
 section with a Mermaid `mindmap`: the root is the date, branches are Now,
 Today and Later, leaves are each item in a few words. Keep brackets out of
 labels, since they change node shapes. Below it list the ranked items with

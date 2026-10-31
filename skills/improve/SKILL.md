@@ -75,7 +75,9 @@ For each approved one:
 2. For a skill change, use the `write-skill` skill; the result passes `claude
    plugin validate` on its skills folder. A change to a generated file's source
    is deployed the way that source documents.
-3. Set the fix column of its ledger lines to the commit hash.
+3. Set the fix column of its ledger lines to the commit hash, filing the ledger
+   with `notebook file corrections.md --update`, or a direct write and commit
+   with no binary.
 
 Rejected proposals get `rejected` in the fix column so they are not proposed
 again unless new entries arrive.

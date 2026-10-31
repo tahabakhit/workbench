@@ -56,7 +56,8 @@ confirmation.
 ## 2. Record on approval
 
 Propose where the decisions go: `## Decisions` in `.scratch/<feature>/spec.md`
-when a feature folder exists, otherwise `decisions/` in the notebook.
+when a feature folder exists, otherwise `decisions/` in the notebook, filed with
+`notebook file` or, with no binary, written and committed directly.
 
 If the session sharpened terms or made a decision that meets the ADR bar,
 read `glossary-adr-format.md` in this skill's folder and propose GLOSSARY.md

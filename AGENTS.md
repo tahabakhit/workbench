@@ -38,6 +38,9 @@ workbench`, then start a new session.
   It mirrors `hooks/hooks.json`, so change them together.
 - Scripts are POSIX `sh` with `jq`, executable: a skill's under its `scripts/`,
   plugin hooks under `hooks/`, repo checks under `scripts/`.
+- `notebook/` is the Go module for the `notebook` tool, the only Go in the repo. A
+  push that changes it runs `notebook-release.yml` and publishes
+  `notebook-<hash>`, so skills reach new behaviour after that release installs.
 
 ## Work tracking
 

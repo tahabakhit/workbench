@@ -16,10 +16,10 @@ Scope comes from the argument: `session` (default) or `since-last`. With
 ## 1. Notebook
 
 Entries go to the notebook paths in the contract: `log/`, `decisions/`,
-`lessons/` and `corrections.md` under `~/.local/share/workbench/notebook`. Create the repository
-or a folder when it is missing.
+`lessons/` and `corrections.md` under `~/.local/share/workbench/notebook`. `notebook file` creates the repository
+and folder; with no binary, create them yourself.
 
-Done when `~/.local/share/workbench/notebook` is a git repository.
+Done when you know each entry's path.
 
 ## 2. Gather
 
@@ -51,8 +51,8 @@ corrected: a file or fact that took many tool calls to find, or a call a
 cheaper one would replace. A struggle counts only with a transcript quote
 that shows it; file it as a correction with `self-noticed` as what the user
 wanted. In `since-last`, confirm each flagged line against its session
-digest. Then search the notebook
-for what it already holds on these topics.
+digest. Then run `notebook search` on these topics for what the notebook
+already holds.
 
 Done when every task has its evidence, every source was queried or its
 absence noted with the gap it leaves, each session, PR, ticket and meeting in
@@ -101,9 +101,14 @@ Done when every kept candidate has a draft in its notebook file's shape.
   and why, then sources that failed or were out of scope. File only what the
   user approves, with their edits.
 
-Update an overlapping entry rather than adding a near-duplicate; on a
-collision keep the existing entry unless the draft corrects it. Commit the
-notebook with one message naming the entries. Remove the
+File each new entry with `notebook file`, which validates and commits it; add
+the new lines to `corrections.md` with `--update`. With no binary, write the
+files directly and commit them with one message naming the entries.
+
+Avoid near-duplicates; on a collision keep the existing entry unless the draft
+corrects it. A lesson that corrects another is a new lesson with `supersedes`.
+A log or decision that needs correcting is edited directly and committed, then
+checked with `notebook validate <path>`. Remove the
 pending correction lines handled. In `since-last`, write the window end to
 `~/.local/share/workbench/state/record-last-run` (create the folder if needed). If a
 correction has now been seen in two or more sessions, use the `improve` skill

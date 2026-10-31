@@ -30,7 +30,8 @@ proposal and write nothing.
    which skills it is limited to, if any. Show a diff; write only on
    approval, to `~/.local/share/workbench/sources.md`. It belongs to this
    machine: never write it into a repository or an instructions file.
-   Create `~/.local/share/workbench/notebook` with `git init` if it is missing. Done when the
+   Create `~/.local/share/workbench/notebook` with `git init` if it is missing; every
+   later note is filed by `notebook file`. Done when the
    approved file is written and `~/.local/share/workbench/notebook` is a git repository.
 
 ## Repo scope

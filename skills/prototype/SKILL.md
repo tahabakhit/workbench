@@ -48,7 +48,8 @@ expected X": a bug in the idea. Add actions or scenarios when asked.
 
 When the question is answered, propose the question and verdict as a
 decision: to `## Decisions` in `spec.md` when a feature folder exists,
-otherwise to `decisions/` in the notebook. Write it only on approval. Lift
+otherwise to `decisions/` in the notebook with `notebook file`, or written and
+committed directly with no binary. Write it only on approval. Lift
 the module into real code only when asked; the HTML page stays a prototype.
 
 Done when the verdict is written on approval, or the user has said the

@@ -10,9 +10,11 @@ to their mission, and every claim traces to a source they can open.
 
 ## 1. Topic folder
 
-The topic folder is `~/.local/share/workbench/notebook/learning/<topic-slug>/`; create it, and
-never overwrite a file already in it. Commit the notebook after each step
-that writes. If it already holds `mission.md`, this is a returning
+The topic folder is `~/.local/share/workbench/notebook/learning/<topic-slug>/`. Never overwrite
+what a file in it holds. Each file opens with frontmatter holding `date`. File a
+lesson with `notebook file`, and `mission.md`, `sources.md` and `quiz.md` with
+`notebook file --update`, keeping their text and adding to it. With no binary,
+create the folder, write directly and commit after each step that writes. If it already holds `mission.md`, this is a returning
 session: read `mission.md`, `sources.md`, every lesson and `quiz.md`, then
 go to step 6.
 
