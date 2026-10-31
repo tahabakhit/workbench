@@ -8,7 +8,7 @@ Prove the untested tracker path: `onboard` plus `write-spec` publishing to a rea
 
 - Branch `main`, level with `origin/main`.
 - Done: per-repo tracker choice, shared-repo rule, `## Not yet specified`, self-noticed struggles in `record`, router check in `check.sh`, stale text fixes.
-- Open issues: 11 (notebook tool), 18 (connect the Mac).
+- Open issues: 11 (notebook tool).
 
 ## Claims
 
@@ -28,7 +28,6 @@ Prove the untested tracker path: `onboard` plus `write-spec` publishing to a rea
 ## Next
 
 1. Trial publishing on a repo the owner names, with a GitHub tracker line and a throwaway issue. Creating an issue needs the owner's approval. Done when an issue file holds a `Tracker:` line whose URL resolves.
-2. Run `/workbench:onboard machine` on each other machine. Done when each `sources.md` is keyed by kind.
 
 ## Read first
 
@@ -42,5 +41,4 @@ Prove the untested tracker path: `onboard` plus `write-spec` publishing to a rea
 ## Skills
 
 - `/workbench:onboard repo preview`
-- `/workbench:onboard machine`
 - `/workbench:write-spec`

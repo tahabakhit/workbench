@@ -1,6 +1,6 @@
 # 18 Connect the Mac to the public repo
 
-Status: open
+Status: wontfix
 
 ## What
 

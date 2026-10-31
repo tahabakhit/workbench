@@ -97,7 +97,7 @@ not block anything here.
 | 15 | Develop on the Fedora PC only; decide how the Mac consumes the plugin | 14 | done |
 | 16 | Ship the owner's agent rules as `agent-rules.md` | | done |
 | 17 | Install from GitHub on every machine | | done |
-| 18 | Connect the Mac to the public repo | | open |
+| 18 | Connect the Mac to the public repo | | wontfix |
 | 19 | Flag corrections in every session | | done |
 | 20 | Deliver the contract to Codex and Pi | | done |
 
@@ -167,3 +167,4 @@ Owned by workbench, not prioritised yet. Each gets an issue when it starts.
 | Every skill is model-invoked, and the cap on model-invoked skills is gone | Skills only the user could start rarely ran; the owner chose use over the context cost of their descriptions |
 | Skills call each other by writing "use the `name` skill" at the step that needs it | The owner wants workflows to run on from one skill to the next; side files stay for shared reference |
 | A subagent is always optional in a skill and in the contract | The owner decided workbench must not force an agent or harness into delegating; each harness and model chooses |
+| Issue 18 and running `onboard machine` on other machines are dropped | The owner dropped both |
