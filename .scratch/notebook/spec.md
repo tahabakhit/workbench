@@ -88,7 +88,7 @@ notebook/source-hash.sh   hash of notebook/, shared by the shim and CI
 | 04 | Read-only `notebook mcp` | 02 | done |
 | 05 | Release workflow, shim and install | 03, 04 | done |
 | 06 | Session push | 02, 05 | done |
-| 07 | Skills file through the tool | 03, 05 | open |
+| 07 | Skills file through the tool | 03, 05 | done |
 | 08 | Daily-use check on this PC and close workbench issue 11 | 06, 07 | open |
 
 ## Not yet specified

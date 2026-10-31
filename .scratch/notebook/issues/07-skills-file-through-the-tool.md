@@ -1,6 +1,6 @@
 # 07 Skills file through the tool
 
-Status: open
+Status: done
 Blocked by: 03, 05
 
 ## What
@@ -42,3 +42,22 @@ contract under the hook's cap.
 - Every note needs frontmatter with `date`, so `study-topic` must write it, and
   the five files under `learning/posix-sh-parameter-expansion/` fail
   `notebook validate` until they gain it.
+
+## Result
+
+`git -C ~/.local/share/workbench/notebook log --oneline -4`:
+
+```
+a982729 File log/2026-10-31-workbench-notebook-07-skills.md
+e7af6e2 Update learning/posix-sh-parameter-expansion/quiz.md
+e9fd6c8 File plans/2026-10-31.md
+68ae543 File log/2026-10-31-workbench-notebook-01-06.md
+```
+
+- `e7af6e2` is `study-topic`, `e9fd6c8` is `plan-day`, and `68ae543` is `record`,
+  each a real `claude -p` run committing through `notebook file`.
+- `a982729` is `record` with the binary renamed away: it wrote and committed
+  the note directly. `notebook validate` then exited 0 with no output.
+- The five `learning/posix-sh-parameter-expansion/` files gained frontmatter.
+- `record` now files a correcting lesson as a new note with `supersedes`, and
+  edits a log or decision directly, since `notebook file` updates neither.

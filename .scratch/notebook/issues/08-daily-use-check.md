@@ -24,3 +24,9 @@ sitting.
   `.scratch/notebook/spec.md`.
 - `.scratch/workbench/issues/11-notebook.md` and its row in
   `.scratch/workbench/spec.md` are `Status: done` with the evidence linked.
+
+## Runs so far
+
+Day 1, 2026-10-31: `record` `68ae543`, `plan-day` `e9fd6c8`, `study-topic`
+`e7af6e2`, as checks for issue 07. The push on or off comparison has not
+started.
