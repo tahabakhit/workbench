@@ -57,3 +57,6 @@ If it doesn't, Codex uses the CLI, the same as Pi. Do not add a top-level
   found the note.
 - `pi -p` ran `notebook search` and printed
   `log/2026-10-29-workbench-hooks-01-force-push.md  aa15fcfe1153  5.638`.
+
+Issue 07 moved the MCP config from a root `.mcp.json` into `plugin.json`; see
+`## Decisions` in the spec.

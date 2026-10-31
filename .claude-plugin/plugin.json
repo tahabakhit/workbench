@@ -5,5 +5,13 @@
     "name": "Taha Bakhit",
     "url": "https://github.com/tahabakhit"
   },
-  "repository": "https://github.com/tahabakhit/workbench"
+  "repository": "https://github.com/tahabakhit/workbench",
+  "mcpServers": {
+    "notebook": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/notebook/run.sh",
+      "args": [
+        "mcp"
+      ]
+    }
+  }
 }

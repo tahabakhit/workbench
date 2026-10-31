@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "notebook": {
-      "command": "${CLAUDE_PLUGIN_ROOT}/notebook/run.sh",
-      "args": ["mcp"]
-    }
-  }
-}

@@ -114,7 +114,7 @@ notebook/source-hash.sh   hash of notebook/, shared by the shim and CI
 |---|---|
 | CI builds one binary per platform (linux and darwin, amd64 and arm64), published as a release tagged with a hash of `notebook/` | No Go needed on a machine; a commit outside `notebook/` fetches nothing. Building locally needs Go, and committing binaries adds 15 MB per platform per change to public history |
 | The owner gives standing approval for `notebook-release.yml` to run and create `notebook-<hash>` releases on every change to `notebook/` | One approval for an automatic step; it covers this workflow only |
-| `notebook/run.sh` fetches and verifies on first call and backs `.mcp.json`; `SessionStart` installs the binary in the background | An MCP server may start before the hook finishes, and Codex runs hooks only once trusted. A top-level `bin/` is avoided because claude.ai and Cowork refuse plugins that have one |
+| `notebook/run.sh` fetches and verifies on first call and backs the plugin's MCP config; `SessionStart` installs the binary in the background | An MCP server may start before the hook finishes, and Codex runs hooks only once trusted. A top-level `bin/` is avoided because claude.ai and Cowork refuse plugins that have one |
 | Skills use only the CLI; MCP is read-only at first | One instruction works in every harness, and writes have one path |
 | `notebook file` validates, writes and commits | Skills stop repeating the commit step. No tool examined auto-commits, so failure handling gets its own test |
 | Refusals and warnings as in Validation | Follows influence, not force |
@@ -122,3 +122,4 @@ notebook/source-hash.sh   hash of notebook/, shared by the shim and CI
 | `recall` needs exactly one match; `search --all` shows superseded notes | First-match lookup can return the wrong note silently, and hidden notes need a way out |
 | The push sends at most 2,000 characters of paths and titles: the 3 latest logs for this repo, then lessons scoped to it, then global lessons. It drops in that reverse order, notes what it dropped, prefers lessons that work as rules, and has an off switch | The contract uses 5,306 of the hook's 10,000 characters. One study found repo context files raised cost over 20% without generally improving success, so the push must earn its place |
 | Done-when covers this PC only, with no switch-over slice | This PC has no Obsidian and no obsidian-mind fork, and the owner dropped other machines |
+| The MCP config is inline in `plugin.json`, not a root `.mcp.json` | Claude Code reads a root `.mcp.json` as this repo's project config too, where `CLAUDE_PLUGIN_ROOT` is unset, so every session here showed a failed server. Codex read that file but could not expand the variable, so it loses nothing |
