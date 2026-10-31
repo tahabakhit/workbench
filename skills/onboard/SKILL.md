@@ -18,10 +18,10 @@ proposal and write nothing.
    you have a table of tool, what it serves (tracker, chat, calendar,
    meeting notes, code host), and whether it answers a test call (one cheap
    read each).
-2. **Ask.** One numbered round, holding only the kinds with a decision to
-   make. A kind is asked when the inventory has a candidate for it, or its
-   existing line failed its test call; when the user asked to change one
-   kind, ask only that one. For each, name what reads it (`tracker`:
+2. **Ask.** One round using the contract's question format, holding only the
+   kinds with a decision to make. A kind is asked when the inventory has a
+   candidate for it, or its existing line failed its test call; when the user
+   asked to change one kind, ask only that one. For each, name what reads it (`tracker`:
    `plan-day`, `record`, `write-spec`; the others: `plan-day`, `record`), give
    your recommendation and one line on why; word it so "yes" accepts it. Ask
    also for any limit on a source, such as content that must not be stored.
@@ -58,11 +58,14 @@ proposal and write nothing.
      ones (no deploys, no writes outside the repo, no paid calls).
 
    Done when every item has facts or "none found", and every command is
-   marked run with its result or not run with the reason.
-2. **Ask.** One numbered round. Read `tracker-lines.md` in this skill's
-   folder first. Ask only what applies, each with one line on what the answer
-   changes and a recommendation worded so "yes" accepts it; state the rest as
-   findings after the round:
+   marked run with its result or not run with the reason. The survey is
+   working material: later steps show the user what changes a proposal or
+   needs a decision, plus failed or unrun checks with reasons, and offer the
+   routine detail.
+2. **Ask.** One round using the contract's question format. Read
+   `tracker-lines.md` in this skill's folder first. Ask only what applies,
+   each with one line on what the answer changes and a recommendation worded
+   so "yes" accepts it; state the rest as findings after the round:
    1. Where do tasks for this repo live? The spec and issue files stay in
       `.scratch/<feature>/` either way. This picks who else sees them and
       where they get closed. Offer local markdown, GitHub Issues, GitLab

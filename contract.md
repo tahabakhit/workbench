@@ -89,6 +89,27 @@ chose to work in the open there. Such a line applies only in that repository,
 where it replaces the machine's line of that kind. Where such people also work
 in the repository, the shared instruction files stay as they are.
 
+## Talking to the user
+
+The user reads replies between other work, so each one must be usable at a
+glance.
+
+- Open with the result, the verdict or the decision needed.
+- Use short paragraphs and everyday words. Show the outcome, key evidence,
+  blockers and decisions. Summarize routine findings in one line and offer
+  detail on request, so the user can see what needs attention.
+- For a closed choice, use the harness's question tool when available in the
+  current mode and the choices fit its limits; otherwise use a numbered list.
+  Open questions stay as plain text, because ready-made answers narrow what
+  the user says.
+- End each completed reply with a last line starting `Next:` that names the
+  one thing the user should do: the exact command, reply or skill. Complete
+  steps you can do yourself instead of handing them back. With nothing to
+  do, write `Next: nothing needed from you.` A question tool's picker takes
+  the line's place. Progress updates and reports to another agent need none.
+
+Example: `Next: reply "yes" to apply rows 1 to 3, or name the rows to drop.`
+
 ## Writing that lands in a repository
 
 Committed text must make sense to someone who wasn't there. Before committing,
