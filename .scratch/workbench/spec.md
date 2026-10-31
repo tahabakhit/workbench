@@ -23,7 +23,7 @@ under `## Decisions` wins.
 - Sources stay neutral. No skill hardcodes a tracker, chat or calendar;
   skills read the machine's `~/.local/share/workbench/sources.md` and work from
   git and `.scratch/` alone without it.
-- Self-contained skills. A skill never loads another skill. Reference
+- Skills call each other by name at the step that needs it. Reference
   material is a side file inside the skill's own folder, read at a named step.
   When several skills need the same side file, each folder gets a copy and
   `scripts/check.sh` fails if the copies differ.
@@ -165,3 +165,4 @@ Owned by workbench, not prioritised yet. Each gets an issue when it starts.
 | A repo shared with people who don't use workbench keeps `.scratch/` in `.git/info/exclude` and its sources in the machine's file | Workbench's files must not reach other people's repos |
 | Open fog stays in an optional `## Not yet specified` in `spec.md`, and a closed "Decide X" issue turns sharp fog into issues | Keeps wayfinder's value without a new skill or tracker machinery |
 | Every skill is model-invoked, and the cap on model-invoked skills is gone | Skills only the user could start rarely ran; the owner chose use over the context cost of their descriptions |
+| Skills call each other by writing "use the `name` skill" at the step that needs it | The owner wants workflows to run on from one skill to the next; side files stay for shared reference |

@@ -25,6 +25,10 @@ land; otherwise write nothing until step 2.
    for preferences, priorities and knowledge outside your reach. Run lookups
    in a subagent where you can and don't wait on them: only the questions
    that depend on a lookup wait; ask the rest now.
+   A question that needs more than a lookup goes out, and its answer comes
+   back into the interview. For facts from sources, use the `research` skill.
+   For logic to click through, use the `prototype` skill. For knowledge in
+   someone else's head, use the `draft-questions` skill.
 4. Ask all ready questions in one round, numbered. Give each your recommended
    answer and one line on why. Word each question so "yes" accepts the
    recommendation, so the user can reply "1 yes, 2 no: X". Then wait for the
@@ -60,3 +64,7 @@ entries and ADRs in that format.
 
 Done when the user has approved, edited or rejected each proposal, and only
 the approved ones are written.
+
+When the confirmed work spans sessions, use the `write-spec` skill in this
+session, so the spec comes from the interview itself. Work that fits this
+session needs no spec; do it here.

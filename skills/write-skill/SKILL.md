@@ -48,6 +48,8 @@ in each line (pointers, leading words, completion criteria, no-ops).
   every skill. A skill that fails step 2 of the check gets a better description.
 
 - Name no tool from one harness without the other's equivalent.
+- To call another skill, write "use the `<name>` skill" on one line at the step
+  that needs it, and say what comes back. All three harnesses load it by name.
 - Scripts: POSIX `sh` with `jq`, inside the skill's `scripts/` folder.
 
 ## 5. Check

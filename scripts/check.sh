@@ -65,6 +65,18 @@ if [ -n "$unrouted" ]; then
 fi
 echo "choose-skill: names every skill"
 
+unknown=$(grep -rhoE 'use the `[a-z-]+` skill' skills \
+  | sed 's/^use the `//; s/` skill$//' | sort -u \
+  | while IFS= read -r name; do
+      [ -f "skills/$name/SKILL.md" ] || echo "unknown skill called: $name"
+    done)
+
+if [ -n "$unknown" ]; then
+  printf '%s\n' "$unknown" >&2
+  exit 1
+fi
+echo "skill calls: every called skill exists"
+
 sh hooks/test-flag-correction.sh
 sh skills/study-topic/scripts/test-shuffle.sh
 sh skills/write-spec/scripts/test-check-spec.sh

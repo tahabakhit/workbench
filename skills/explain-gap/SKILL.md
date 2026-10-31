@@ -42,4 +42,6 @@ until the gap sits in one slice.
 State the cause, the query that proves it, how much of the gap it explains,
 and any rest still unexplained.
 
+When the cause is a bug in code, use the `diagnose` skill to fix it.
+
 Done when the explained part is shown by query output, not reasoning.

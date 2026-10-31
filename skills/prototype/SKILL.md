@@ -53,3 +53,5 @@ the module into real code only when asked; the HTML page stays a prototype.
 
 Done when the verdict is written on approval, or the user has said the
 prototype answered nothing worth keeping.
+
+When the question came from a `settle` interview, take the verdict back into it.

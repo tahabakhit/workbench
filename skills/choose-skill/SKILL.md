@@ -64,4 +64,8 @@ what to do with the session, read `phase-boundaries.md` in this skill's
 folder and walk its tree. Mid-phase there is no such decision: continue, or
 give the rest to a subagent.
 
-Done when the user has one recommendation they can run as typed.
+When the user asked for the work and not only for the name, use the recommended
+skill yourself.
+
+Done when the user has one recommendation they can run as typed, or that skill
+is running.

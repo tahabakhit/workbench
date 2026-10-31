@@ -106,7 +106,8 @@ collision keep the existing entry unless the draft corrects it. Commit the
 notebook with one message naming the entries. Remove the
 pending correction lines handled. In `since-last`, write the window end to
 `~/.local/share/workbench/state/record-last-run` (create the folder if needed). If a
-correction has now been seen in two or more sessions, suggest `improve`.
+correction has now been seen in two or more sessions, use the `improve` skill
+once the report is shown.
 
 Report each entry with its notebook path, what was dropped and
 why, and anything that failed. Done when the report is shown; in `preview`,

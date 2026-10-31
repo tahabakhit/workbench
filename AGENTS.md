@@ -26,8 +26,9 @@ workbench`, then start a new session.
   under the hook's 10,000-character cap.
 - Skill names are plain English verbs that name the outcome.
 - `choose-skill` names every skill; change its map when a skill changes.
-- A skill never loads another skill. Shared reference material is a side
-  file copied into each skill folder that reads it.
+- A skill calls another by writing "use the `name` skill" at the step that
+  needs it; `scripts/check.sh` fails on an unknown name. Shared reference
+  material is a side file copied into each skill folder that reads it.
 - Records go to the notebook layout in `contract.md`. No skill hardcodes a
   tracker, chat or calendar; skills read `~/.local/share/workbench/sources.md`.
 - `plugin.json` has no `version`, so every commit counts as an update.
