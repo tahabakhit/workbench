@@ -23,7 +23,8 @@ workbench`, then start a new session.
 
 ## Plugin rules
 
-- `hooks/session-context.sh` adds `contract.md` to every session; keep it
+- `hooks/session-context.sh` adds `contract.md` to every session, then the
+  notebook push of up to 2,000 characters; keep the two together
   under the hook's 10,000-character cap.
 - Skill names are plain English verbs that name the outcome.
 - `choose-skill` names every skill; change its map when a skill changes.

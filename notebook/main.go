@@ -20,6 +20,7 @@ commands:
   backlinks <note> notes that link to it
   file <path>      validate, write and commit a note from stdin
   validate [path]  check one note or the whole vault
+  push --repo <r>  the session-start text
   mcp              serve the read commands over stdio
 
 run "notebook <command> --help" for flags
@@ -53,6 +54,8 @@ func run(args []string, stdout, stderr io.Writer) int {
 		err = runFile(args[1:], stdout, stderr)
 	case "validate":
 		err = runValidate(args[1:], stdout, stderr)
+	case "push":
+		err = runPush(args[1:], stdout, stderr)
 	case "mcp":
 		err = runMCP(args[1:], stderr)
 	default:

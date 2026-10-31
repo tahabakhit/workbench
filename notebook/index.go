@@ -71,7 +71,7 @@ func openIndex(file string) (*sql.DB, error) {
 	dsn := url.URL{
 		Scheme:   "file",
 		Path:     abs,
-		RawQuery: "_pragma=busy_timeout(30000)&_txlock=immediate",
+		RawQuery: "_pragma=busy_timeout(5000)&_txlock=immediate",
 	}
 	db, err := sql.Open("sqlite", dsn.String())
 	if err != nil {

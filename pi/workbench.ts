@@ -1,7 +1,7 @@
 // Pi's side of the plugin: the contract, notebook install and correction flagging that
 // hooks/hooks.json gives Claude Code and Codex, plus the researcher agent,
 // which a Pi package cannot carry. Skills come from package.json.
-import { spawn } from "node:child_process";
+import { execFile, spawn } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
@@ -11,6 +11,7 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 const contract = readFileSync(new URL("../contract.md", import.meta.url), "utf8");
 const flagCorrection = fileURLToPath(new URL("../hooks/flag-correction.sh", import.meta.url));
 const installNotebook = fileURLToPath(new URL("../hooks/install-notebook.sh", import.meta.url));
+const sessionContext = fileURLToPath(new URL("../hooks/session-context.sh", import.meta.url));
 
 const managed = "workbench_managed: true";
 const researcher = readFileSync(new URL("../agents/researcher.md", import.meta.url), "utf8")
@@ -44,13 +45,19 @@ function installResearcher() {
 }
 
 export default function workbench(pi: ExtensionAPI) {
-	pi.on("session_start", () => {
+	let context = contract;
+
+	pi.on("session_start", (_event, ctx) => {
 		installResearcher();
+		// Adds the notebook push; on any failure the plain contract stays.
+		execFile("sh", [sessionContext], { cwd: ctx?.cwd, timeout: 5000 }, (error, stdout) => {
+			if (!error) context = stdout;
+		});
 		spawn("sh", [installNotebook], { stdio: "ignore" }).on("error", () => {});
 	});
 
 	pi.on("before_agent_start", (event) => {
-		event.systemPromptOptions.sections.workbench_contract = contract;
+		event.systemPromptOptions.sections.workbench_contract = context;
 	});
 
 	pi.on("input", async (event, ctx) => {

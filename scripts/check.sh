@@ -78,6 +78,7 @@ fi
 echo "skill calls: every called skill exists"
 
 sh hooks/test-flag-correction.sh
+sh hooks/test-session-context.sh
 sh skills/study-topic/scripts/test-shuffle.sh
 sh skills/write-spec/scripts/test-check-spec.sh
 sh scripts/test-pi-extension.sh
