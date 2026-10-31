@@ -53,7 +53,7 @@ install_release() {
 }
 
 hash=$(sh "$here/source-hash.sh")
-if [ "$(cat "$stamp" 2>/dev/null)" != "$hash" ]; then
+if [ ! -x "$binary" ] || [ "$(cat "$stamp" 2>/dev/null)" != "$hash" ]; then
   (install_release "$hash")
 fi
 

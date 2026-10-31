@@ -80,6 +80,10 @@ release two
 sh "$plugin/run.sh" --install
 [ "$("$binary" x)" = "two x" ] || fail "--install"
 ok "--install updates the binary and starts nothing"
+rm "$binary"
+sh "$plugin/run.sh" --install
+[ -x "$binary" ] || fail "deleted binary not reinstalled"
+ok "a deleted binary is reinstalled though its stamp matches"
 [ -z "$(find "$(dirname "$binary")" -name '.install-*')" ] || fail "work folder left"
 ok "no work folder left"
 
