@@ -1,6 +1,6 @@
 # 01 Go module, index and notebook search
 
-Status: open
+Status: done
 
 ## What
 

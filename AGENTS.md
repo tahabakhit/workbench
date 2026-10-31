@@ -14,7 +14,8 @@ Run after every change to the plugin, and quote the output:
 sh scripts/check.sh
 ```
 
-It needs `claude`, `jq` and `git`; the Pi extension tests skip without `node`.
+It needs `claude`, `jq` and `git`; the Pi extension tests skip without `node`,
+the notebook tests without `go`.
 Sessions load the plugin from
 the GitHub marketplace, so a change reaches them only after it is pushed. To
 pick it up right away, push, run `claude plugin marketplace update

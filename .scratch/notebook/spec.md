@@ -82,7 +82,7 @@ notebook/source-hash.sh   hash of notebook/, shared by the shim and CI
 
 | # | Task | Blocked by | Status |
 |---|---|---|---|
-| 01 | Go module, index and `notebook search` | | open |
+| 01 | Go module, index and `notebook search` | | done |
 | 02 | `recall`, `links`, `backlinks` | 01 | open |
 | 03 | `file` and `validate` | 01 | open |
 | 04 | Read-only `notebook mcp` | 02 | open |

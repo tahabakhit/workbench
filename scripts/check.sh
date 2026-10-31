@@ -81,3 +81,4 @@ sh hooks/test-flag-correction.sh
 sh skills/study-topic/scripts/test-shuffle.sh
 sh skills/write-spec/scripts/test-check-spec.sh
 sh scripts/test-pi-extension.sh
+sh scripts/test-notebook.sh
