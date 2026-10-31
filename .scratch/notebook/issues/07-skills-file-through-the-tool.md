@@ -34,3 +34,11 @@ contract under the hook's cap.
   the vault made by `notebook file`; `git -C
   ~/.local/share/workbench/notebook log --oneline -3` is quoted here.
 - With the binary renamed away, a `record` run still files directly.
+
+## Notes from issue 03
+
+- `notebook file --update` replaces the whole file: read it, add the new
+  text, pipe the result in. That is how `study-topic` adds to `quiz.md`.
+- Every note needs frontmatter with `date`, so `study-topic` must write it, and
+  the five files under `learning/posix-sh-parameter-expansion/` fail
+  `notebook validate` until they gain it.

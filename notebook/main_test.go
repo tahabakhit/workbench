@@ -21,6 +21,8 @@ const (
 	forcePushID = "aa15fcfe1153"
 )
 
+var testNow = time.Date(2026, 10, 31, 12, 0, 0, 0, time.UTC)
+
 type env struct {
 	vault, index string
 }

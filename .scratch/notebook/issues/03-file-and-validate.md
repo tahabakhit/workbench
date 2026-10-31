@@ -1,6 +1,6 @@
 # 03 file and validate
 
-Status: open
+Status: done
 Blocked by: 01
 
 ## What
@@ -30,3 +30,19 @@ a test.
 - A test files a good note and sees exactly one new commit holding only it.
 - `cd notebook && go run . validate` on the real vault reports each problem by
   path, and the report is quoted in this issue.
+
+## Result
+
+`go run . validate` on the real vault, exit 1:
+
+```
+error	learning/posix-sh-parameter-expansion/lessons/01-default-forms.md	missing frontmatter
+error	learning/posix-sh-parameter-expansion/lessons/02-strip-prefix-suffix.md	missing frontmatter
+error	learning/posix-sh-parameter-expansion/mission.md	missing frontmatter
+error	learning/posix-sh-parameter-expansion/quiz.md	missing frontmatter
+error	learning/posix-sh-parameter-expansion/sources.md	missing frontmatter
+```
+
+`--update` also covers `learning/<topic>/` `mission.md`, `sources.md` and
+`quiz.md`, because `study-topic` adds to them. The same-name check skips
+`learning/`, where topics repeat file names by design.

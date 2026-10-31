@@ -8,7 +8,6 @@ import (
 	"io/fs"
 	"net/url"
 	"os"
-	"path"
 	"path/filepath"
 	"strings"
 
@@ -261,7 +260,7 @@ func dropNote(tx *sql.Tx, rel string) error {
 func addNote(tx *sql.Tx, rel string, mtime int64, n note) error {
 	res, err := tx.Exec(
 		"INSERT INTO notes (path, id, kind, date, repo, scope, title, stem, mtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-		rel, n.id, n.kind, n.date, n.repo, n.scope, n.title, strings.TrimSuffix(path.Base(rel), ".md"), mtime)
+		rel, n.id, n.kind, n.date, n.repo, n.scope, n.title, stemOf(rel), mtime)
 	if err != nil {
 		return err
 	}

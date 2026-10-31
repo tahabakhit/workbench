@@ -44,24 +44,32 @@ type directory struct {
 	names map[string][]string
 }
 
+func newDirectory() *directory {
+	return &directory{ids: map[string]string{}, paths: map[string]bool{}, names: map[string][]string{}}
+}
+
+func (d *directory) add(rel, id, title, stem string) {
+	d.ids[id] = rel
+	d.paths[rel] = true
+	d.names[title] = append(d.names[title], rel)
+	if stem != title {
+		d.names[stem] = append(d.names[stem], rel)
+	}
+}
+
 func loadDirectory(ctx context.Context, db *sql.DB) (*directory, error) {
 	rows, err := db.QueryContext(ctx, "SELECT path, id, title, stem FROM notes ORDER BY path")
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	d := &directory{ids: map[string]string{}, paths: map[string]bool{}, names: map[string][]string{}}
+	d := newDirectory()
 	for rows.Next() {
 		var rel, id, title, stem string
 		if err := rows.Scan(&rel, &id, &title, &stem); err != nil {
 			return nil, err
 		}
-		d.ids[id] = rel
-		d.paths[rel] = true
-		d.names[title] = append(d.names[title], rel)
-		if stem != title {
-			d.names[stem] = append(d.names[stem], rel)
-		}
+		d.add(rel, id, title, stem)
 	}
 	return d, rows.Err()
 }

@@ -26,10 +26,10 @@ func noteID(rel string) string {
 func parseNote(rel string, data []byte) note {
 	text := strings.TrimPrefix(string(data), "\xef\xbb\xbf")
 	text = strings.ReplaceAll(text, "\r\n", "\n")
-	fields, body := splitFrontmatter(text)
+	fields, body, _ := splitFrontmatter(text)
 	title, body := splitTitle(body)
 	if title == "" {
-		title = strings.TrimSuffix(path.Base(rel), ".md")
+		title = stemOf(rel)
 	}
 	return note{
 		id:         noteID(rel),
@@ -44,6 +44,10 @@ func parseNote(rel string, data []byte) note {
 	}
 }
 
+func stemOf(rel string) string {
+	return strings.TrimSuffix(path.Base(rel), ".md")
+}
+
 // kindOf is the top folder, or the file's own name for a note at the vault
 // root (corrections.md, goals.md).
 func kindOf(rel string) string {
@@ -55,22 +59,22 @@ func kindOf(rel string) string {
 
 // splitFrontmatter reads the flat `key: value` lines the notebook uses. Text
 // without a closing delimiter is all body.
-func splitFrontmatter(text string) (map[string]string, string) {
+func splitFrontmatter(text string) (map[string]string, string, bool) {
 	fields := map[string]string{}
 	rest, ok := strings.CutPrefix(text, "---\n")
 	if !ok {
-		return fields, text
+		return fields, text, false
 	}
 	head, body, ok := strings.Cut("\n"+rest, "\n---\n")
 	if !ok {
-		return fields, text
+		return fields, text, false
 	}
 	for _, line := range strings.Split(head, "\n") {
 		if key, value, found := strings.Cut(line, ":"); found {
 			fields[strings.TrimSpace(key)] = strings.Trim(strings.TrimSpace(value), `"'`)
 		}
 	}
-	return fields, body
+	return fields, body, true
 }
 
 // splitTitle takes the first level-one heading outside a code fence out of the

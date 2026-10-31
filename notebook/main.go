@@ -18,6 +18,8 @@ commands:
   recall <note>    one whole note
   links <note>     outgoing wikilinks, flagging broken and ambiguous
   backlinks <note> notes that link to it
+  file <path>      validate, write and commit a note from stdin
+  validate [path]  check one note or the whole vault
 
 run "notebook <command> --help" for flags
 `
@@ -46,6 +48,10 @@ func run(args []string, stdout, stderr io.Writer) int {
 		err = runLinks(args[1:], stdout, stderr)
 	case "backlinks":
 		err = runBacklinks(args[1:], stdout, stderr)
+	case "file":
+		err = runFile(args[1:], stdout, stderr)
+	case "validate":
+		err = runValidate(args[1:], stdout, stderr)
 	default:
 		err = usageError(fmt.Sprintf("unknown command %q\n%s", args[0], usageText))
 	}
@@ -53,6 +59,8 @@ func run(args []string, stdout, stderr io.Writer) int {
 	switch {
 	case err == nil, errors.Is(err, flag.ErrHelp):
 		return 0
+	case errors.Is(err, errFound):
+		return 1
 	case errors.Is(err, errBadFlag):
 		return 2
 	case errors.As(err, &usage):

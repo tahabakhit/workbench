@@ -84,7 +84,7 @@ notebook/source-hash.sh   hash of notebook/, shared by the shim and CI
 |---|---|---|---|
 | 01 | Go module, index and `notebook search` | | done |
 | 02 | `recall`, `links`, `backlinks` | 01 | done |
-| 03 | `file` and `validate` | 01 | open |
+| 03 | `file` and `validate` | 01 | done |
 | 04 | Read-only `notebook mcp` | 02 | open |
 | 05 | Release workflow, shim and install | 03, 04 | open |
 | 06 | Session push | 02, 05 | open |
