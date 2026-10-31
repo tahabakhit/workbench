@@ -1,0 +1,51 @@
+name: notebook-release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - notebook/**
+      - .github/workflows/notebook-release.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: notebook-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      CGO_ENABLED: "0"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version-file: notebook/go.mod
+          cache-dependency-path: notebook/go.sum
+      - name: Test
+        working-directory: notebook
+        run: go test ./...
+      - name: Build
+        working-directory: notebook
+        run: |
+          mkdir ../dist
+          for os in linux darwin; do
+            for arch in amd64 arm64; do
+              GOOS=$os GOARCH=$arch go build -trimpath -ldflags='-s -w' -o "../dist/notebook-$os-$arch" .
+            done
+          done
+          cd ../dist
+          sha256sum notebook-* > checksums.txt
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="notebook-$(sh notebook/source-hash.sh)"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "$tag already published"
+            exit 0
+          fi
+          gh release create "$tag" dist/* --title "$tag" --notes "notebook built from $GITHUB_SHA" --latest=false

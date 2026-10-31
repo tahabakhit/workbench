@@ -13,7 +13,15 @@ fi
 data=$(mktemp -d)
 trap 'rm -rf "$data"' EXIT
 
-XDG_DATA_HOME="$data" PI_CODING_AGENT_DIR="$data/pi" EXTENSION="$root/pi/workbench.ts" CONTRACT="$root/contract.md" \
+# A file:// release keeps the notebook install off the network.
+hash=$(sh "$root/notebook/source-hash.sh")
+release=$data/releases/notebook-$hash
+mkdir -p "$release"
+file=notebook-$(uname -s | tr '[:upper:]' '[:lower:]')-$(case $(uname -m) in x86_64 | amd64) echo amd64 ;; *) echo arm64 ;; esac)
+printf '#!/bin/sh\n' > "$release/$file"
+(cd "$release" && { sha256sum "$file" 2>/dev/null || shasum -a 256 "$file"; } > checksums.txt)
+
+NOTEBOOK_RELEASE_URL="file://$data/releases" XDG_DATA_HOME="$data" PI_CODING_AGENT_DIR="$data/pi" EXTENSION="$root/pi/workbench.ts" CONTRACT="$root/contract.md" \
   node --no-warnings --experimental-strip-types --input-type=module -e '
 import assert from "node:assert/strict";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
@@ -68,5 +76,12 @@ writeFileSync(agent, "my own agent\n");
 await handlers.session_start();
 assert.equal(readFileSync(agent, "utf8"), "my own agent\n");
 console.log("ok    personal researcher kept");
+
+const notebook = join(process.env.XDG_DATA_HOME, "workbench/bin/notebook");
+for (let i = 0; i < 100 && !existsSync(notebook); i++) {
+	await new Promise((resolve) => setTimeout(resolve, 50));
+}
+assert.equal(existsSync(notebook), true);
+console.log("ok    notebook installed");
 '
 echo "pi extension tests: passed"

@@ -1,5 +1,5 @@
 {
-  "description": "Adds the workbench contract to every session and flags prompts that correct the agent for the record skill",
+  "description": "Adds the workbench contract to every session, installs the notebook binary, and flags prompts that correct the agent for the record skill",
   "hooks": {
     "SessionStart": [
       {
@@ -7,6 +7,11 @@
           {
             "type": "command",
             "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/session-context.sh",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/install-notebook.sh",
             "timeout": 10
           }
         ]
