@@ -73,3 +73,26 @@ Side findings, not skill defects: the homelab write-spec run noticed the
 existing Caddyfile proxies to `host.docker.internal` without the
 `extra_hosts` entry Linux needs, and reported it separately. The brownfield
 run edited issues in the older folder only after the quiz approved it.
+
+## Publish to a GitHub tracker
+
+Scenario: a private owner repo, a scratch clone, a one-issue spec, and a
+GitHub tracker line in that clone's `AGENTS.md` `## Sources`, not committed.
+Step 5 was followed by hand in the working session, not by a fresh session,
+to keep to the one approved issue.
+
+| Check | Result |
+|---|---|
+| Create, from the line's command | issue #1 created; `gh` printed its URL |
+| `Tracker:` line under `Status:` | written; `check-spec.sh` prints "spec and issues agree" |
+| URL resolves | `gh issue view` returns #1, OPEN; anonymous request 404, as the repo is private |
+| Close, from the line's command | issue CLOSED (COMPLETED) with the evidence comment |
+| Local status after close | issue and spec table set to `done`; `check-spec.sh` agrees |
+
+Findings:
+
+- The machine's `sources.md` tracker line has only a search command and no
+  create command. A repo without its own `## Sources` line would pass step 5's
+  "not local" test with nothing to run. Step 5 does not say what to do then.
+- `gh issue create --body-file` sends the whole issue file, so the body repeats
+  the title heading and `Status: open`, which go stale once the issue closes.

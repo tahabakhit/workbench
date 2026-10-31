@@ -22,12 +22,13 @@ Prove the untested tracker path: `onboard` plus `write-spec` publishing to a rea
 - verified: the plugin is installed in the real `~/.codex`. A live `codex exec` session loads the 3 model-invoked skills, not the 13 user-invoked ones, and does not get the contract (issue 20).
 - verified: after the owner trusted the hooks, a new `codex exec` session answers the issue 20 question from the contract.
 - verified: Pi has the package from git; a plain `pi -p` session answers the same question from the contract, and all 16 skills load. `researcher` runs in Pi; it needs `pi-subagents` and `pi-web-access`.
-- assumed: the `write-spec` publish step works against a real tracker. It has never run.
+- verified: `write-spec` step 5 against a real GitHub tracker, run by hand in the working session: create, `Tracker:` line, URL resolves, close, `check-spec.sh` agrees (`.scratch/workbench/trials/write-spec.md`).
+- assumed: a fresh session follows step 5 on its own. Only the by-hand run has happened.
 - assumed: the GitLab line in `tracker-lines.md` works. Its commands come from upstream's template and `glab` is not installed here.
 
 ## Next
 
-1. Trial publishing on a repo the owner names, with a GitHub tracker line and a throwaway issue. Creating an issue needs the owner's approval. Done when an issue file holds a `Tracker:` line whose URL resolves.
+1. Decide the two findings at the end of `.scratch/workbench/trials/write-spec.md`: a machine tracker line with no create command, and issue bodies that carry a stale `Status:` line.
 
 ## Read first
 
