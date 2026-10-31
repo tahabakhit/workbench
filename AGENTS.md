@@ -44,7 +44,8 @@ workbench`, then start a new session.
 
 ## Work tracking
 
-Follows `contract.md`. Open work is in `.scratch/workbench/`.
+Follows `contract.md`. Open work is in GitHub issues on the Agent Development
+project; `.scratch/workbench/` and `.scratch/notebook/` hold the working copies.
 Background input: `.scratch/bootstrap/decisions.md` and the per-skill verdicts
 in `.scratch/bootstrap/mattpocock-analysis.md`. On conflict, the newest
 `## Decisions` entry in a spec wins. Terms are in `GLOSSARY.md`.

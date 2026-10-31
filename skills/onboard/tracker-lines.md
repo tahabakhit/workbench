@@ -8,9 +8,13 @@ says.
 ```md
 - tracker: local, .scratch/ only
 - tracker: GitHub <owner/repo> | list `gh issue list --repo <owner/repo> --state open --limit 50` | create `gh issue create --repo <owner/repo> --title <title> --body-file <file>` | close `gh issue close <n> --repo <owner/repo> --comment <evidence>`
+- tracker: GitHub <owner/repo>, project <n> | list `gh issue list --repo <owner/repo> --state open --limit 50` | create `gh issue create --repo <owner/repo> --title <title> --body-file <file>`, then `gh project item-add <n> --owner <owner> --url <issue url>` | close `gh issue close <n> --repo <owner/repo> --comment <evidence>`
 - tracker: GitLab <group/repo> | list `glab issue list -O json` | create `glab issue create --title <title> --description <text>` | close `glab issue note <n> --message <evidence>`, then `glab issue close <n>`
 - tracker: <name> | list <command or tool call> | create <command or tool call> | close <command or tool call>
 ```
+
+A GitHub Project needs `gh auth refresh --hostname github.com --scopes project`
+once. Its board sets new items to Todo and closed ones to Done by itself.
 
 `glab` works out the project from the clone's remote, so run its commands
 inside the repo.

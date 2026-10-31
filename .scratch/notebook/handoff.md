@@ -8,7 +8,7 @@ Close notebook issue 08 and workbench issue 11 once the vault shows real use on 
 
 - Branch `main`, level with `origin/main` once this file is pushed. No uncommitted changes.
 - Done: notebook issues 01 to 07. The `notebook` tool searches, recalls, follows links, files, validates, serves read-only MCP and pushes notes at session start.
-- Open: notebook issue 08, the last open issue in `.scratch/`; workbench issue 11 closes with it.
+- Open: notebook issue 08 (GitHub #1), the last open issue in `.scratch/`; workbench issue 11 (GitHub #2) closes with it. Close both on GitHub too, with the evidence.
 - Installed here: plugin `c2bb62d` in Claude Code, plus Codex and Pi; binary from release `notebook-1a42e3560db85a95`.
 - Not in this repo: `delegatr` distribution decision, paused mid-grilling at round 2 (`plans/2026-10-31.md` in the notebook).
 
@@ -25,6 +25,8 @@ Close notebook issue 08 and workbench issue 11 once the vault shows real use on 
 - verified: the owner approved pushing and releases on 2026-10-31. Auto mode blocked the first release push until they said so, so a later push touching `notebook/` may be stopped again; it is covered by the standing approval in `spec.md`.
 - assumed: the darwin binaries run. They were built and checksummed, never executed, and macOS is out of daily use.
 - assumed: the plain `record` and `study-topic` wording works in interactive sessions. The real runs used `claude -p` with tools allowed by flag.
+
+- verified: tracking runs on GitHub. The `tracker (<repo>)` lines in `~/.local/share/workbench/sources.md` map workbench and delegatr to project 3, dotfiles to 4, homelab to 2 and salon to 6.
 
 ## Known gaps
 

@@ -1,6 +1,7 @@
 # 11 notebook: build the vault tool in this repo, up to switch-over
 
 Status: open
+Tracker: https://github.com/tahabakhit/workbench/issues/2
 
 Step 4 of the Order. The notebook tool lives in `notebook/` in this repo and
 ships in this plugin. Its own spec goes in `.scratch/notebook/`, written with
