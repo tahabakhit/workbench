@@ -200,14 +200,57 @@ func queryStrings(ctx context.Context, db *sql.DB, query string, args ...any) ([
 	return values, rows.Err()
 }
 
-// noteCommand parses the arguments shared by the commands that take one note
-// and returns the open index and that note's path.
-func noteCommand(name string, args []string, stderr io.Writer, asJSON *bool) (*sql.DB, *locations, string, error) {
+// withNote opens a fresh index and finds the one note a name means.
+func withNote(ctx context.Context, loc *locations, name string, use func(db *sql.DB, rel string) error) error {
+	if strings.TrimSpace(name) == "" {
+		return usageError("a note is needed")
+	}
+	db, err := openFresh(ctx, loc)
+	if err != nil {
+		return err
+	}
+	defer db.Close()
+	rel, err := findNote(ctx, db, name)
+	if err != nil {
+		return err
+	}
+	return use(db, rel)
+}
+
+func recallNote(ctx context.Context, loc *locations, name string) (string, error) {
+	var text []byte
+	err := withNote(ctx, loc, name, func(_ *sql.DB, rel string) (err error) {
+		text, err = os.ReadFile(filepath.Join(loc.vault, filepath.FromSlash(rel)))
+		return err
+	})
+	return string(text), err
+}
+
+func linksOf(ctx context.Context, loc *locations, name string) ([]link, error) {
+	var found []link
+	err := withNote(ctx, loc, name, func(db *sql.DB, rel string) (err error) {
+		found, err = outgoingLinks(ctx, db, rel)
+		return err
+	})
+	return found, err
+}
+
+func backlinksOf(ctx context.Context, loc *locations, name string) ([]string, error) {
+	var sources []string
+	err := withNote(ctx, loc, name, func(db *sql.DB, rel string) (err error) {
+		sources, err = backlinksTo(ctx, db, rel)
+		return err
+	})
+	return sources, err
+}
+
+// noteArgs parses the arguments of a command that takes one note.
+func noteArgs(name string, args []string, stderr io.Writer, asJSON *bool) (*locations, string, error) {
 	fs := flag.NewFlagSet(name, flag.ContinueOnError)
 	fs.SetOutput(stderr)
 	loc, err := addPathFlags(fs)
 	if err != nil {
-		return nil, nil, "", err
+		return nil, "", err
 	}
 	if asJSON != nil {
 		fs.BoolVar(asJSON, "json", false, "print JSON")
@@ -218,46 +261,31 @@ func noteCommand(name string, args []string, stderr io.Writer, asJSON *bool) (*s
 	}
 	words, err := parseFlags(fs, args)
 	if err != nil {
-		return nil, nil, "", err
+		return nil, "", err
 	}
-	if len(words) == 0 {
-		return nil, nil, "", usageError(name + " needs a note")
-	}
-	ctx := context.Background()
-	db, err := openFresh(ctx, loc)
-	if err != nil {
-		return nil, nil, "", err
-	}
-	rel, err := findNote(ctx, db, strings.Join(words, " "))
-	if err != nil {
-		db.Close()
-		return nil, nil, "", err
-	}
-	return db, loc, rel, nil
+	return loc, strings.Join(words, " "), nil
 }
 
 func runRecall(args []string, stdout, stderr io.Writer) error {
-	db, loc, rel, err := noteCommand("recall", args, stderr, nil)
+	loc, name, err := noteArgs("recall", args, stderr, nil)
 	if err != nil {
 		return err
 	}
-	defer db.Close()
-	text, err := os.ReadFile(filepath.Join(loc.vault, filepath.FromSlash(rel)))
+	text, err := recallNote(context.Background(), loc, name)
 	if err != nil {
 		return err
 	}
-	_, err = stdout.Write(text)
+	_, err = io.WriteString(stdout, text)
 	return err
 }
 
 func runLinks(args []string, stdout, stderr io.Writer) error {
 	var asJSON bool
-	db, _, rel, err := noteCommand("links", args, stderr, &asJSON)
+	loc, name, err := noteArgs("links", args, stderr, &asJSON)
 	if err != nil {
 		return err
 	}
-	defer db.Close()
-	found, err := outgoingLinks(context.Background(), db, rel)
+	found, err := linksOf(context.Background(), loc, name)
 	if err != nil {
 		return err
 	}
@@ -279,12 +307,11 @@ func runLinks(args []string, stdout, stderr io.Writer) error {
 
 func runBacklinks(args []string, stdout, stderr io.Writer) error {
 	var asJSON bool
-	db, _, rel, err := noteCommand("backlinks", args, stderr, &asJSON)
+	loc, name, err := noteArgs("backlinks", args, stderr, &asJSON)
 	if err != nil {
 		return err
 	}
-	defer db.Close()
-	sources, err := backlinksTo(context.Background(), db, rel)
+	sources, err := backlinksOf(context.Background(), loc, name)
 	if err != nil {
 		return err
 	}

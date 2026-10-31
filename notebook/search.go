@@ -24,6 +24,14 @@ WHERE notes_fts MATCH ?1
 ORDER BY score DESC, n.path
 LIMIT ?5`
 
+const defaultLimit = 20
+
+type searchOptions struct {
+	query, repo, kind string
+	all               bool
+	limit             int
+}
+
 type result struct {
 	Path    string  `json:"path"`
 	ID      string  `json:"id"`
@@ -35,6 +43,26 @@ type result struct {
 	Repo    string  `json:"repo,omitempty"`
 }
 
+// searchVault is the search command behind both the CLI and the MCP tool.
+func searchVault(ctx context.Context, loc *locations, opts searchOptions) ([]result, error) {
+	if strings.TrimSpace(opts.query) == "" {
+		return nil, usageError("search needs a query")
+	}
+	if opts.limit < 1 {
+		return nil, usageError("the limit must be at least 1")
+	}
+	match := matchExpression(opts.query)
+	if match == "" {
+		return nil, usageError("the query has no words to search for")
+	}
+	db, err := openFresh(ctx, loc)
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+	return search(ctx, db, match, opts.repo, opts.kind, opts.all, opts.limit)
+}
+
 func runSearch(args []string, stdout, stderr io.Writer) error {
 	fs := flag.NewFlagSet("search", flag.ContinueOnError)
 	fs.SetOutput(stderr)
@@ -42,10 +70,11 @@ func runSearch(args []string, stdout, stderr io.Writer) error {
 	if err != nil {
 		return err
 	}
-	repo := fs.String("repo", "", "only notes from this `repo`")
-	kind := fs.String("kind", "", "only notes of this `kind`, such as log or lessons")
-	all := fs.Bool("all", false, "include superseded notes")
-	limit := fs.Int("limit", 20, "show at most `n` results")
+	var opts searchOptions
+	fs.StringVar(&opts.repo, "repo", "", "only notes from this `repo`")
+	fs.StringVar(&opts.kind, "kind", "", "only notes of this `kind`, such as log or lessons")
+	fs.BoolVar(&opts.all, "all", false, "include superseded notes")
+	fs.IntVar(&opts.limit, "limit", defaultLimit, "show at most `n` results")
 	asJSON := fs.Bool("json", false, "print JSON")
 	fs.Usage = func() {
 		fmt.Fprintln(stderr, "usage: notebook search <query> [flags]")
@@ -55,24 +84,8 @@ func runSearch(args []string, stdout, stderr io.Writer) error {
 	if err != nil {
 		return err
 	}
-	if len(words) == 0 {
-		return usageError("search needs a query")
-	}
-	if *limit < 1 {
-		return usageError("--limit must be at least 1")
-	}
-	match := matchExpression(strings.Join(words, " "))
-	if match == "" {
-		return usageError("the query has no words to search for")
-	}
-
-	ctx := context.Background()
-	db, err := openFresh(ctx, loc)
-	if err != nil {
-		return err
-	}
-	defer db.Close()
-	results, err := search(ctx, db, match, *repo, *kind, *all, *limit)
+	opts.query = strings.Join(words, " ")
+	results, err := searchVault(context.Background(), loc, opts)
 	if err != nil {
 		return err
 	}

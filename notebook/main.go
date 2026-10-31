@@ -20,6 +20,7 @@ commands:
   backlinks <note> notes that link to it
   file <path>      validate, write and commit a note from stdin
   validate [path]  check one note or the whole vault
+  mcp              serve the read commands over stdio
 
 run "notebook <command> --help" for flags
 `
@@ -52,6 +53,8 @@ func run(args []string, stdout, stderr io.Writer) int {
 		err = runFile(args[1:], stdout, stderr)
 	case "validate":
 		err = runValidate(args[1:], stdout, stderr)
+	case "mcp":
+		err = runMCP(args[1:], stderr)
 	default:
 		err = usageError(fmt.Sprintf("unknown command %q\n%s", args[0], usageText))
 	}
