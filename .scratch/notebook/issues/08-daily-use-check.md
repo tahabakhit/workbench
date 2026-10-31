@@ -5,28 +5,24 @@ Blocked by: 06, 07
 
 ## What
 
-Prove the tool in real work on this PC, then close the parent issue. This needs
-real sessions across at least three separate days, so it can't finish in one
-sitting.
+Confirm the tool held up in ordinary work on this PC, then close the parent
+issue. This asks nothing special of the owner: they work as usual, and a later
+session reads what happened from the vault's git log. It needs commits from
+`record`, `plan-day` and `study-topic` on at least three separate days, so it
+can't finish in one sitting.
 
-- Use `record`, `plan-day` and `study-topic` in normal work.
-- Compare sessions with the push on and off
-  (`WORKBENCH_NOTEBOOK_PUSH=off`): whether the pushed notes were opened or
-  changed the work, and what the push cost in context. Remove the push if it
-  doesn't help, and record that under `## Decisions` in the spec.
-- Run `notebook validate` over the vault at the end.
+The push on/off comparison is dropped; see `## Decisions` in
+`.scratch/notebook/spec.md`.
 
 ## Done when
 
-- This issue quotes one dated run of each of the three skills and the final
-  `notebook validate` output.
-- The push decision, keep or remove, is under `## Decisions` in
-  `.scratch/notebook/spec.md`.
+- This issue quotes one dated run of each of the three skills, from
+  `git -C ~/.local/share/workbench/notebook log --format='%ad %h %s' --date=short`,
+  and the final `~/.local/share/workbench/bin/notebook validate` output.
 - `.scratch/workbench/issues/11-notebook.md` and its row in
   `.scratch/workbench/spec.md` are `Status: done` with the evidence linked.
 
 ## Runs so far
 
 Day 1, 2026-10-31: `record` `68ae543`, `plan-day` `e9fd6c8`, `study-topic`
-`e7af6e2`, as checks for issue 07. The push on or off comparison has not
-started.
+`e7af6e2`, as checks for issue 07.
