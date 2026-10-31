@@ -6,7 +6,7 @@ Prove the untested tracker path: `onboard` plus `write-spec` publishing to a rea
 
 ## State
 
-- Branch `main`, ahead of `origin/main`, not pushed.
+- Branch `main`, level with `origin/main`.
 - Done: per-repo tracker choice, shared-repo rule, `## Not yet specified`, self-noticed struggles in `record`, router check in `check.sh`, stale text fixes.
 - Open issues: 11 (notebook tool).
 
@@ -16,7 +16,7 @@ Prove the untested tracker path: `onboard` plus `write-spec` publishing to a rea
 - verified: the router check and the `tracker-and-fog` test each passed, failed on a deliberately broken case, and passed after the revert.
 - verified: `.git/info/exclude` hides `.scratch/` in a temporary repo (0 status lines).
 - verified: a fresh headless session ran `/workbench:onboard repo preview` from the installed `568284e` in a throwaway repo. It read `skills/onboard/tracker-lines.md`, asked where tasks live, recommended local and wrote nothing. Its answer named only the recommendation, not GitHub, GitLab or other as options.
-- verified: `tahabakhit/workbench` is public, so a push to `main` needs the owner's approval.
+- verified: `tahabakhit/workbench` is public. The owner lets agents push to the default branch of any repo they own, without asking.
 - verified: `codex plugin add workbench@workbench` in a temporary `CODEX_HOME` installed 16 skills and `hooks/hooks.json` (`.scratch/workbench/issues/20-contract-for-codex-pi.md`).
 - verified: this machine's `~/.local/share/workbench/sources.md` is keyed by kind (`host`, `tracker`).
 - verified: the plugin is installed in the real `~/.codex`. A live `codex exec` session loads the 3 model-invoked skills, not the 13 user-invoked ones, and does not get the contract (issue 20).
@@ -28,8 +28,7 @@ Prove the untested tracker path: `onboard` plus `write-spec` publishing to a rea
 
 ## Next
 
-1. Push `main` once the owner approves: it is ahead of `origin/main`, and sessions get the plugin only from GitHub.
-2. Start issue 11 in a fresh session: `Work .scratch/workbench/issues/11-notebook.md. Start with the write-spec skill, from the notebook section of .scratch/bootstrap/decisions.md.`
+1. Start issue 11 in a fresh session: `Work .scratch/workbench/issues/11-notebook.md. Start with the write-spec skill, from the notebook section of .scratch/bootstrap/decisions.md.`
 
 ## Read first
 
