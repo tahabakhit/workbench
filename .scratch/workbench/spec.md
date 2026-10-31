@@ -166,3 +166,4 @@ Owned by workbench, not prioritised yet. Each gets an issue when it starts.
 | Open fog stays in an optional `## Not yet specified` in `spec.md`, and a closed "Decide X" issue turns sharp fog into issues | Keeps wayfinder's value without a new skill or tracker machinery |
 | Every skill is model-invoked, and the cap on model-invoked skills is gone | Skills only the user could start rarely ran; the owner chose use over the context cost of their descriptions |
 | Skills call each other by writing "use the `name` skill" at the step that needs it | The owner wants workflows to run on from one skill to the next; side files stay for shared reference |
+| A subagent is always optional in a skill and in the contract | The owner decided workbench must not force an agent or harness into delegating; each harness and model chooses |

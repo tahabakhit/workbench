@@ -31,12 +31,11 @@ Done when the user has approved `mission.md`.
 
 ## 3. Sources
 
-Hand the `researcher` agent the mission and one question: which primary
-sources cover the topic up to the mission's done-when, and what each one
-covers. Where plugin agents don't exist, do that research yourself under the
-agent's rules: primary sources first (specs, papers, official docs, source
-code), every claim cited to a source opened in this session, gaps named
+Find which primary sources cover the topic up to the mission's done-when, and
+what each one covers: primary sources first (specs, papers, official docs,
+source code), every claim cited to a source opened in this session, gaps named
 rather than filled from memory, and a stop at 8 searches and 12 page reads.
+Where the harness offers it, a `researcher` agent can do this instead.
 
 Write `sources.md`: a numbered list of title, link, kind and what it covers
 for this mission, then `## Gaps` with each part of the mission no source

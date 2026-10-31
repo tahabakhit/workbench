@@ -50,6 +50,8 @@ in each line (pointers, leading words, completion criteria, no-ops).
 - Name no tool from one harness without the other's equivalent.
 - To call another skill, write "use the `<name>` skill" on one line at the step
   that needs it, and say what comes back. All three harnesses load it by name.
+- A subagent is an option a skill can mention, never a required step. Every
+  skill works in the main session, and the harness or the model decides.
 - Scripts: POSIX `sh` with `jq`, inside the skill's `scripts/` folder.
 
 ## 5. Check

@@ -38,8 +38,8 @@ for a start date. It ends now. Query every source:
 | Git | per repo seen in the sessions: `git -C <repo> log --since=<start> --author="$(git -C <repo> config user.email)" --format='%h %ad %s' --date=short` |
 | Declared | every line in `~/.local/share/workbench/sources.md` and in the `## Sources` of each repo seen, with its stated limits; with neither, note the gap |
 
-With more than five sessions, hand each project's digests to a subagent for
-candidates; verify each kept candidate against its digest. Group evidence
+With more than five sessions, a subagent can sort each project's digests into
+candidates. Verify each kept candidate against its digest. Group evidence
 into tasks: a ticket key, branch or PR ties a session, commits and a ticket
 together.
 

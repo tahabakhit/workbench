@@ -30,10 +30,10 @@ For trackers, gather both open items and items updated in the window. For
 chat, gather mentions, direct messages and threads the user is in, and check
 whether the user already replied.
 
-When the harness has subagents and there are three or more sources, give each
-source to a read-only subagent with the window, the exact query and this
-return shape: item, link, status, owner, deadline, who is waiting, last
-activity, and whether the user already acted. Otherwise query them in turn.
+Query the sources in turn. With three or more, read-only subagents are an option
+where the harness has them. Either way, collect the window, the exact query and
+this shape: item, link, status, owner, deadline, who is waiting, last activity,
+and whether the user already acted.
 
 Done when each source returned items or has a one-line note such as
 "Chat: skipped (not connected)".

@@ -22,9 +22,9 @@ land; otherwise write nothing until step 2.
    A question that is sharp but cannot be settled in this session becomes an
    open item (an issue or ticket), not a Not yet specified entry.
 3. Look up every fact you can (repo, docs, tools, data). Ask the user only
-   for preferences, priorities and knowledge outside your reach. Run lookups
-   in a subagent where you can and don't wait on them: only the questions
-   that depend on a lookup wait; ask the rest now.
+   for preferences, priorities and knowledge outside your reach. Lookups can
+   run in a subagent; only the questions that depend on one wait, so ask the
+   rest now.
    A question that needs more than a lookup goes out, and its answer comes
    back into the interview. For facts from sources, use the `research` skill.
    For logic to click through, use the `prototype` skill. For knowledge in

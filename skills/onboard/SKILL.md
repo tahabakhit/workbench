@@ -35,7 +35,7 @@ proposal and write nothing.
 
 ## Repo scope
 
-1. **Survey.** In a read-only subagent, return facts each with its source
+1. **Survey.** Read-only, by you or a subagent, gather facts each with its source
    (path, command or URL):
    - instruction files and agent tooling: `AGENTS.md`, `CLAUDE.md`,
      `CLAUDE.local.md`, `.cursor/`, `.github/copilot-instructions.md`,

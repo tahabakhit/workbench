@@ -15,14 +15,14 @@ Done when the question and its parts are written.
 
 ## 2. Gather
 
-Hand the `researcher` agent the question and its parts. Give independent
-parts that each need their own reading separate agents, at most three, in
-parallel, in the background where the harness allows, and keep working
-until they return. Where plugin agents don't exist, do the research yourself
-under the agent's rules: primary sources first (specs, papers, official
-docs, source code), every claim cited to a source opened in this session,
-gaps named rather than filled from memory, and a stop at 8 searches and 12
-page reads.
+Answer each part under these rules: primary sources first (specs, papers,
+official docs, source code), every claim cited to a source opened in this
+session, gaps named rather than filled from memory, and a stop at 8 searches
+and 12 page reads.
+
+Where you see a benefit and the harness offers it, a `researcher` agent can do
+this, and independent parts can go to separate agents, at most three. Doing it
+in this session is equally valid.
 
 Done when every part has cited claims or a named gap.
 

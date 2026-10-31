@@ -18,9 +18,9 @@ Rules shared by every machine.
   same change: each becomes `wontfix` too or names another blocker.
 - Ad hoc work gets no feature folder and no notes while it happens.
 - Finish at the done-when: run each check and quote its output. Before
-  closing, diff the result against the done-when and Out of scope in a fresh
-  subagent. Then the session that met it sets `Status: done` in the issue and
-  in the spec table.
+  closing, diff the result against the done-when and Out of scope; a fresh
+  subagent suits this where the harness has one. Then the session that met it
+  sets `Status: done` in the issue and in the spec table.
 - Write the failing test first. Mock only at system boundaries.
 - Tracker updates go to the trackers named in the Sources, with
   evidence, applied only on approval.
