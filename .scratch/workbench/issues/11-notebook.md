@@ -13,4 +13,5 @@ indexes, searches and files into those same files.
 - `.scratch/notebook/spec.md` is done.
 - The plugin ships the tool, and `record`, `plan-day` and `study-topic` file
   through it into `~/.local/share/workbench/notebook` on this PC.
-- Daily use on every machine runs on the notebook, with no other vault.
+- Daily use on this PC runs on the notebook, with no other vault. Other
+  machines are dropped; see `## Decisions` in `.scratch/notebook/spec.md`.
