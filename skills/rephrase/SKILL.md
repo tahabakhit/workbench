@@ -1,7 +1,6 @@
 ---
 name: rephrase
-description: Re-explain the previous message in plain English because it did not land.
-disable-model-invocation: true
+description: Use when the last message did not land, such as the user asking what you mean, saying they are lost, or asking for it in simpler words. Re-explains the previous message in plain English.
 ---
 
 # Rephrase

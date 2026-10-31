@@ -1,7 +1,6 @@
 ---
 name: onboard
-description: Set up this machine and the current repo for agent work, each the first time. Machine scope writes the machine's work sources file from the tools found and creates the notebook; repo scope surveys an existing repo, proposes keep, convert or delete for its agent artifacts, and writes AGENTS.md.
-disable-model-invocation: true
+description: Use when a machine or an existing repo is being set up for agent work for the first time, or the user asks to change where work comes from. Machine scope writes the work sources file and creates the notebook; repo scope surveys the repo, proposes keep, convert or delete for its agent artifacts, and writes AGENTS.md.
 ---
 
 # Onboard

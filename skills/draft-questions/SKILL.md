@@ -1,7 +1,6 @@
 ---
 name: draft-questions
-description: Turn a decision that depends on someone else's knowledge into a short questionnaire for them, ready to send.
-disable-model-invocation: true
+description: Use when a decision depends on someone else's knowledge and the answer has to come from them. Turns it into a short questionnaire, ready to send.
 ---
 
 # Draft questions

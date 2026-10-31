@@ -1,7 +1,6 @@
 ---
 name: plan-day
-description: Sweep the machine's work sources (tracker, notes, calendar, chat, open specs), rank what needs doing now, save a short daily plan, and propose tracker updates for work that is already done. Run at the start of a session with no set task.
-disable-model-invocation: true
+description: Use when the user asks what to work on, wants a daily plan, or starts a session with no set task. Sweeps the machine's work sources (tracker, notes, calendar, chat, open specs), ranks what needs doing now, saves a short plan, and proposes tracker updates for work already done.
 ---
 
 # Plan day

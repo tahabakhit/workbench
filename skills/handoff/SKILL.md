@@ -1,7 +1,6 @@
 ---
 name: handoff
-description: Write a handoff so a fresh session, in Claude Code, Codex or Pi or on another machine, can continue this work, and optionally start it in the background. Run with what the next session should do.
-disable-model-invocation: true
+description: Use when the user wants to stop, switch harness or machine, or pass work to a fresh session. Writes a handoff so a session in Claude Code, Codex or Pi can continue this work.
 ---
 
 # Handoff

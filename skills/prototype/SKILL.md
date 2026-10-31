@@ -1,7 +1,6 @@
 ---
 name: prototype
-description: Build a throwaway one-file HTML demo that answers one question about business logic, a state model or a data shape, for anyone to click through. Run with the question.
-disable-model-invocation: true
+description: Use when a question about business logic, a state model or a data shape is better answered by clicking through something than by discussing it. Builds a throwaway one-file HTML demo for anyone to try.
 ---
 
 # Prototype

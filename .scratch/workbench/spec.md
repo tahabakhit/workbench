@@ -61,7 +61,6 @@ The plugin does not ship herdr (the herdr binary provides it through
 .claude-plugin/plugin.json       name, description, author; no version
 .claude-plugin/marketplace.json  this repo as its own marketplace, source "./"
 skills/<name>/SKILL.md           one folder per skill
-skills/<name>/agents/openai.yaml Codex metadata for user-invoked skills
 skills/<name>/scripts/           POSIX sh helpers, executable bit set
 skills/<name>/<side-file>.md     reference material the skill reads
 contract.md                      work tracking, notebook layout, sources, writing rules
@@ -165,3 +164,4 @@ Owned by workbench, not prioritised yet. Each gets an issue when it starts.
 | Sources are keyed by kind, not tool | A repo's tracker has to replace the machine's even when the two use different tools |
 | A repo shared with people who don't use workbench keeps `.scratch/` in `.git/info/exclude` and its sources in the machine's file | Workbench's files must not reach other people's repos |
 | Open fog stays in an optional `## Not yet specified` in `spec.md`, and a closed "Decide X" issue turns sharp fog into issues | Keeps wayfinder's value without a new skill or tracker machinery |
+| Every skill is model-invoked, and the cap on model-invoked skills is gone | Skills only the user could start rarely ran; the owner chose use over the context cost of their descriptions |

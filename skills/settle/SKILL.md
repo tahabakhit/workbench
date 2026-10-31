@@ -1,7 +1,6 @@
 ---
 name: settle
-description: Stress-test a plan, design or decision by interview, in rounds of numbered questions with a recommended answer for each.
-disable-model-invocation: true
+description: Use when the user wants a plan, design or decision challenged before acting, or asks to be grilled on it. Stress-tests it by interview, in rounds of numbered questions with a recommended answer for each.
 ---
 
 # Settle

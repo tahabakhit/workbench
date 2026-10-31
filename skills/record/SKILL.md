@@ -1,7 +1,6 @@
 ---
 name: record
-description: File finished work, decisions, lessons and corrections into the notebook. Scope `session` (default) covers this session; `since-last` catches up on every session and source since the last run, after a preview the user approves.
-disable-model-invocation: true
+description: Use when the user asks to log, file, save or keep a task, decision or lesson, or when one is finished and worth keeping. Files them into the notebook, with corrections. Scope `session` (default) covers this session; `since-last` catches up on every session and source since the last run, after a preview the user approves.
 ---
 
 # Record

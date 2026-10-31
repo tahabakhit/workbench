@@ -1,7 +1,6 @@
 ---
 name: research
-description: Answer one question from primary sources, with a citation for every claim and the gaps named, and save the report. Run with the question.
-disable-model-invocation: true
+description: Use when a question needs an answer from primary sources instead of memory, such as current versions, specifications, or how an outside system behaves. Answers with a citation for every claim, names the gaps, and saves the report.
 ---
 
 # Research

@@ -1,7 +1,6 @@
 ---
 name: write-spec
-description: Turn a settled conversation or decisions file into .scratch/<feature>/spec.md and one issues/NN-slug.md per task, in one pass, with no new interview. For code and non-code work alike.
-disable-model-invocation: true
+description: Use when the user asks for a spec or issue files, or when a conversation or decisions file is settled and the work spans sessions. Turns it into .scratch/<feature>/spec.md and one issues/NN-slug.md per task, in one pass, with no new interview. For code and non-code work alike.
 ---
 
 # Write spec

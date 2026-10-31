@@ -30,10 +30,10 @@ if [ -n "$problems" ]; then
 fi
 echo "plugin validate --strict: passes apart from the intended missing version"
 
-# SKILL.md and agents/openai.yaml are per-skill by design; every other file
+# SKILL.md is per-skill by design; every other file
 # with the same path relative to its skill folder is a shared copy.
 mismatch=$(find skills -mindepth 2 -type f \
-  ! -path 'skills/*/SKILL.md' ! -path 'skills/*/agents/openai.yaml' \
+  ! -path 'skills/*/SKILL.md' \
   | sed 's|^skills/[^/]*/||' | sort | uniq -d \
   | while IFS= read -r rel; do
       first=

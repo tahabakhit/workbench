@@ -44,18 +44,11 @@ in each line (pointers, leading words, completion criteria, no-ops).
 
 ## 4. Portability
 
-- Frontmatter: `name`, `description`, and `disable-model-invocation: true` for
-  manual skills. Nothing else.
-- Manual skills also ship `agents/openai.yaml`:
-
-  ```yaml
-  policy:
-    allow_implicit_invocation: false
-  ```
+- Frontmatter: `name` and `description`. Nothing else, so the model can invoke
+  every skill. A skill that fails step 2 of the check gets a better description.
 
 - Name no tool from one harness without the other's equivalent.
 - Scripts: POSIX `sh` with `jq`, inside the skill's `scripts/` folder.
-- Model-invoked skills in the collection stay at four or fewer.
 
 ## 5. Check
 
@@ -63,7 +56,7 @@ in each line (pointers, leading words, completion criteria, no-ops).
 2. `scripts/trigger-check.sh <skill> yes "<prompt>"` for three prompts that
    should trigger it, and `... no "<prompt>"` for two near misses. Run it from
    a repo where the prompt makes sense; in an empty folder the model stops to
-   ask instead. Skip this for manual skills.
+   ask instead.
 3. Replay one failing case from step 2 with the skill turned off
    (`--settings '{"skillOverrides":{"<skill>":"off"}}'`) and on; keep the skill
    only if the result with it is better.

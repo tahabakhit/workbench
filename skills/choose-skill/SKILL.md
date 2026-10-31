@@ -1,7 +1,6 @@
 ---
 name: choose-skill
-description: Say which workbench skill or flow fits the user's situation, or what to do with the session when a phase of work ends. Run with the situation in a sentence.
-disable-model-invocation: true
+description: Use when the user asks which skill or workflow fits, or when a phase of work has ended and the question is what to do with the session. Gives one recommendation they can run as typed.
 ---
 
 # Choose skill

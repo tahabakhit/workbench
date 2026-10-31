@@ -1,7 +1,6 @@
 ---
 name: improve
-description: Turn corrections the user made more than once into approved fixes (a hook, an instruction line, or a skill change), check whether earlier fixes held, and propose removals for skills that are never used.
-disable-model-invocation: true
+description: Use when the user asks to review repeated corrections, whether earlier fixes held, or which skills go unused. Turns corrections made more than once into approved fixes (a hook, an instruction line, or a skill change) and proposes removals.
 ---
 
 # Improve

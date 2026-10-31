@@ -1,7 +1,6 @@
 ---
 name: study-topic
-description: Tutor the user through one topic across sessions. Settle a mission, gather cited primary sources and name their gaps, write Markdown lessons, and quiz with shuffled answers, all in the notebook's `learning/` folder. Run with the topic to study.
-disable-model-invocation: true
+description: Use when the user wants to learn a topic over several sessions. Settles a mission, gathers cited primary sources and names their gaps, writes Markdown lessons, and quizzes with shuffled answers, all in the notebook's `learning/` folder.
 ---
 
 # Study topic
