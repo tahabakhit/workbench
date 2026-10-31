@@ -1,6 +1,6 @@
 # 05 Release workflow, shim and install
 
-Status: open
+Status: done
 Blocked by: 03, 04
 
 ## What
@@ -41,3 +41,19 @@ If it doesn't, Codex uses the CLI, the same as Pi. Do not add a top-level
   plugin calls the MCP `search` tool successfully, and the binary is back.
 - A plain `codex exec` and `pi -p` session each start with the binary present,
   or the gap is named here.
+
+## Result
+
+- `gh release view notebook-d5b5b10c2e2b911b`: `checksums.txt`,
+  `notebook-darwin-amd64`, `notebook-darwin-arm64`, `notebook-linux-amd64`,
+  `notebook-linux-arm64`.
+- Binary deleted, new `claude -p` on plugin `d0acd954260e`:
+  `plugin:workbench:notebook` `connected`, called
+  `mcp__plugin_workbench_notebook__search`, and
+  `~/.local/share/workbench/bin/notebook` was back at 10,645,666 bytes.
+- Codex 0.166.0 lists the plugin's `.mcp.json` but keeps
+  `${CLAUDE_PLUGIN_ROOT}` unexpanded, so a session has no notebook MCP tools.
+  Codex uses the CLI, the same as Pi. `codex exec` ran `notebook search` and
+  found the note.
+- `pi -p` ran `notebook search` and printed
+  `log/2026-10-29-workbench-hooks-01-force-push.md  aa15fcfe1153  5.638`.
